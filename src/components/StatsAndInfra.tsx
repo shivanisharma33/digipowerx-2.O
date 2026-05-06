@@ -24,7 +24,9 @@ const StatCounter = ({ target, label, sub, isFloat = false }: { target: number, 
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="p-6 md:p-10 lg:p-12 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0">
+    <div ref={ref} className="p-6 md:p-10 lg:p-12 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0 relative group">
+      {/* Hover accent */}
+      <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full bg-brand-yellow transition-all duration-700" />
       <div className="text-4xl md:text-5xl lg:text-7xl font-black text-brand-yellow font-technical tracking-tighter mb-2 md:mb-4">
         {isFloat ? count.toFixed(2) : Math.floor(count).toLocaleString()}
         {label === "Megawatts Capacity" && <span className="text-base md:text-xl ml-2 text-white/50">MW</span>}
@@ -118,8 +120,10 @@ const InfraFlow = () => {
   return (
     <div className="bg-brand-cream py-16 md:py-24 border-t border-gray-200">
       <div className="max-w-[1800px] mx-auto px-6 lg:px-20 mb-8 md:mb-12">
-        <div className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase mb-4 flex items-center gap-4">
-          <span className="text-gray-300">02 /</span> THE STACK
+        <div className="flex items-center gap-6 mb-6">
+          <span className="text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">03 /</span>
+          <div className="h-[1px] w-16 bg-brand-yellow" />
+          <span className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase">The Stack</span>
         </div>
         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Power In. <span className="text-brand-yellow">Intelligence</span> Out.</h2>
       </div>

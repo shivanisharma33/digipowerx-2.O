@@ -61,10 +61,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-brand-cream/90 backdrop-blur-md shadow-lg py-3' : 'bg-brand-cream py-5'} border-b border-gray-200`}>
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-brand-cream/90 backdrop-blur-md shadow-lg py-2' : 'bg-brand-cream py-3'} border-b border-gray-200`}>
       <div className="max-w-[1800px] mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
         <div className="flex-shrink-0">
-          <img src={logoImg} alt="DigiPowerX Logo" className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-300" />
+          <img src={logoImg} alt="DigiPowerX Logo" className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" />
         </div>
 
         {/* Desktop Links */}

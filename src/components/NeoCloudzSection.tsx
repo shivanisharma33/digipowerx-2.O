@@ -69,13 +69,16 @@ const Terminal = () => {
 
 const NeoCloudzSection = () => {
   return (
-    <section className="bg-brand-dark py-32 px-6 lg:px-20 relative overflow-hidden">
+    <section className="bg-brand-dark py-24 md:py-32 lg:py-40 px-6 lg:px-20 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <div>
-          <div className="text-[10px] font-black tracking-[0.3em] text-emerald-500/50 uppercase mb-8 flex items-center gap-4">
-            <span className="text-emerald-900">04 /</span> WHOLLY OWNED SUBSIDIARY
+          {/* Section Header */}
+          <div className="flex items-center gap-6 mb-10">
+            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-900 uppercase">04 /</span>
+            <div className="h-[1px] w-16 bg-emerald-500/50" />
+            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-500/50 uppercase">Wholly Owned Subsidiary</span>
           </div>
           <h2 className="text-[clamp(3rem,8vw,6rem)] font-black leading-[0.9] tracking-tighter text-white uppercase mb-8">
             MEET<br />
@@ -105,8 +108,12 @@ const NeoCloudzSection = () => {
           </div>
         </div>
 
-        <div className="relative bg-black rounded-sm border border-white/5 overflow-hidden">
-          <Terminal />
+        <div className="relative">
+          {/* Glassmorphism glow behind terminal */}
+          <div className="absolute -inset-4 bg-emerald-500/5 blur-xl rounded-2xl pointer-events-none" />
+          <div className="relative bg-black rounded-sm border border-white/5 overflow-hidden">
+            <Terminal />
+          </div>
           {/* Decorative elements */}
           <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-emerald-500/20 pointer-events-none" />
           <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-emerald-500/20 pointer-events-none" />

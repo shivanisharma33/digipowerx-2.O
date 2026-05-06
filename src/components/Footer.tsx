@@ -15,7 +15,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {['𝕏', 'in', 'gh'].map(s => (
-                <a key={s} href="#" className="w-10 h-10 border border-gray-200 flex items-center justify-center rounded-sm hover:border-brand-dark transition-colors">
+                <a key={s} href="#" className="w-10 h-10 border border-gray-200 flex items-center justify-center rounded-sm hover:border-brand-yellow hover:text-brand-yellow transition-all duration-300">
                   {s}
                 </a>
               ))}
@@ -127,6 +127,10 @@ const CTASection = () => {
 
       <div className="max-w-[1800px] mx-auto px-4 md:px-12 lg:px-20 relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-16">
         <div className="max-w-4xl">
+          <div className="flex items-center gap-6 mb-8">
+            <div className="h-[1px] w-16 bg-brand-yellow" />
+            <span className="text-[10px] font-black tracking-[0.4em] text-white/30 uppercase">Let's Build Together</span>
+          </div>
           <h2 className="text-[clamp(2.2rem,8vw,5.5rem)] font-black text-white uppercase tracking-tighter leading-[0.95] mb-6 md:mb-8">
             Ready to own the <br />
             <span className="text-brand-yellow">Infrastructure</span> <br className="hidden sm:block" />
@@ -138,7 +142,7 @@ const CTASection = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row lg:flex-col gap-4 w-full sm:w-auto">
-          <button className="bg-brand-yellow text-brand-dark px-10 py-4 md:py-5 font-bold text-sm uppercase tracking-widest hover:bg-yellow-500 transition-all active:scale-95 text-center shadow-xl shadow-brand-yellow/10 w-full sm:w-auto">
+          <button className="bg-brand-yellow text-brand-dark px-10 py-4 md:py-5 font-bold text-sm uppercase tracking-widest hover:bg-yellow-500 transition-all active:scale-95 text-center shadow-xl shadow-brand-yellow/10 w-full sm:w-auto hover:shadow-2xl hover:shadow-brand-yellow/20">
             Talk to Our Team
           </button>
           <button className="border border-white/20 text-white hover:bg-white/10 px-10 py-4 md:py-5 font-bold text-sm uppercase tracking-widest transition-all active:scale-95 text-center backdrop-blur-sm w-full sm:w-auto">

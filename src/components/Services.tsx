@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import liquidCoolingImg from '../assets/download (2).png';
+import LiquidCooling3D from './LiquidCooling3D';
 
 // Leaflet setup
 // @ts-ignore
@@ -305,12 +305,21 @@ const ModularDCGraphic = () => {
 
 const Services = () => {
   return (
-    <section className="bg-brand-cream py-24 px-6 lg:px-20 border-t border-gray-200">
+    <section className="bg-brand-cream py-24 md:py-32 px-6 lg:px-20 border-t border-gray-200">
       <div className="max-w-[1800px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 px-0 border-t border-gray-200 mt-12">
+        {/* Section Header */}
+        <div className="flex items-center gap-6 mb-6">
+          <span className="text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">02 /</span>
+          <div className="h-[1px] w-16 bg-brand-yellow" />
+          <span className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase">Our Capabilities</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-16">
+          Four <span className="text-brand-yellow">Pillars</span> of Infrastructure
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[1px] bg-gray-200 border border-gray-200">
 
           {/* Card 1 - We Own the Power */}
-          <div className="p-6 md:p-12 border-r border-b border-gray-200 hover:bg-gray-50 transition-colors group relative">
+          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
             <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
               Vertical Integration
             </div>
@@ -353,7 +362,7 @@ const Services = () => {
           </div>
 
           {/* Card 2 - Liquid Cooling */}
-          <div className="p-6 md:p-12 border-b border-gray-200 hover:bg-gray-50 transition-colors group relative">
+          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
             <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
               Data Center Architecture
             </div>
@@ -369,12 +378,12 @@ const Services = () => {
               ))}
             </ul>
             <div className="h-[300px] md:h-[400px] bg-black/90 relative rounded-sm overflow-hidden border border-white/5">
-              <img src={liquidCoolingImg} alt="Liquid Cooling Architecture" className="w-full h-full object-contain p-4" />
+              <LiquidCooling3D />
             </div>
           </div>
 
           {/* Card 3 - NeoCloudz */}
-          <div className="p-6 md:p-12 border-r border-b border-gray-200 hover:bg-gray-50 transition-colors group relative">
+          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
             <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
               Wholly Owned Subsidiary
             </div>
@@ -395,7 +404,7 @@ const Services = () => {
           </div>
 
           {/* Card 4 - US Data Centers Inc. */}
-          <div className="p-6 md:p-12 border-b border-gray-200 hover:bg-gray-50 transition-colors group relative">
+          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
             <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
               Strategic Partner
             </div>
