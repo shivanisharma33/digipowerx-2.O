@@ -76,7 +76,8 @@
   .home-hero .scroll-cue{display:none}
 }
 @media(max-width:680px){
+  .home-hero .hero-content{padding-top:140px;gap:16px}
   .home-hero h1{font-size:48px;letter-spacing:-2px}
   .home-hero .hero-sub{font-size:15px}
-  .home-hero .hero-visual{height:380px}
+  .home-hero .hero-visual{height:220px}
 }

@@ -232,9 +232,9 @@ const HeroVisual3D = () => {
       camera.aspect = W / H;
       // Adjust camera distance for mobile so graphic isn't cut off
       if (W < 768) {
-        camera.position.set(0, 2.4, 22);
+        camera.position.set(0, 1.2, 11);
       } else if (W < 1024) {
-        camera.position.set(0, 2.4, 16);
+        camera.position.set(0, 2.4, 15);
       } else {
         camera.position.set(0, 2.4, 13);
       }
