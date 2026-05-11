@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { motion } from 'framer-motion';
 import LiquidCooling3D from './LiquidCooling3D';
+import bgImage from '../assets/ChatGPT Image May 11, 2026, 03_45_38 PM.png';
 
 // Leaflet setup
 // @ts-ignore
@@ -119,11 +121,13 @@ const LiquidCoolingDiagram = () => {
 
 const GpuGridGraphic = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [lines, setLines] = useState<string[]>([]);
+  const [typedLines, setTypedLines] = useState<string[]>([]);
+  
   const allLines = [
-    'provision b200 --count 8',
-    'Allocating node cluster [████████] 100%',
+    'neo provision b200 --count 8',
+    'Allocating node cluster [██████████] 100%',
     'InfiniBand fabric: 400Gb/s · ready',
+    'SSH: ssh root@10.0.0.1 -i ~/.ssh/nc_key',
     'GPU 0-7: NVIDIA B200 · 192GB HBM3e',
     'All systems nominal · PUE 1.12',
     'trainer.train()... [STEP 500] loss=1.08',
@@ -146,34 +150,52 @@ const GpuGridGraphic = () => {
     window.addEventListener('resize', setSize);
     setSize();
 
-    const nodes = Array.from({ length: 18 }, (_, i) => ({
-      r: Math.floor(i / 6),
-      col: i % 6,
+    // 8 columns, 2 rows for a wider bento card
+    const cols = 8;
+    const rows = 2;
+    const nodes = Array.from({ length: cols * rows }, (_, i) => ({
+      r: Math.floor(i / cols),
+      col: i % cols,
       phase: Math.random() * Math.PI * 2,
-      active: Math.random() > 0.2
+      active: true // make all active but pulsing differently
     }));
 
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
-      const cols = 6, rows = 3;
-      const padX = 15, padY = 15;
+      const padX = 20, padY = 20;
       const cellW = (W - padX * 2) / cols;
-      const cellH = (H * 0.7 - padY * 2) / rows;
+      const cellH = (H - padY * 2 - 20) / rows; // -20 for label space
 
       nodes.forEach(n => {
-        const nx = padX + n.col * cellW + cellW * 0.1;
+        const nx = padX + n.col * cellW + cellW * 0.15;
         const ny = padY + n.r * cellH + cellH * 0.1;
-        const nw = cellW * 0.8, nh = cellH * 0.8;
-        const pulse = (Math.sin(t * 2 + n.phase) + 1) / 2;
+        const nw = cellW * 0.7, nh = cellH * 0.65;
+        const pulse = (Math.sin(t * 3 + n.phase) + 1) / 2;
 
-        ctx.fillStyle = n.active ? 'rgba(8, 24, 16, 0.95)' : 'rgba(30, 30, 30, 0.9)';
-        ctx.beginPath(); ctx.roundRect(nx, ny, nw, nh, 2); ctx.fill();
-        ctx.strokeStyle = n.active ? `rgba(0, 232, 120, ${0.4 + pulse * 0.4})` : 'rgba(60, 60, 60, 0.2)';
-        ctx.lineWidth = 1; ctx.stroke();
+        // Outer chassis
+        ctx.fillStyle = 'rgba(4, 18, 10, 0.9)';
+        ctx.beginPath(); ctx.roundRect(nx, ny, nw, nh, 3); ctx.fill();
+        
+        // Neon green border
+        ctx.strokeStyle = `rgba(0, 232, 120, ${0.3 + pulse * 0.5})`;
+        ctx.lineWidth = 1.5; ctx.stroke();
 
-        if (n.active) {
-          ctx.fillStyle = 'rgba(0, 232, 120, 0.8)';
-          ctx.fillRect(nx + 3, ny + nh - 5, (nw - 6) * (0.5 + pulse * 0.5), 2);
+        // Inner processing unit (die)
+        ctx.fillStyle = `rgba(0, 232, 120, ${0.1 + pulse * 0.3})`;
+        ctx.fillRect(nx + nw * 0.2, ny + nh * 0.2, nw * 0.6, nh * 0.6);
+
+        // Active status light
+        ctx.fillStyle = 'rgba(0, 255, 120, 0.9)';
+        ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(0, 255, 120, 0.8)';
+        ctx.fillRect(nx + nw - 6, ny + 4, 2, 2);
+        ctx.shadowBlur = 0;
+
+        // Label below each GPU in the bottom row
+        if (n.r === rows - 1) {
+          ctx.fillStyle = 'rgba(0, 232, 120, 0.5)';
+          ctx.font = 'bold 9px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`GPU${n.col}`, nx + nw / 2, ny + nh + 14);
         }
       });
 
@@ -183,11 +205,16 @@ const GpuGridGraphic = () => {
 
     draw();
 
-    let li = 0;
+    // Terminal typing effect logic
+    let currentLineIdx = 0;
     const interval = setInterval(() => {
-      setLines(prev => [...prev, allLines[li % allLines.length]].slice(-3));
-      li++;
-    }, 2000);
+      setTypedLines(prev => {
+        const newLines = [...prev, allLines[currentLineIdx]];
+        if (newLines.length > 4) newLines.shift(); // Keep only last 4 lines
+        return newLines;
+      });
+      currentLineIdx = (currentLineIdx + 1) % allLines.length;
+    }, 1500);
 
     return () => {
       window.removeEventListener('resize', setSize);
@@ -196,13 +223,30 @@ const GpuGridGraphic = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 bg-black p-4">
-        <canvas ref={canvasRef} className="w-full h-full" />
+    <div className="flex flex-col h-full bg-[#030504]">
+      {/* Visual GPU Grid */}
+      <div className="flex-1 relative p-2">
+        <canvas ref={canvasRef} className="w-full h-full block" />
+        {/* Subtle top glare */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
       </div>
-      <div className="bg-[#333] p-4 font-mono text-[9px] h-[70px] overflow-hidden border-t border-white/5">
-        {lines.map((l, i) => (
-          <div key={i} className="text-emerald-400 opacity-80 whitespace-nowrap overflow-hidden text-ellipsis">{l}</div>
+      
+      {/* Terminal Section */}
+      <div className="h-[85px] bg-[#000000] p-4 font-mono text-[10px] leading-[1.4] overflow-hidden border-t border-[#00e878]/20 relative shadow-[inset_0_5px_20px_rgba(0,0,0,0.5)]">
+        <div className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[#00e878] to-transparent opacity-50" />
+        {typedLines.map((l, i) => (
+          <div key={i} className="text-[#00e878] opacity-90 drop-shadow-[0_0_5px_rgba(0,232,120,0.4)] whitespace-nowrap overflow-hidden text-ellipsis">
+            {i === typedLines.length - 1 ? (
+              <span className="flex items-center gap-2">
+                <span className="text-white/40">{'>'}</span> {l}
+                <span className="w-[6px] h-[10px] bg-[#00e878] inline-block animate-pulse ml-1" />
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                <span className="text-white/40">{'>'}</span> {l}
+              </span>
+            )}
+          </div>
         ))}
       </div>
     </div>
@@ -305,125 +349,165 @@ const ModularDCGraphic = () => {
 
 const Services = () => {
   return (
-    <section className="bg-brand-cream py-24 md:py-32 px-6 lg:px-20 border-t border-gray-200">
-      <div className="max-w-[1800px] mx-auto">
+    <section id="services" className="bg-[#050505] py-24 md:py-32 px-6 lg:px-20 relative overflow-hidden">
+      
+      {/* Background Decor - Uploaded Matrix Image */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-15 mix-blend-screen"
+        style={{
+          backgroundImage: `url('${bgImage}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      {/* Gradient overlay to ensure text readability and blend edges */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        
         {/* Section Header */}
-        <div className="flex items-center gap-6 mb-6">
-          <span className="text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">02 /</span>
-          <div className="h-[1px] w-16 bg-brand-yellow" />
-          <span className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase">Our Capabilities</span>
-        </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-16">
-          Four <span className="text-brand-yellow">Pillars</span> of Infrastructure
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[1px] bg-gray-200 border border-gray-200">
-
-          {/* Card 1 - We Own the Power */}
-          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
-            <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
-              Vertical Integration
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 uppercase tracking-tight text-brand-dark">We Own the Power</h3>
-            <p className="text-gray-500 mb-8 md:mb-10 max-w-md leading-relaxed text-sm">
-              DigiPowerX controls the full energy stack — from owned power plants and utility-connected sites to 400 MW of pipeline development across the US.
-            </p>
-            <ul className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              {['Owned power generation assets', 'Utility-powered & substation-connected sites', '400 MW development pipeline', 'Future site acquisitions underway'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm font-medium text-gray-700">
-                  <span className="text-brand-yellow font-bold text-lg">→</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="h-[300px] md:h-[400px] bg-black relative rounded-sm overflow-hidden border border-white/5">
-              <MapContainer
-                center={[37.5, -95]}
-                zoom={4}
-                scrollWheelZoom={false}
-                zoomControl={false}
-                dragging={false}
-                className="h-full w-full grayscale contrast-125"
-              >
-                <TileLayer
-                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                />
-                {[
-                  [34.60, -86.98], [43.02, -78.87], [35.57, -81.42],
-                ].map((pos, i) => (
-                  <Marker key={i} position={pos as L.LatLngExpression} icon={PulseIcon()} />
-                ))}
-              </MapContainer>
-              <style>{`
-                @keyframes map-pulse {
-                  0%, 100% { box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.35), 0 0 12px 4px rgba(245, 197, 24, 0.2); }
-                  50% { box-shadow: 0 0 0 8px rgba(245, 197, 24, 0.15), 0 0 22px 10px rgba(245, 197, 24, 0.35); }
-                }
-              `}</style>
-            </div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-8 flex flex-col items-center"
+        >
+          <div className="inline-flex items-center gap-5 bg-transparent border border-white/20 rounded-full px-6 py-2 cursor-default hover:border-[#f5c518]/50 transition-colors duration-500">
+            <span className="text-[10px] font-bold tracking-widest text-white/80">02 /</span>
+            <div className="h-[1px] w-16 bg-[#f5c518]" />
+            <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase">OUR CAPABILITIES</span>
           </div>
+        </motion.div>
 
-          {/* Card 2 - Liquid Cooling */}
-          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
-            <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
-              Data Center Architecture
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 uppercase tracking-tight text-brand-dark">Direct-to-Chip Liquid Cooling</h3>
-            <p className="text-gray-500 mb-8 md:mb-10 max-w-md leading-relaxed text-sm">
-              Purpose-built for NVIDIA Blackwell and next-gen AI accelerators. Cold plates deliver coolant directly to the chip — no air cooling required at &gt;80kW/rack.
-            </p>
-            <ul className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              {['Direct-to-chip cold plates per GPU', 'Rear-door heat exchanger capture', 'Chiller + cooling tower rejection loop', 'PUE <1.15 · Zero thermal throttling'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm font-medium text-gray-700">
-                  <span className="text-brand-yellow font-bold text-lg">→</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="h-[300px] md:h-[400px] bg-black/90 relative rounded-sm overflow-hidden border border-white/5">
-              <LiquidCooling3D />
-            </div>
-          </div>
+        {/* Main Title */}
+        <motion.h2 
+          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-3xl md:text-5xl lg:text-[54px] font-black uppercase mb-20 text-white text-center tracking-tight"
+        >
+          FOUR <span className="text-[#f5c518]">PILLARS</span> OF INFRASTRUCTURE
+        </motion.h2>
 
-          {/* Card 3 - NeoCloudz */}
-          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
-            <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
-              Wholly Owned Subsidiary
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 uppercase tracking-tight text-brand-dark">Meet NeoCloudz</h3>
-            <p className="text-gray-500 mb-8 md:mb-10 max-w-md leading-relaxed text-sm">
-              NeoCloudz is DigiPowerX's GPU compute platform — bare-metal NVIDIA Blackwell B200 clusters delivered directly from our owned data centers.
-            </p>
-            <ul className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              {['NVIDIA Blackwell B200 GPU clusters', 'Bare-metal · no virtualization overhead', '400Gb/s InfiniBand fabric', 'Provisioned in <60 seconds'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm font-medium text-gray-700">
-                  <span className="text-brand-yellow font-bold text-lg">→</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="h-[300px] md:h-[400px] bg-black relative rounded-sm overflow-hidden border border-white/5">
-              <GpuGridGraphic />
-            </div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-8">
 
-          {/* Card 4 - US Data Centers Inc. */}
-          <div className="p-6 md:p-12 bg-brand-cream hover:bg-gray-50 transition-all duration-500 group relative">
-            <div className="text-[9px] font-black tracking-[0.3em] text-gray-400 uppercase mb-6 md:mb-8">
-              Strategic Partner
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 uppercase tracking-tight text-brand-dark">US Data Centers Inc.</h3>
-            <p className="text-gray-500 mb-8 md:mb-10 max-w-md leading-relaxed text-sm">
-              A majority shareholder in US Data Centers Inc. — a modular data center manufacturer purpose-built for rapid AI infrastructure deployment.
-            </p>
-            <ul className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              {['600kW – 1.8MW self-contained modules', 'Tier III design · TIA-942 compliant', 'Rapid deployment — operational in weeks', 'Factory-built & commissioned off-site'].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm font-medium text-gray-700">
-                  <span className="text-brand-yellow font-bold text-lg">→</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="h-[300px] md:h-[400px] bg-black relative rounded-sm overflow-hidden border border-white/5">
-              <ModularDCGraphic />
-            </div>
-          </div>
+          {/* Card 1 - We Own the Power (Wide) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="lg:col-span-7 group relative rounded-[20px] overflow-hidden p-[1px] hover:shadow-[0_0_50px_rgba(245,197,24,0.15)] hover:-translate-y-1 transition-all duration-500"
+          >
+            {/* Animated Spinning Border */}
+            <div className="absolute inset-[-150%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,rgba(245,197,24,1)_0%,transparent_25%)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute inset-0 rounded-[20px] border border-[#f5c518]/20 z-10 pointer-events-none transition-colors duration-500 group-hover:border-transparent" />
 
+            {/* Inner Content */}
+            <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10 flex-1">
+                <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">VERTICAL INTEGRATION</div>
+                <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">WE OWN THE POWER</h3>
+                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                  DigiPowerX controls the full energy stack — from owned power plants and utility-connected sites to 400 MW of pipeline development across the US.
+                </p>
+              </div>
+              <div className="h-[250px] md:h-[320px] w-full bg-white relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
+                <MapContainer center={[37.5, -95]} zoom={4} scrollWheelZoom={false} zoomControl={false} dragging={false} className="h-full w-full">
+                  <TileLayer url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png" />
+                  {[[34.60, -86.98], [43.02, -78.87], [35.57, -81.42]].map((pos, i) => (
+                    <Marker key={i} position={pos as L.LatLngExpression} icon={PulseIcon()} />
+                  ))}
+                </MapContainer>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 2 - Liquid Cooling (Narrow) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5 group relative rounded-[20px] overflow-hidden p-[1px] hover:shadow-[0_0_50px_rgba(245,197,24,0.15)] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div className="absolute inset-[-200%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(245,197,24,1)_0%,transparent_30%)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute inset-0 rounded-[20px] border border-[#f5c518]/20 z-10 pointer-events-none transition-colors duration-500 group-hover:border-transparent" />
+
+            <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10 flex-1">
+                <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">DATA CENTER ARCHITECTURE</div>
+                <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">DIRECT-TO-CHIP LIQUID COOLING</h3>
+                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                  Purpose-built for NVIDIA Blackwell and next-gen AI accelerators. Cold plates deliver coolant directly to the chip — no air cooling required at &gt;80kW/rack.
+                </p>
+              </div>
+              <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
+                <LiquidCooling3D />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 3 - US Data Centers Inc. (Narrow) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-5 group relative rounded-[20px] overflow-hidden p-[1px] hover:shadow-[0_0_50px_rgba(245,197,24,0.15)] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div className="absolute inset-[-200%] animate-[spin_4.5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,rgba(245,197,24,1)_0%,transparent_30%)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute inset-0 rounded-[20px] border border-[#f5c518]/20 z-10 pointer-events-none transition-colors duration-500 group-hover:border-transparent" />
+
+            <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10 flex-1">
+                <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">STRATEGIC PARTNER</div>
+                <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">US DATA CENTERS INC.</h3>
+                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                  A majority shareholder in US Data Centers Inc. — a modular data center manufacturer purpose-built for rapid AI infrastructure deployment.
+                </p>
+              </div>
+              <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
+                <ModularDCGraphic />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 4 - Meet NeoCloudz (Wide) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="lg:col-span-7 group relative rounded-[20px] overflow-hidden p-[1px] hover:shadow-[0_0_50px_rgba(245,197,24,0.15)] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div className="absolute inset-[-150%] animate-[spin_5.5s_linear_infinite] bg-[conic-gradient(from_270deg_at_50%_50%,rgba(245,197,24,1)_0%,transparent_25%)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute inset-0 rounded-[20px] border border-[#f5c518]/20 z-10 pointer-events-none transition-colors duration-500 group-hover:border-transparent" />
+
+            <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10 flex-1">
+                <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">WHOLLY OWNED SUBSIDIARY</div>
+                <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">MEET NEOCLOUDZ</h3>
+                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                  NeoCloudz is DigiPowerX's GPU compute platform — bare-metal NVIDIA Blackwell B200 clusters delivered directly from our owned data centers.
+                </p>
+              </div>
+              <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
+                <GpuGridGraphic />
+              </div>
+            </div>
+          </motion.div>
 
         </div>
       </div>

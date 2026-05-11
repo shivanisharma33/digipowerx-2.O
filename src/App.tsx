@@ -1,26 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Marquee from './components/Marquee';
-import WhatWeDo from './components/WhatWeDo';
-import Services from './components/Services';
-import StatsAndInfra from './components/StatsAndInfra';
-import NeoCloudzSection from './components/NeoCloudzSection';
-import { CTASection, Footer } from './components/Footer';
+import Home from './components/Home';
+import About from './components/About';
+import { Footer } from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <Marquee />
-      <WhatWeDo />
-      <Services />
-      <StatsAndInfra />
-      <NeoCloudzSection />
-      <CTASection />
-      <Footer />
-    </main>
+    <Router>
+      <ScrollToTop />
+      <main className="min-h-screen">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </main>
+    </Router>
   );
 }
 

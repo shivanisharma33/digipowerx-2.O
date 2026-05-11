@@ -3,78 +3,98 @@ import { motion } from 'framer-motion';
 
 const WhatWeDo = () => {
   return (
-    <section className="bg-brand-cream py-24 md:py-32 lg:py-40 px-6 lg:px-20 relative overflow-hidden">
-      {/* Subtle background accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-yellow/[0.03] to-transparent pointer-events-none" />
+    <section className="bg-white pt-24 md:pt-32 relative overflow-hidden flex flex-col items-center text-center font-sans min-h-[80vh]">
       
-      <div className="max-w-[1800px] mx-auto">
-        {/* Section Label */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-6 mb-16"
-        >
-          <span className="text-[10px] font-black tracking-[0.3em] text-gray-300 uppercase">01 /</span>
-          <div className="h-[1px] w-16 bg-brand-yellow" />
-          <span className="text-[10px] font-black tracking-[0.3em] text-gray-400 uppercase">What We Do</span>
-        </motion.div>
+      {/* Premium Background Effects */}
+      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#f5c518] rounded-full blur-[160px] opacity-[0.06] pointer-events-none" />
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.08]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }}
+      />
+      
+      {/* Top Label */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="mb-10 relative z-10"
+      >
+        <div className="text-[9px] font-black tracking-[0.25em] text-gray-400 uppercase mb-5">WHAT WE DO</div>
+        <div className="inline-flex items-center gap-3 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100 rounded-full px-6 py-2.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-500 cursor-default">
+          <span className="text-[9px] font-black tracking-[0.2em] text-black">01 /</span>
+          <div className="h-[2px] w-12 bg-[#f5c518] rounded-full" />
+          <span className="text-[9px] font-black tracking-[0.2em] text-black uppercase">WHAT WE DO</span>
+        </div>
+      </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(2.5rem,7vw,5.5rem)] font-black leading-[0.95] tracking-tighter uppercase mb-12"
-            >
-              BUILT FROM <br />
-              THE GROUND UP. <br />
-              <span className="text-brand-yellow">OWNED</span> AT EVERY LAYER.
-            </motion.h2>
+      {/* Main Heading */}
+      <motion.h2
+        initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tighter uppercase mb-8 text-black relative z-10"
+      >
+        BUILT FROM <br />
+        THE GROUND UP.<br />
+        <span className="text-[#f5c518] relative inline-block">
+          OWNED
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#f5c518] origin-left opacity-60" 
+          />
+        </span> AT EVERY LAYER.
+      </motion.h2>
 
-            <motion.p
+      {/* Subtext */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="text-gray-500 text-[13px] md:text-[15px] max-w-2xl leading-relaxed mx-auto mb-24 px-6 font-medium relative z-10"
+      >
+        From land and power to physical infrastructure and compute — DigiPowerX controls<br className="hidden md:block" />
+        the entire chain, eliminating third-party dependencies and compressing time-to-compute.
+      </motion.p>
+
+      {/* Bottom Tabs / Grid */}
+      <div className="w-full border-y border-gray-200 mt-auto bg-white/50 backdrop-blur-sm relative z-10">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3">
+          {[
+            { num: '01', text: 'OWN THE ENERGY SOURCE' },
+            { num: '02', text: 'BUILD THE DATA CENTERS' },
+            { num: '03', text: 'OPERATE THE GPU CLUSTERS' },
+          ].map((item, i) => (
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-gray-500 text-lg md:text-xl max-w-3xl leading-relaxed font-medium"
+              transition={{ delay: 0.3 + (i * 0.1), duration: 0.6 }}
+              key={i} 
+              className={`group relative flex justify-center items-center py-8 px-4 border-b md:border-b-0 border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:bg-gray-50/80 ${
+                i !== 2 ? 'md:border-r' : ''
+              } ${i === 0 ? 'md:border-l' : ''}`}
             >
-              From land and power to physical infrastructure and compute —
-              DigiPowerX controls the entire chain, eliminating third-party
-              dependencies and compressing time-to-compute.
-            </motion.p>
-          </div>
-
-          {/* Right side accent - Key differentiators */}
-          <div className="lg:col-span-4 flex flex-col justify-end">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="space-y-6"
-            >
-              {[
-                { num: '01', text: 'Own the energy source' },
-                { num: '02', text: 'Build the data centers' },
-                { num: '03', text: 'Operate the GPU clusters' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 group cursor-default">
-                  <span className="text-[10px] font-black text-brand-yellow tracking-wider mt-1">{item.num}</span>
-                  <div>
-                    <div className="text-sm font-bold text-brand-dark group-hover:text-brand-yellow transition-colors uppercase tracking-wider">
-                      {item.text}
-                    </div>
-                    <div className="h-[1px] w-0 group-hover:w-full bg-brand-yellow transition-all duration-500 mt-2" />
-                  </div>
-                </div>
-              ))}
+              {/* Hover animated bottom border */}
+              <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#f5c518] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+              
+              <div className="flex items-center gap-4 relative z-10">
+                <span className="text-[10px] font-black text-[#f5c518] group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-300">{item.num}</span>
+                <span className="text-[10px] font-bold text-black tracking-[0.2em] uppercase group-hover:text-gray-600 transition-colors duration-300">{item.text}</span>
+              </div>
             </motion.div>
-          </div>
+          ))}
         </div>
       </div>
+      
     </section>
   );
 };

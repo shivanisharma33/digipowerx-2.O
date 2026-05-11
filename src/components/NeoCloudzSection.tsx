@@ -1,66 +1,70 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-
 
 const Terminal = () => {
   const [lines, setLines] = useState<string[]>([]);
+  
   const allLines = [
-    'neocloudz:~ $ provision b200 --count 8 --fabric ib400g',
-    'Allocating node cluster [████████] 100%',
-    'InfiniBand fabric: 400Gb/s · ready',
     'GPU 0-7: NVIDIA B200 · 192GB HBM3e each',
+    '',
     'neocloudz:~ $ nvidia-smi --query',
+    '',
     'All systems nominal · PUE 1.12',
-    '[INFO]  Cluster: 16× B200 | InfiniBand: 400G',
-    '[INFO]  VRAM per node: 192 GB | Total: 3.07 TB',
-    '[INFO]  Provisioned in 00:00:47 — SLA: <60s ✓',
+    '',
+    '[INFO] Cluster: 16x B200 | InfiniBand: 400G',
+    '[INFO] VRAM per node: 192 GB | Total: 3.07 TB',
+    '[INFO] Provisioned in 00:00:47 — SLA: <60s ✔',
+    '',
     'trainer.train()... [STEP 500] loss=1.0887',
+    '',
+    'neocloudz:~ $ provision b200 --count 8 --fabric ib400g',
+    'Allocating node cluster [██████████] 100%',
+    'InfiniBand fabric: 400Gb/s · ready',
   ];
 
   useEffect(() => {
-    let i = 0;
+    let currentIdx = 0;
     const interval = setInterval(() => {
-      setLines(prev => [...prev, allLines[i % allLines.length]].slice(-12));
-      i++;
-    }, 1500);
+      setLines(prev => {
+        const nextLines = [...prev, allLines[currentIdx]];
+        if (nextLines.length > 15) nextLines.shift();
+        return nextLines;
+      });
+      currentIdx = (currentIdx + 1) % allLines.length;
+    }, 1200);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="bg-black/95 rounded-lg border border-emerald-500/30 overflow-hidden font-mono text-[11px] h-[380px] shadow-2xl shadow-emerald-500/10 relative group">
-      {/* Scanline Effect */}
-      <div className="absolute inset-0 pointer-events-none z-20 opacity-[0.03]"
-        style={{ background: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))', backgroundSize: '100% 2px, 3px 100%' }} />
-
+    <div className="bg-[#020503] rounded-xl border border-[#00e878]/20 overflow-hidden font-mono text-[11px] md:text-[12px] h-[380px] shadow-[0_0_60px_rgba(0,232,120,0.06)] relative group w-full">
+      
       {/* Header */}
-      <div className="bg-emerald-500/10 border-b border-emerald-500/20 px-5 py-4 flex items-center justify-between">
+      <div className="bg-[#040806] border-b border-[#00e878]/20 px-4 py-3 flex items-center justify-between">
         <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500/30" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/30" />
-          <div className="w-3 h-3 rounded-full bg-emerald-500/30" />
+          <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+          <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="text-emerald-500/60 text-[10px] tracking-[0.4em] font-black uppercase">GPU_NODE_ENGINE_v4</div>
-        <div className="flex items-center gap-3">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-          <span className="text-emerald-400 text-[10px] font-black tracking-widest">RUNNING</span>
+        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-black uppercase">GPU_NODE_ENGINE_V4</div>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-[#00e878] rounded-full shadow-[0_0_8px_rgba(0,232,120,0.8)] animate-pulse" />
+          <span className="text-[#00e878] text-[9px] tracking-widest uppercase font-bold hidden sm:block">RUNNING</span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-5 md:p-8 space-y-3 relative z-10 overflow-y-auto">
+      <div className="p-6 md:p-8 space-y-[6px] relative z-10 overflow-y-auto h-full text-left">
         {lines.map((line, idx) => (
           <div key={idx} className={`${
-            line.startsWith('[') ? 'text-emerald-500/40' :
-              line.includes('$') ? 'text-emerald-400 font-bold' :
-                line.includes('██') ? 'text-emerald-300' : 'text-gray-500'
-          } whitespace-nowrap overflow-hidden text-ellipsis`}>
+            line.startsWith('[INFO]') ? 'text-[#00e878]/50' :
+              line.includes('neocloudz:~ $') ? 'text-[#00e878] font-bold drop-shadow-[0_0_5px_rgba(0,232,120,0.5)]' :
+                'text-[#00e878]/70'
+          } whitespace-nowrap overflow-hidden text-ellipsis tracking-wide leading-relaxed`}>
             {line}
           </div>
         ))}
-        <div className="flex items-center gap-2">
-          <span className="text-emerald-500 font-bold">root@b200-node-07:~$</span>
-          <span className="w-2.5 h-4 bg-emerald-500/80 animate-pulse" />
+        <div className="flex items-center gap-2 mt-2">
+          <span className="w-2 h-4 bg-[#00e878] animate-pulse" />
         </div>
       </div>
     </div>
@@ -69,55 +73,109 @@ const Terminal = () => {
 
 const NeoCloudzSection = () => {
   return (
-    <section className="bg-brand-dark py-24 md:py-32 lg:py-40 px-6 lg:px-20 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+    <section id="neocloudz" className="bg-[#050505] py-24 md:py-32 lg:py-40 px-6 lg:px-20 relative overflow-hidden">
+      {/* Background ambient glow */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#00e878]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
-      <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div>
-          {/* Section Header */}
-          <div className="flex items-center gap-6 mb-10">
-            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-900 uppercase">04 /</span>
-            <div className="h-[1px] w-16 bg-emerald-500/50" />
-            <span className="text-[10px] font-black tracking-[0.3em] text-emerald-500/50 uppercase">Wholly Owned Subsidiary</span>
-          </div>
-          <h2 className="text-[clamp(3rem,8vw,6rem)] font-black leading-[0.9] tracking-tighter text-white uppercase mb-8">
-            MEET<br />
-            <span className="text-emerald-500">NEO</span><br />
-            CLOUDZ.
-          </h2>
-          <p className="text-white/40 text-lg leading-relaxed mb-12 max-w-md">
+      <div className="max-w-[1200px] mx-auto flex flex-col items-center">
+        
+        {/* === TOP CENTERED SECTION === */}
+        <div className="flex flex-col items-center text-center w-full mb-20">
+          
+          {/* Centered Pill */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-10"
+          >
+            <div className="inline-flex items-center gap-5 bg-transparent border border-white/20 rounded-full px-6 py-2 hover:border-[#00e878]/40 transition-colors duration-500">
+              <span className="text-[10px] font-bold tracking-widest text-white/80">04 /</span>
+              <div className="h-[1px] w-12 bg-[#00e878]/60" />
+              <span className="text-[10px] font-bold tracking-[0.2em] text-[#00e878] uppercase">WHOLLY OWNED SUBSIDIARY</span>
+            </div>
+          </motion.div>
+
+          {/* Main Title (Inline) */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight uppercase mb-6"
+          >
+            <span className="text-white">MEET </span>
+            <span className="text-[#00e878] drop-shadow-[0_0_15px_rgba(0,232,120,0.3)]">NEO</span>
+            <span className="text-white"> CLOUDZ.</span>
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-gray-300 text-[15px] md:text-[17px] leading-relaxed max-w-[800px]"
+          >
             NeoCloudz is DigiPowerX's GPU compute platform — delivering NVIDIA Blackwell B200 bare-metal infrastructure directly from our owned data centers.
-          </p>
-          <ul className="space-y-4 mb-12">
-            {[
-              'NVIDIA Blackwell B200 GPU clusters',
-              'Bare-metal, no virtualization overhead',
-              '400Gb/s InfiniBand fabric',
-              'Provisioned in <60 seconds'
-            ].map(item => (
-              <li key={item} className="flex items-center gap-3 text-white/60 text-sm font-medium">
-                <span className="text-brand-yellow font-bold text-lg">→</span> {item}
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-emerald-500 text-black px-8 py-3.5 font-bold text-sm uppercase tracking-wider hover:bg-emerald-400 transition-all w-full sm:w-auto">
-              Visit NeoCloudz
-            </button>
-            <button className="btn-outline border-white/10 text-white/50 hover:text-white w-full sm:w-auto">Talk to Sales</button>
-          </div>
+          </motion.p>
         </div>
 
-        <div className="relative">
-          {/* Glassmorphism glow behind terminal */}
-          <div className="absolute -inset-4 bg-emerald-500/5 blur-xl rounded-2xl pointer-events-none" />
-          <div className="relative bg-black rounded-sm border border-white/5 overflow-hidden">
-            <Terminal />
-          </div>
-          {/* Decorative elements */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-emerald-500/20 pointer-events-none" />
-          <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-emerald-500/20 pointer-events-none" />
+        {/* === BOTTOM SPLIT SECTION === */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          
+          {/* Left Side: Bullet Points and Buttons */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex flex-col space-y-12 lg:pr-4"
+          >
+            {/* Features List */}
+            <ul className="space-y-6">
+              {[
+                'NVIDIA Blackwell B200 GPU clusters',
+                'Bare-metal, no virtualization overhead',
+                '400Gb/s InfiniBand fabric',
+                'Provisioned in <60 seconds'
+              ].map(item => (
+                <li key={item} className="flex items-center gap-4 text-white/80 text-[15px] md:text-[16px] font-medium tracking-wide">
+                  <span className="text-[#00e878] text-[12px] font-bold">➜</span> {item}
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-5 pt-4">
+              <button className="bg-[#00e878] text-[#050505] px-8 py-3.5 rounded-lg font-black text-[13px] uppercase tracking-widest hover:bg-[#00e878]/90 hover:shadow-[0_0_20px_rgba(0,232,120,0.3)] transition-all w-full sm:w-auto text-center">
+                VISIT NEOCLOUDZ
+              </button>
+              <button className="bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-lg font-bold text-[14px] hover:bg-white/5 transition-all w-full sm:w-auto text-center">
+                Talk to Sales
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Right Side: Terminal */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
+            className="relative w-full"
+          >
+            {/* Subtle decorative corner accent matching image */}
+            <div className="relative pl-6 pt-6">
+              <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#00e878]/30 pointer-events-none" />
+              <div className="absolute bottom-[-1.5rem] right-[-1.5rem] w-20 h-20 border-b border-r border-[#00e878]/30 pointer-events-none" />
+              <Terminal />
+            </div>
+          </motion.div>
+
         </div>
+
       </div>
     </section>
   );

@@ -1,62 +1,77 @@
 import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import logoImg from '../assets/Digi new color logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-cream border-t border-gray-200 py-20 px-6 lg:px-20">
-      <div className="max-w-[1800px] mx-auto">
+    <footer className="bg-[#030303] border-t border-white/5 py-20 px-6 lg:px-20 relative overflow-hidden">
+      {/* Subtle top glowing border */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#f5c518]/30 to-transparent" />
+      
+      <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <img src={logoImg} alt="DigiPowerX Logo" className="h-16 w-auto" />
+              {/* Added brightness-0 invert to make logo white for dark theme */}
+              <img src={logoImg} alt="DigiPowerX Logo" className="h-14 w-auto brightness-0 invert opacity-90" />
             </div>
-            <p className="text-gray-500 text-sm max-w-sm leading-relaxed mb-8">
+            <p className="text-gray-400 text-[14px] max-w-sm leading-relaxed mb-8">
               Vertically integrated power infrastructure, data centers, and AI compute. Owned at every layer. Built for scale.
             </p>
             <div className="flex gap-4">
-              {['𝕏', 'in', 'gh'].map(s => (
-                <a key={s} href="#" className="w-10 h-10 border border-gray-200 flex items-center justify-center rounded-sm hover:border-brand-yellow hover:text-brand-yellow transition-all duration-300">
-                  {s}
-                </a>
-              ))}
+              <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center rounded-md text-gray-400 hover:border-[#f5c518] hover:text-[#f5c518] hover:bg-[#f5c518]/5 hover:shadow-[0_0_15px_rgba(245,197,24,0.15)] transition-all duration-300">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                </svg>
+              </a>
+              <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center rounded-md text-gray-400 hover:border-[#f5c518] hover:text-[#f5c518] hover:bg-[#f5c518]/5 hover:shadow-[0_0_15px_rgba(245,197,24,0.15)] transition-all duration-300">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center rounded-md text-gray-400 hover:border-[#f5c518] hover:text-[#f5c518] hover:bg-[#f5c518]/5 hover:shadow-[0_0_15px_rgba(245,197,24,0.15)] transition-all duration-300">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                </svg>
+              </a>
             </div>
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-400 mb-6">Services</h4>
-            <ul className="space-y-4 text-sm font-medium text-gray-600">
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Power Generation</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Substation Build</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">DC Construction</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Colocation</a></li>
+            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Services</h4>
+            <ul className="space-y-4 text-[13px] font-medium text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Power Generation</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Substation Build</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">DC Construction</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Colocation</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-400 mb-6">Subsidiaries</h4>
-            <ul className="space-y-4 text-sm font-medium text-gray-600">
-              <li><a href="#" className="text-emerald-600 hover:text-emerald-700 transition-colors">NeoCloudz ↗</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">DigiGrid Platform</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">US Data Centers</a></li>
+            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Subsidiaries</h4>
+            <ul className="space-y-4 text-[13px] font-medium text-gray-400">
+              <li><a href="#" className="text-[#00e878] hover:text-[#00e878] drop-shadow-[0_0_8px_rgba(0,232,120,0.3)] transition-all">NeoCloudz ↗</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">DigiGrid Platform</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">US Data Centers</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-400 mb-6">Contact</h4>
-            <ul className="space-y-4 text-sm font-medium text-gray-600">
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Talk to Sales</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Investor Relations</a></li>
-              <li><a href="#" className="hover:text-brand-dark transition-colors">Media Inquiries</a></li>
+            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Contact</h4>
+            <ul className="space-y-4 text-[13px] font-medium text-gray-400">
+              <li><a href="#" className="hover:text-[#f5c518] transition-colors">Talk to Sales</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Investor Relations</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Media Inquiries</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
             © 2025 DigiPowerX, Inc. · 100% U.S. Owned & Operated
           </div>
-          <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+          <div className="flex items-center gap-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            <span className="w-2 h-2 bg-[#00e878] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,232,120,0.8)]" />
             All Systems Operational
           </div>
         </div>
@@ -85,7 +100,6 @@ const CTASection = () => {
     window.addEventListener('resize', setSize);
     setSize();
 
-    // Exact parameters from user reference HTML
     const waves = [
       { freq: 0.8, amp: 0.12, speed: 0.6, col: '245, 197, 24', op: 0.08 },
       { freq: 1.3, amp: 0.08, speed: 0.9, col: '245, 197, 24', op: 0.06 },
@@ -94,7 +108,12 @@ const CTASection = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#0B0B0B';
+      
+      // Deep black gradient background for CTA
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, '#050505');
+      grad.addColorStop(1, '#080808');
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, W, H);
 
       waves.forEach(w => {
@@ -119,41 +138,52 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-12 md:py-16 lg:py-24 bg-brand-dark">
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32 lg:py-40 bg-[#050505]">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
-      {/* Visual background element */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-yellow/5 to-transparent pointer-events-none" />
+      {/* Decorative Gradients */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#f5c518]/5 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#030303] to-transparent pointer-events-none" />
 
-      <div className="max-w-[1800px] mx-auto px-4 md:px-12 lg:px-20 relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-16">
-        <div className="max-w-4xl">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-20 relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 lg:gap-16">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:max-w-4xl"
+        >
           <div className="flex items-center gap-6 mb-8">
-            <div className="h-[1px] w-16 bg-brand-yellow" />
-            <span className="text-[10px] font-black tracking-[0.4em] text-white/30 uppercase">Let's Build Together</span>
+            <div className="h-[1px] w-12 sm:w-16 bg-[#f5c518]" />
+            <span className="text-[10px] font-black tracking-[0.3em] sm:tracking-[0.4em] text-white/50 uppercase">Let's Build Together</span>
           </div>
-          <h2 className="text-[clamp(2.2rem,8vw,5.5rem)] font-black text-white uppercase tracking-tighter leading-[0.95] mb-6 md:mb-8">
+          <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black text-white uppercase tracking-tight leading-[1] mb-8">
             Ready to own the <br />
-            <span className="text-brand-yellow">Infrastructure</span> <br className="hidden sm:block" />
-            layer?
+            <span className="text-[#f5c518] drop-shadow-[0_0_15px_rgba(245,197,24,0.2)]">Infrastructure</span> layer?
           </h2>
-          <p className="text-white/60 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl">
+          <p className="text-gray-400 text-[16px] md:text-lg lg:text-xl leading-relaxed max-w-2xl">
             Whether you need co-location, a turnkey data center build, or bare-metal GPU compute — DigiPowerX has the team to deliver at scale.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col sm:flex-row lg:flex-col gap-4 w-full sm:w-auto">
-          <button className="bg-brand-yellow text-brand-dark px-10 py-4 md:py-5 font-bold text-sm uppercase tracking-widest hover:bg-yellow-500 transition-all active:scale-95 text-center shadow-xl shadow-brand-yellow/10 w-full sm:w-auto hover:shadow-2xl hover:shadow-brand-yellow/20">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col sm:flex-row lg:flex-col gap-4 lg:gap-5 w-full sm:w-auto mt-6 lg:mt-0"
+        >
+          <button className="bg-[#f5c518] text-[#050505] px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-black text-[12px] lg:text-[13px] uppercase tracking-widest hover:bg-[#ffda47] hover:shadow-[0_0_30px_rgba(245,197,24,0.3)] transition-all active:scale-95 text-center w-full sm:w-auto">
             Talk to Our Team
           </button>
-          <button className="border border-white/20 text-white hover:bg-white/10 px-10 py-4 md:py-5 font-bold text-sm uppercase tracking-widest transition-all active:scale-95 text-center backdrop-blur-sm w-full sm:w-auto">
+          <button className="bg-transparent border border-white/20 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-lg font-bold text-[12px] lg:text-[13px] uppercase tracking-widest hover:bg-white/5 transition-all active:scale-95 text-center backdrop-blur-sm w-full sm:w-auto">
             Capability Deck
           </button>
-        </div>
+        </motion.div>
       </div>
-
     </section>
   );
 };
-
 
 export { Footer, CTASection };

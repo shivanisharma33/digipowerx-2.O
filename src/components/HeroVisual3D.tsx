@@ -230,9 +230,20 @@ const HeroVisual3D = () => {
       W = container.clientWidth;
       H = container.clientHeight;
       camera.aspect = W / H;
+      // Adjust camera distance for mobile so graphic isn't cut off
+      if (W < 768) {
+        camera.position.set(0, 2.4, 22);
+      } else if (W < 1024) {
+        camera.position.set(0, 2.4, 16);
+      } else {
+        camera.position.set(0, 2.4, 13);
+      }
       camera.updateProjectionMatrix();
       renderer.setSize(W, H);
     };
+    
+    // Call it once on load
+    onResize();
     window.addEventListener('resize', onResize);
 
     const clock = new THREE.Clock();

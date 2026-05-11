@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import logoImg from '../assets/Digi new color logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -26,12 +28,12 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', hasDropdown: true },
-    { name: 'Infrastructure', hasDropdown: false },
-    { name: 'Data Centers', hasDropdown: false },
-    { name: 'NeoCloudz', hasDropdown: false },
-    { name: 'About', hasDropdown: false },
-    { name: 'Contact', hasDropdown: false },
+    { name: 'Services', hasDropdown: true, path: '/#services' },
+    { name: 'Infrastructure', hasDropdown: false, path: '/#infrastructure' },
+    { name: 'Data Centers', hasDropdown: false, path: '/#datacenters' },
+    { name: 'NeoCloudz', hasDropdown: false, path: '/#neocloudz' },
+    { name: 'About', hasDropdown: false, path: '/about' },
+    { name: 'Contact', hasDropdown: false, path: '/#contact' },
   ];
 
   const menuVariants = {
@@ -61,33 +63,48 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-brand-cream/90 backdrop-blur-md shadow-lg py-2' : 'bg-brand-cream py-3'} border-b border-gray-200`}>
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md shadow-lg py-2' : 'bg-black py-3'} border-b border-white/10`}>
       <div className="max-w-[1800px] mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
-        <div className="flex-shrink-0">
-          <img src={logoImg} alt="DigiPowerX Logo" className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300" />
-        </div>
+        <Link to="/" className="flex-shrink-0">
+          <img src={logoImg} alt="DigiPowerX Logo" className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300 brightness-0 invert" />
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-10 flex-shrink-0">
-          {navLinks.map(link => (
-            <a key={link.name} href="#" className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest hover:text-brand-yellow transition-colors">
-              {link.name} {link.hasDropdown && <ChevronDown size={12} />}
-            </a>
-          ))}
+          {navLinks.map(link => {
+            const isHash = link.path.startsWith('/#');
+            
+            return (
+              <Link 
+                key={link.name} 
+                to={link.path} 
+                className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors"
+                onClick={(e) => {
+                  if (isHash && location.pathname === '/') {
+                    e.preventDefault();
+                    const id = link.path.split('#')[1];
+                    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                {link.name} {link.hasDropdown && <ChevronDown size={12} />}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-          <button className="hidden xl:block text-[10px] font-black tracking-[0.2em] px-5 py-2.5 hover:bg-white transition-all border border-gray-200 uppercase">
+          <button className="hidden xl:block text-[10px] font-black tracking-[0.2em] px-5 py-2.5 text-white/60 hover:text-white transition-all border border-white/10 uppercase">
             Investor Relations
           </button>
-          <button className="hidden sm:block bg-brand-dark text-white px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-gray-800 transition-all active:scale-95 shadow-lg shadow-brand-dark/10 whitespace-nowrap">
+          <button className="hidden sm:block bg-brand-yellow text-black px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg shadow-brand-yellow/10 whitespace-nowrap">
             Talk to Us
           </button>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2.5 bg-brand-dark text-white rounded-full shadow-xl hover:bg-gray-900 transition-all active:scale-90 relative z-[120] flex-shrink-0 flex items-center justify-center"
+            className="lg:hidden p-2.5 bg-brand-yellow text-black rounded-full shadow-xl hover:bg-white transition-all active:scale-90 relative z-[120] flex-shrink-0 flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -104,7 +121,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-brand-dark/60 backdrop-blur-md z-[110] lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[110] lg:hidden"
               onClick={() => setIsMenuOpen(false)}
             />
 
@@ -113,52 +130,59 @@ const Navbar = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 h-full w-full sm:w-[85%] max-w-[450px] bg-brand-cream/95 backdrop-blur-2xl z-[115] flex flex-col pt-32 pb-12 px-8 sm:px-12 overflow-y-auto lg:hidden shadow-[-20px_0_50px_rgba(0,0,0,0.1)]"
+              className="fixed top-0 right-0 h-full w-full sm:w-[85%] max-w-[450px] bg-black z-[115] flex flex-col pt-32 pb-12 px-8 sm:px-12 overflow-y-auto lg:hidden shadow-[-20px_0_50px_rgba(0,0,0,0.5)]"
             >
               {/* Technical Decorative Background */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #000 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+              <div className="absolute inset-0 opacity-[0.05] pointer-events-none select-none overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)', backgroundSize: '24px 24px' }} />
               </div>
 
               <div className="flex flex-col gap-6 sm:gap-8 relative z-10">
-                <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] mb-4 flex items-center gap-4">
-                  <div className="h-[1px] w-8 bg-gray-200" /> Navigation
+                <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-4 flex items-center gap-4">
+                  <div className="h-[1px] w-8 bg-white/10" /> Navigation
                 </div>
                 {navLinks.map((link) => (
-                  <motion.a
-                    variants={itemVariants}
-                    key={link.name}
-                    href="#"
-                    className="text-4xl sm:text-5xl font-black text-brand-dark flex items-center justify-between group"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span className="group-hover:text-brand-yellow transition-all group-hover:translate-x-2 duration-300 uppercase tracking-tighter italic">
-                      {link.name}
-                    </span>
-                    <ArrowRight size={32} className="text-brand-yellow opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                  </motion.a>
+                  <motion.div variants={itemVariants} key={link.name}>
+                    <Link
+                      to={link.path}
+                      className="text-4xl sm:text-5xl font-black text-white flex items-center justify-between group"
+                      onClick={(e) => {
+                        setIsMenuOpen(false);
+                        if (link.path.startsWith('/#') && location.pathname === '/') {
+                          e.preventDefault();
+                          const id = link.path.split('#')[1];
+                          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                    >
+                      <span className="group-hover:text-brand-yellow transition-all group-hover:translate-x-2 duration-300 uppercase tracking-tighter italic">
+                        {link.name}
+                      </span>
+                      <ArrowRight size={32} className="text-brand-yellow opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
 
               <motion.div
                 variants={itemVariants}
-                className="mt-auto pt-12 border-t border-gray-200/50 flex flex-col gap-8 relative z-10"
+                className="mt-auto pt-12 border-t border-white/10 flex flex-col gap-8 relative z-10"
               >
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-gray-400">Headquarters</span>
-                    <span className="text-[11px] font-bold text-brand-dark uppercase">Dallas, Texas</span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/40">Headquarters</span>
+                    <span className="text-[11px] font-bold text-white uppercase">Dallas, Texas</span>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-gray-400">Status</span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/40">Status</span>
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[11px] font-bold text-brand-dark uppercase">Operational</span>
+                      <span className="text-[11px] font-bold text-white uppercase">Operational</span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full bg-brand-dark text-white py-5 font-black text-sm uppercase tracking-widest hover:bg-gray-800 transition-all active:scale-[0.98]">
+                <button className="w-full bg-brand-yellow text-black py-5 font-black text-sm uppercase tracking-widest hover:bg-white transition-all active:scale-[0.98]">
                   Talk to Our Team
                 </button>
               </motion.div>
