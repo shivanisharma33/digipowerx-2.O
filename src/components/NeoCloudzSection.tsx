@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Terminal = () => {
   const [lines, setLines] = useState<string[]>([]);
-  
+
   const allLines = [
     'GPU 0-7: NVIDIA B200 · 192GB HBM3e each',
     '',
@@ -37,7 +37,7 @@ const Terminal = () => {
 
   return (
     <div className="bg-[#020503] rounded-xl border border-[#00e878]/20 overflow-hidden font-mono text-[11px] md:text-[12px] h-[380px] shadow-[0_0_60px_rgba(0,232,120,0.06)] relative group w-full">
-      
+
       {/* Header */}
       <div className="bg-[#040806] border-b border-[#00e878]/20 px-4 py-3 flex items-center justify-between">
         <div className="flex gap-2">
@@ -55,11 +55,10 @@ const Terminal = () => {
       {/* Content */}
       <div className="p-6 md:p-8 space-y-[6px] relative z-10 overflow-y-auto h-full text-left">
         {lines.map((line, idx) => (
-          <div key={idx} className={`${
-            line.startsWith('[INFO]') ? 'text-[#00e878]/50' :
+          <div key={idx} className={`${line.startsWith('[INFO]') ? 'text-[#00e878]/50' :
               line.includes('neocloudz:~ $') ? 'text-[#00e878] font-bold drop-shadow-[0_0_5px_rgba(0,232,120,0.5)]' :
                 'text-[#00e878]/70'
-          } whitespace-nowrap overflow-hidden text-ellipsis tracking-wide leading-relaxed`}>
+            } whitespace-nowrap overflow-hidden text-ellipsis tracking-wide leading-relaxed`}>
             {line}
           </div>
         ))}
@@ -73,17 +72,17 @@ const Terminal = () => {
 
 const NeoCloudzSection = () => {
   return (
-    <section id="neocloudz" className="bg-[#050505] py-24 md:py-32 lg:py-40 px-6 lg:px-20 relative overflow-hidden">
+    <section id="neocloudz" className="bg-[#050505] pt-24 md:pt-32 lg:pt-40 pb-8 md:pb-12 px-6 lg:px-20 relative overflow-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[#00e878]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
-        
+
         {/* === TOP CENTERED SECTION === */}
         <div className="flex flex-col items-center text-center w-full mb-20">
-          
+
           {/* Centered Pill */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -98,7 +97,7 @@ const NeoCloudzSection = () => {
           </motion.div>
 
           {/* Main Title (Inline) */}
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -111,7 +110,7 @@ const NeoCloudzSection = () => {
           </motion.h2>
 
           {/* Description */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -124,7 +123,7 @@ const NeoCloudzSection = () => {
 
         {/* === BOTTOM SPLIT SECTION === */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          
+
           {/* Left Side: Bullet Points and Buttons */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -159,7 +158,7 @@ const NeoCloudzSection = () => {
           </motion.div>
 
           {/* Right Side: Terminal */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

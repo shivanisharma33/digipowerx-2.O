@@ -5,6 +5,9 @@ import WhatWeDo from './WhatWeDo';
 import Services from './Services';
 import StatsAndInfra from './StatsAndInfra';
 import NeoCloudzSection from './NeoCloudzSection';
+import Colocation from './Colocation';
+import Capabilities from './Capabilities';
+import HowWeWork from './HowWeWork';
 import { CTASection } from './Footer';
 
 const Home = () => {
@@ -14,8 +17,11 @@ const Home = () => {
       <Marquee />
       <WhatWeDo />
       <Services />
+      <Colocation />
       <StatsAndInfra />
+      <Capabilities />
       <NeoCloudzSection />
+      <HowWeWork />
       <CTASection />
     </>
   );

@@ -122,7 +122,7 @@ const LiquidCoolingDiagram = () => {
 const GpuGridGraphic = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [typedLines, setTypedLines] = useState<string[]>([]);
-  
+
   const allLines = [
     'neo provision b200 --count 8',
     'Allocating node cluster [██████████] 100%',
@@ -175,7 +175,7 @@ const GpuGridGraphic = () => {
         // Outer chassis
         ctx.fillStyle = 'rgba(4, 18, 10, 0.9)';
         ctx.beginPath(); ctx.roundRect(nx, ny, nw, nh, 3); ctx.fill();
-        
+
         // Neon green border
         ctx.strokeStyle = `rgba(0, 232, 120, ${0.3 + pulse * 0.5})`;
         ctx.lineWidth = 1.5; ctx.stroke();
@@ -230,7 +230,7 @@ const GpuGridGraphic = () => {
         {/* Subtle top glare */}
         <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
       </div>
-      
+
       {/* Terminal Section */}
       <div className="h-[85px] bg-[#000000] p-4 font-mono text-[10px] leading-[1.4] overflow-hidden border-t border-[#00e878]/20 relative shadow-[inset_0_5px_20px_rgba(0,0,0,0.5)]">
         <div className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[#00e878] to-transparent opacity-50" />
@@ -349,10 +349,10 @@ const ModularDCGraphic = () => {
 
 const Services = () => {
   return (
-    <section id="services" className="bg-[#050505] py-24 md:py-32 px-6 lg:px-20 relative overflow-hidden">
-      
+    <section id="services" className="bg-[#050505] py-24 md:py-24 px-6 lg:px-20 relative overflow-hidden">
+
       {/* Background Decor - Uploaded Matrix Image */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-screen"
         style={{
           backgroundImage: `url('${bgImage}')`,
@@ -365,37 +365,12 @@ const Services = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/40 to-[#050505] pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        
-        {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-8 flex flex-col items-center"
-        >
-          <div className="inline-flex items-center gap-5 bg-transparent border border-white/20 rounded-full px-6 py-2 cursor-default hover:border-[#f5c518]/50 transition-colors duration-500">
-            <span className="text-[10px] font-bold tracking-widest text-white/80">02 /</span>
-            <div className="h-[1px] w-16 bg-[#f5c518]" />
-            <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase">OUR CAPABILITIES</span>
-          </div>
-        </motion.div>
 
-        {/* Main Title */}
-        <motion.h2 
-          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl md:text-5xl lg:text-[54px] font-black uppercase mb-20 text-white text-center tracking-tight"
-        >
-          FOUR <span className="text-[#f5c518]">PILLARS</span> OF INFRASTRUCTURE
-        </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-8">
 
           {/* Card 1 - We Own the Power (Wide) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -409,13 +384,19 @@ const Services = () => {
             {/* Inner Content */}
             <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+
               <div className="relative z-10 flex-1">
                 <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">VERTICAL INTEGRATION</div>
                 <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">WE OWN THE POWER</h3>
-                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                <p className="text-gray-400 mb-4 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
                   DigiPowerX controls the full energy stack — from owned power plants and utility-connected sites to 400 MW of pipeline development across the US.
                 </p>
+                <ul className="text-gray-300 mb-8 max-w-xl space-y-1.5 text-[12px] md:text-[13px] list-disc pl-4 marker:text-gray-500 font-medium">
+                  <li>Owned power generation assets</li>
+                  <li>Utility-powered & substation-connected sites</li>
+                  <li>400 MW development pipeline</li>
+                  <li>Future site acquisitions underway</li>
+                </ul>
               </div>
               <div className="h-[250px] md:h-[320px] w-full bg-white relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
                 <MapContainer center={[37.5, -95]} zoom={4} scrollWheelZoom={false} zoomControl={false} dragging={false} className="h-full w-full">
@@ -429,7 +410,7 @@ const Services = () => {
           </motion.div>
 
           {/* Card 2 - Liquid Cooling (Narrow) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -441,13 +422,19 @@ const Services = () => {
 
             <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+
               <div className="relative z-10 flex-1">
                 <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">DATA CENTER ARCHITECTURE</div>
                 <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">DIRECT-TO-CHIP LIQUID COOLING</h3>
-                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                <p className="text-gray-400 mb-4 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
                   Purpose-built for NVIDIA Blackwell and next-gen AI accelerators. Cold plates deliver coolant directly to the chip — no air cooling required at &gt;80kW/rack.
                 </p>
+                <ul className="text-gray-300 mb-8 max-w-xl space-y-1.5 text-[12px] md:text-[13px] list-disc pl-4 marker:text-gray-500 font-medium">
+                  <li>Direct-to-chip cold plates per GPU</li>
+                  <li>Rear-door heat exchanger capture</li>
+                  <li>Chiller + cooling tower rejection loop</li>
+                  <li>PUE &lt;1.15 - Zero thermal throttling</li>
+                </ul>
               </div>
               <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
                 <LiquidCooling3D />
@@ -456,7 +443,7 @@ const Services = () => {
           </motion.div>
 
           {/* Card 3 - US Data Centers Inc. (Narrow) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -468,13 +455,20 @@ const Services = () => {
 
             <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+
               <div className="relative z-10 flex-1">
                 <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">STRATEGIC PARTNER</div>
                 <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">US DATA CENTERS INC.</h3>
-                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                <p className="text-gray-400 mb-4 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
                   A majority shareholder in US Data Centers Inc. — a modular data center manufacturer purpose-built for rapid AI infrastructure deployment.
                 </p>
+                <ul className="text-gray-300 mb-8 max-w-xl space-y-1.5 text-[12px] md:text-[13px] list-disc pl-4 marker:text-gray-500 font-medium">
+                  <li>600kW - 1.8MW self-contained modules</li>
+                  <li>Tier III design - TIA-942 compliant</li>
+                  <li>Rapid deployment — operational in weeks</li>
+                  <li>Modules cluster to build any campus scale</li>
+                  <li>Factory-built, tested & commissioned off-site</li>
+                </ul>
               </div>
               <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
                 <ModularDCGraphic />
@@ -483,7 +477,7 @@ const Services = () => {
           </motion.div>
 
           {/* Card 4 - Meet NeoCloudz (Wide) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -495,13 +489,19 @@ const Services = () => {
 
             <div className="relative z-20 flex flex-col h-full bg-[#080808]/95 backdrop-blur-xl rounded-[19px] p-8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-[#f5c518]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+
               <div className="relative z-10 flex-1">
                 <div className="text-[9px] font-black tracking-[0.25em] text-[#f5c518] uppercase mb-3 drop-shadow-[0_0_8px_rgba(245,197,24,0.3)]">WHOLLY OWNED SUBSIDIARY</div>
                 <h3 className="text-2xl md:text-[28px] font-bold mb-4 uppercase text-white tracking-tight">MEET NEOCLOUDZ</h3>
-                <p className="text-gray-400 mb-8 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
+                <p className="text-gray-400 mb-4 max-w-xl leading-relaxed text-[13px] md:text-[14px]">
                   NeoCloudz is DigiPowerX's GPU compute platform — bare-metal NVIDIA Blackwell B200 clusters delivered directly from our owned data centers.
                 </p>
+                <ul className="text-gray-300 mb-8 max-w-xl space-y-1.5 text-[12px] md:text-[13px] list-disc pl-4 marker:text-gray-500 font-medium">
+                  <li>NVIDIA Blackwell B200 GPU clusters</li>
+                  <li>Bare-metal - no virtualization overhead</li>
+                  <li>400Gb/s InfiniBand fabric</li>
+                  <li>Provisioned in &lt;60 seconds</li>
+                </ul>
               </div>
               <div className="h-[250px] md:h-[320px] bg-[#0a0a0a] relative border border-[#f5c518]/30 rounded-lg overflow-hidden mt-auto group-hover:border-[#f5c518]/60 transition-colors duration-500">
                 <GpuGridGraphic />

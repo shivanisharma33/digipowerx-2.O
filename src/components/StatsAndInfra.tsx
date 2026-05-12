@@ -25,12 +25,12 @@ const StatCounter = ({ target, label, sub, isFloat = false }: { target: number, 
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="p-8 md:p-12 lg:p-14 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0 relative group overflow-hidden">
+    <div ref={ref} className="p-4 md:p-6 lg:p-8 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0 relative group overflow-hidden">
       {/* Ambient hover glow */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#f5c518]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       {/* Hover animated bottom border */}
       <div className="absolute bottom-0 left-0 h-[3px] w-full bg-[#f5c518] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700 ease-out" />
-      
+
       <div className="text-[clamp(2.5rem,4vw,4.5rem)] font-black text-white font-mono tracking-tighter mb-3 drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] relative z-10">
         {isFloat ? count.toFixed(2) : Math.floor(count).toLocaleString()}
         {label === "Megawatts Capacity" && <span className="text-xl md:text-2xl ml-2 text-[#f5c518]">MW</span>}
@@ -71,14 +71,14 @@ const InfraFlow = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
-      // Premium light theme canvas background
-      ctx.fillStyle = '#ffffff';
+      // Premium dark theme canvas background
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, W, H);
 
       const lineY = H * 0.55;
 
       // Main path
-      ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
       ctx.setLineDash([4, 6]);
       ctx.beginPath(); ctx.moveTo(W * 0.1, lineY); ctx.lineTo(W * 0.9, lineY); ctx.stroke();
       ctx.setLineDash([]);
@@ -92,14 +92,15 @@ const InfraFlow = () => {
 
         // Node
         ctx.fillStyle = `rgba(${n.col}, 0.08)`;
-        ctx.strokeStyle = `rgba(${n.col}, ${0.4 + pulse * 0.4})`;
-        ctx.lineWidth = 1.5;
+        const strokeCol = n.col === '245, 197, 24' ? '230, 140, 10' : n.col;
+        ctx.strokeStyle = `rgba(${strokeCol}, ${0.8 + pulse * 0.2})`;
+        ctx.lineWidth = 2.5;
         ctx.beginPath(); ctx.roundRect(nx - (W < 640 ? W * .09 : W * .07), ny - 35, (W < 640 ? W * .18 : W * .14), 70, 6); ctx.fill(); ctx.stroke();
         ctx.shadowBlur = 0;
 
         // Label
-        ctx.fillStyle = `rgba(0, 0, 0, 0.9)`;
-        ctx.font = `900 ${W < 640 ? '8px' : '10px'} sans-serif`; 
+        ctx.fillStyle = `rgba(255, 255, 255, 0.9)`;
+        ctx.font = `900 ${W < 640 ? '8px' : '10px'} sans-serif`;
         ctx.textAlign = 'center';
         n.label.split('\n').forEach((l, j) => ctx.fillText(l, nx, ny + (j * (W < 640 ? 11 : 13)) - 6));
 
@@ -124,35 +125,24 @@ const InfraFlow = () => {
   }, []);
 
   return (
-    <div className="bg-white py-20 md:py-28 relative">
+    <div className="bg-[#000000] py-12 md:py-20 relative">
       {/* Background Decor */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] [background-size:32px_32px] opacity-[0.03] pointer-events-none" />
-      
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-20 mb-16 relative z-10 flex flex-col items-center">
-        
-        {/* Section Header */}
-        <div className="mb-10 text-center">
-          <div className="text-[9px] font-black tracking-[0.25em] text-gray-400 uppercase mb-4">THE STACK</div>
-          <div className="inline-flex items-center gap-3 bg-[#e5e5e5] rounded-full px-6 py-2.5 shadow-[0_4px_24px_rgba(0,0,0,0.03)] cursor-default">
-            <span className="text-[9px] font-black tracking-[0.2em] text-black">03 /</span>
-            <div className="h-[2px] w-12 bg-[#f5c518]" />
-            <span className="text-[9px] font-black tracking-[0.2em] text-black uppercase">THE STACK</span>
-          </div>
-        </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_0)] [background-size:32px_32px] opacity-[0.03] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-20 mb-8 relative z-10 flex flex-col items-center">
 
         {/* Main Title */}
-        <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-black leading-[0.95] tracking-tighter uppercase text-black text-center max-w-4xl mx-auto">
-          POWER IN. <br className="md:hidden" />
+        <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-black leading-[0.95] tracking-tighter uppercase text-white text-center max-w-4xl mx-auto">
+          POWER IN. <br />
           <span className="text-[#f5c518] relative inline-block">
             INTELLIGENCE
-            <div className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#f5c518] opacity-60" />
           </span> OUT.
         </h2>
-        
+
       </div>
 
       {/* Canvas Wrapper */}
-      <div className="h-[250px] md:h-[300px] w-full border-y border-gray-100 bg-white relative z-10 shadow-[0_4px_40px_rgba(0,0,0,0.02)]">
+      <div className="h-[250px] md:h-[300px] w-full border-y border-white/5 bg-[#000000] relative z-10 shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
         <canvas ref={canvasRef} className="w-full h-full block" />
       </div>
     </div>
@@ -161,11 +151,11 @@ const InfraFlow = () => {
 
 const StatsAndInfra = () => {
   return (
-    <div className="bg-[#fcfcfc] relative">
+    <div className="bg-[#000000] relative">
       {/* Floating Premium Stats Bar */}
-      <section id="infrastructure" className="relative z-20 pt-8 pb-16 px-6 lg:px-20 -mt-16">
-        <div className="max-w-[1400px] mx-auto bg-[#0a0b0f] rounded-[24px] shadow-[0_30px_80px_rgba(0,0,0,0.2)] overflow-hidden grid grid-cols-2 lg:grid-cols-4 border border-white/10 relative">
-          
+      <section id="infrastructure" className="relative z-20 pt-4 pb-8 px-0 -mt-16">
+        <div className="w-full bg-[#0a0b0f] rounded-none shadow-[0_30px_80px_rgba(0,0,0,0.2)] overflow-hidden grid grid-cols-2 lg:grid-cols-4 border-y border-white/10 relative">
+
           {/* Subtle Ambient Glow inside the dark container */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#f5c518] rounded-full blur-[150px] opacity-[0.07] pointer-events-none" />
 
@@ -175,7 +165,7 @@ const StatsAndInfra = () => {
           <StatCounter target={16000} label="GPUs Online" sub="NVIDIA Blackwell B200 nodes" />
         </div>
       </section>
-      
+
       <InfraFlow />
     </div>
   );

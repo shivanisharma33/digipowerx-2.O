@@ -3,27 +3,27 @@ import { motion } from 'framer-motion';
 
 const WhatWeDo = () => {
   return (
-    <section className="bg-white pt-24 md:pt-32 relative overflow-hidden flex flex-col items-center text-center font-sans min-h-[80vh]">
-      
+    <section className="bg-white pt-16 md:pt-20 relative overflow-hidden flex flex-col items-center text-center font-sans min-h-fit">
+
       {/* Premium Background Effects */}
       <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#f5c518] rounded-full blur-[160px] opacity-[0.06] pointer-events-none" />
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-[0.08]"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 0)`,
           backgroundSize: '32px 32px'
         }}
       />
-      
+
       {/* Top Label */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="mb-10 relative z-10"
       >
-        <div className="text-[9px] font-black tracking-[0.25em] text-gray-400 uppercase mb-5">WHAT WE DO</div>
+
         <div className="inline-flex items-center gap-3 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100 rounded-full px-6 py-2.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-500 cursor-default">
           <span className="text-[9px] font-black tracking-[0.2em] text-black">01 /</span>
           <div className="h-[2px] w-12 bg-[#f5c518] rounded-full" />
@@ -43,12 +43,12 @@ const WhatWeDo = () => {
         THE GROUND UP.<br />
         <span className="text-[#f5c518] relative inline-block">
           OWNED
-          <motion.div 
+          <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-            className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#f5c518] origin-left opacity-60" 
+            className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#f5c518] origin-left opacity-60"
           />
         </span> AT EVERY LAYER.
       </motion.h2>
@@ -59,7 +59,7 @@ const WhatWeDo = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-gray-500 text-[13px] md:text-[15px] max-w-2xl leading-relaxed mx-auto mb-24 px-6 font-medium relative z-10"
+        className="text-gray-500 text-[13px] md:text-[15px] max-w-2xl leading-relaxed mx-auto mb-12 px-6 font-medium relative z-10"
       >
         From land and power to physical infrastructure and compute — DigiPowerX controls<br className="hidden md:block" />
         the entire chain, eliminating third-party dependencies and compressing time-to-compute.
@@ -73,19 +73,18 @@ const WhatWeDo = () => {
             { num: '02', text: 'BUILD THE DATA CENTERS' },
             { num: '03', text: 'OPERATE THE GPU CLUSTERS' },
           ].map((item, i) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 + (i * 0.1), duration: 0.6 }}
-              key={i} 
-              className={`group relative flex justify-center items-center py-8 px-4 border-b md:border-b-0 border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:bg-gray-50/80 ${
-                i !== 2 ? 'md:border-r' : ''
-              } ${i === 0 ? 'md:border-l' : ''}`}
+              key={i}
+              className={`group relative flex justify-center items-center py-8 px-4 border-b md:border-b-0 border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:bg-gray-50/80 ${i !== 2 ? 'md:border-r' : ''
+                } ${i === 0 ? 'md:border-l' : ''}`}
             >
               {/* Hover animated bottom border */}
               <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#f5c518] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
-              
+
               <div className="flex items-center gap-4 relative z-10">
                 <span className="text-[10px] font-black text-[#f5c518] group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-300">{item.num}</span>
                 <span className="text-[10px] font-bold text-black tracking-[0.2em] uppercase group-hover:text-gray-600 transition-colors duration-300">{item.text}</span>
@@ -94,7 +93,7 @@ const WhatWeDo = () => {
           ))}
         </div>
       </div>
-      
+
     </section>
   );
 };
