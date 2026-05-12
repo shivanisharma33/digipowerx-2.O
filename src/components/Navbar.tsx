@@ -28,12 +28,12 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', hasDropdown: true, path: '/#services' },
+    { name: 'Services', hasDropdown: false, path: '/services' },
     { name: 'Infrastructure', hasDropdown: false, path: '/#infrastructure' },
     { name: 'Data Centers', hasDropdown: false, path: '/#datacenters' },
     { name: 'NeoCloudz', hasDropdown: false, path: '/#neocloudz' },
     { name: 'About', hasDropdown: false, path: '/about' },
-    { name: 'Contact', hasDropdown: false, path: '/#contact' },
+    { name: 'Contact', hasDropdown: false, path: '/contact' },
   ];
 
   const menuVariants = {
@@ -73,11 +73,11 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-6 xl:gap-10 flex-shrink-0">
           {navLinks.map(link => {
             const isHash = link.path.startsWith('/#');
-            
+
             return (
-              <Link 
-                key={link.name} 
-                to={link.path} 
+              <Link
+                key={link.name}
+                to={link.path}
                 className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors"
                 onClick={(e) => {
                   if (isHash && location.pathname === '/') {
@@ -98,9 +98,9 @@ const Navbar = () => {
           <button className="hidden xl:block text-[10px] font-black tracking-[0.2em] px-5 py-2.5 text-white/60 hover:text-white transition-all border border-white/10 uppercase">
             Investor Relations
           </button>
-          <button className="hidden sm:block bg-brand-yellow text-black px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg shadow-brand-yellow/10 whitespace-nowrap">
+          <Link to="/contact" className="hidden sm:block bg-brand-yellow text-black px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg shadow-brand-yellow/10 whitespace-nowrap">
             Talk to Us
-          </button>
+          </Link>
 
           {/* Mobile Menu Toggle */}
           <button
