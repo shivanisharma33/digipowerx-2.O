@@ -29,8 +29,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Services', hasDropdown: false, path: '/services' },
-    { name: 'Infrastructure', hasDropdown: false, path: '/#infrastructure' },
-    { name: 'Data Centers', hasDropdown: false, path: '/#datacenters' },
+    { name: 'Infrastructure', hasDropdown: false, path: '/infrastructure' },
+    { name: 'Data Centers', hasDropdown: false, path: '/data-centers' },
     { name: 'NeoCloudz', hasDropdown: false, path: '/#neocloudz' },
     { name: 'About', hasDropdown: false, path: '/about' },
     { name: 'Contact', hasDropdown: false, path: '/contact' },

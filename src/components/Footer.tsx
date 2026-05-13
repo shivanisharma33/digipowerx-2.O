@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
               <li><a href="#" className="text-[#00e878] hover:text-[#00e878] drop-shadow-[0_0_8px_rgba(0,232,120,0.3)] transition-all">NeoCloudz ↗</a></li>
               <li><a href="#" className="hover:text-white transition-colors">DigiGrid Platform</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">US Data Centers</a></li>
+              <li><a href="/data-centers" className="hover:text-white transition-colors">US Data Centers</a></li>
             </ul>
           </div>
 

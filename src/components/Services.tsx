@@ -114,69 +114,64 @@ export default function Services() {
             style={{
               backgroundImage: 'linear-gradient(rgba(245, 197, 24, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(245, 197, 24, 0.1) 1px, transparent 1px)',
               backgroundSize: '100px 100px',
-              maskImage: 'radial-gradient(circle at 20% 50%, black, transparent 70%)'
+              maskImage: 'radial-gradient(circle at 50% 50%, black, transparent 70%)'
             }}
           />
         </div>
 
-        <div className="container mx-auto px-6 lg:px-20 relative z-10">
-          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
-
-            {/* Left Content */}
-            <div className="max-w-3xl">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(3rem,8vw,7rem)] font-black text-white leading-[0.9] tracking-tighter uppercase mb-10"
-              >
-                Services & <br />
-                <span className="text-[#f5c518] relative inline-block">
-                  Capabilities
-                </span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-gray-400 text-lg md:text-xl max-w-xl mb-12 leading-relaxed font-medium"
-              >
-                Enterprise-grade AI infrastructure, designed for scale and high-density performance across all powered DigiPowerX sites.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-8"
-              >
-                <button className="px-10 py-5 bg-[#f5c518] text-black font-black uppercase tracking-widest text-[11px] rounded-full hover:bg-white transition-all shadow-[0_10px_40px_rgba(245,197,24,0.2)] flex items-center gap-4 group">
-                  Talk to Team <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button className="flex items-center gap-3 text-white font-bold text-[11px] uppercase tracking-widest hover:text-[#f5c518] transition-colors group">
-                  Investor Info <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Right Visual (Glass Discs) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="relative h-[600px] flex items-center justify-center lg:justify-end"
+        <div className="container mx-auto px-6 lg:px-20 relative z-10 flex flex-col items-center text-center pt-20">
+          {/* Centered Content */}
+          <div className="max-w-5xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[clamp(3.5rem,10vw,8.5rem)] font-black text-white leading-[0.85] tracking-tighter uppercase mb-12"
             >
-              <div className="w-full h-full max-w-lg lg:max-w-none">
-                <NeuralCube3D />
-              </div>
+              Services & <br />
+              <span className="text-[#f5c518] relative inline-block">
+                Capabilities
+              </span>
+            </motion.h1>
 
-              {/* Decorative Glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#f5c518] rounded-full blur-[180px] opacity-[0.05] pointer-events-none" />
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-16 leading-relaxed font-medium uppercase tracking-tight"
+            >
+              Enterprise-grade AI infrastructure, designed for scale and high-density performance across all powered DigiPowerX sites.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center gap-10"
+            >
+              <button className="px-12 py-6 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[12px] rounded-full hover:bg-white transition-all shadow-[0_15px_50px_rgba(245,197,24,0.3)] flex items-center gap-4 group">
+                Talk to Team <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="flex items-center gap-3 text-white/60 font-bold text-[12px] uppercase tracking-[0.2em] hover:text-white transition-colors group">
+                Investor Info <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
             </motion.div>
-
           </div>
         </div>
+
+        {/* Hero Background Visual (NeuralCube moved to background) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ duration: 2, delay: 0.5 }}
+          className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+        >
+          <div className="w-full h-full max-w-4xl opacity-40">
+            <NeuralCube3D />
+          </div>
+          {/* Decorative Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#f5c518] rounded-full blur-[200px] opacity-[0.08]" />
+        </motion.div>
 
         {/* Bottom Snapshot Metrics (Full Width) */}
         <div className="w-full mt-auto relative z-20 border-t border-white/5 bg-black/40 backdrop-blur-3xl">

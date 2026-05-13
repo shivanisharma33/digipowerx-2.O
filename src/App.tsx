@@ -5,6 +5,8 @@ import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Services from './components/Services';
+import Infrastructure from './components/Infrastructure';
+import DataCenter from './components/DataCenter';
 import { Footer } from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -19,6 +21,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/infrastructure" element={<Infrastructure />} />
+          <Route path="/data-centers" element={<DataCenter />} />
         </Routes>
         <Footer />
       </main>

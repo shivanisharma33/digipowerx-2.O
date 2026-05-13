@@ -123,7 +123,7 @@ const NeuralCube3D = () => {
         linePositions[i * 6 + 2] = brainPositions[idx1 * 3 + 2];
         linePositions[i * 6 + 3] = brainPositions[idx2 * 3];
         linePositions[i * 6 + 4] = brainPositions[idx2 * 3 + 1];
-        linePositions[i * 6 + 2] = brainPositions[idx2 * 3 + 2];
+        linePositions[i * 6 + 5] = brainPositions[idx2 * 3 + 2];
     }
     lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
     const lineMaterial = new THREE.LineBasicMaterial({ color: 0xf5c518, transparent: true, opacity: 0.1 });
@@ -132,6 +132,7 @@ const NeuralCube3D = () => {
 
     // Animation
     const animate = () => {
+      if (W === 0 || H === 0) return; // Guard against 0 size
       const time = Date.now() * 0.001;
       
       cubePoints.rotation.y = time * 0.15;
