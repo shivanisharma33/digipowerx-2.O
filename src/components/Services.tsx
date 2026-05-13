@@ -138,7 +138,7 @@ export default function Services() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto mb-16 leading-relaxed font-medium uppercase tracking-tight"
+              className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-16 leading-relaxed font-medium uppercase tracking-tight"
             >
               Enterprise-grade AI infrastructure, designed for scale and high-density performance across all powered DigiPowerX sites.
             </motion.p>
@@ -147,12 +147,12 @@ export default function Services() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap items-center justify-center gap-10"
+              className="flex flex-wrap items-center justify-center gap-10 pb-24"
             >
-              <button className="px-12 py-6 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[12px] rounded-full hover:bg-white transition-all shadow-[0_15px_50px_rgba(245,197,24,0.3)] flex items-center gap-4 group">
+              <button className="px-12 py-6 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[12px] rounded-md hover:bg-white transition-all shadow-[0_15px_50px_rgba(245,197,24,0.3)] flex items-center gap-4 group">
                 Talk to Team <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="flex items-center gap-3 text-white/60 font-bold text-[12px] uppercase tracking-[0.2em] hover:text-white transition-colors group">
+              <button className="flex items-center gap-3 text-white/60 font-bold text-[12px] uppercase tracking-[0.2em] hover:text-white transition-colors group rounded-md">
                 Investor Info <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </motion.div>

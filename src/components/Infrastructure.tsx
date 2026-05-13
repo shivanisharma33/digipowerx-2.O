@@ -50,13 +50,13 @@ const Infrastructure = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
               <Link
                 to="/contact"
-                className="px-12 py-5 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[11px] rounded transition-all hover:brightness-110 active:scale-95 shadow-[0_10px_40px_rgba(245,197,24,0.2)]"
+                className="px-12 py-5 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[11px] rounded-md transition-all hover:brightness-110 active:scale-95 shadow-[0_10px_40px_rgba(245,197,24,0.2)]"
               >
                 Talk to Team
               </Link>
               <Link
                 to="/about"
-                className="px-12 py-5 border border-white/20 text-white font-black uppercase tracking-[0.2em] text-[11px] rounded bg-white/5 backdrop-blur-sm transition-all hover:bg-white/10"
+                className="px-12 py-5 border border-white/20 text-white font-black uppercase tracking-[0.2em] text-[11px] rounded-md bg-white/5 backdrop-blur-sm transition-all hover:bg-white/10"
               >
                 Learn More
               </Link>
