@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Services from './components/Services';
 import Infrastructure from './components/Infrastructure';
 import DataCenter from './components/DataCenter';
+import NeoCloudz from './components/NeoCloudz';
 import { Footer } from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/infrastructure" element={<Infrastructure />} />
           <Route path="/data-centers" element={<DataCenter />} />
+          <Route path="/neocloudz" element={<NeoCloudz />} />
         </Routes>
         <Footer />
       </main>

@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView, useMotionValue, animate } from 'framer-motion';
-import { 
-  Zap, 
-  Cpu, 
-  TrendingUp, 
-  ShieldCheck, 
+import {
+  Zap,
+  Cpu,
+  TrendingUp,
+  ShieldCheck,
   ArrowUpRight,
   Database,
   Layers,
@@ -73,7 +73,7 @@ const StatCounter = ({ value, suffix = "", duration = 2 }: { value: number; suff
 const ShimmerText = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <span className={`relative inline-block ${className}`}>
     <span className="text-white">{children}</span>
-    <motion.span 
+    <motion.span
       initial={{ x: "-100%" }}
       animate={{ x: "100%" }}
       transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -96,7 +96,7 @@ const BentoCard = ({ children, className = "", delay = 0 }: { children: React.Re
   };
 
   return (
-    <motion.div 
+    <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 30 }}
@@ -105,7 +105,7 @@ const BentoCard = ({ children, className = "", delay = 0 }: { children: React.Re
       viewport={{ once: true }}
       className={`group relative overflow-hidden rounded-[2.5rem] bg-[#0a0c0f] border border-white/5 hover:border-brand-yellow/30 transition-all duration-700 ${className}`}
     >
-      <div 
+      <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
           background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(245,197,24,0.06), transparent 40%)`,
@@ -139,7 +139,7 @@ const About = () => {
   return (
     <div ref={containerRef} className="bg-[#06070a] text-white min-h-screen selection:bg-brand-yellow selection:text-black overflow-x-hidden">
       {/* Global Cursor Spotlight */}
-      <div 
+      <div
         className="fixed inset-0 z-50 pointer-events-none opacity-40 mix-blend-screen"
         style={{
           background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(245,197,24,0.03), transparent 80%)`,
@@ -147,7 +147,7 @@ const About = () => {
       />
 
       {/* Dynamic Background Grid */}
-      <motion.div 
+      <motion.div
         style={{ y: gridY }}
         className="fixed inset-0 z-0 pointer-events-none opacity-20"
       >
@@ -157,13 +157,13 @@ const About = () => {
       {/* Premium Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <motion.div 
+          <motion.div
             style={{ opacity: useTransform(smoothProgress, [0, 0.2], [0.6, 0]) }}
             className="absolute inset-0"
           >
-            <img 
-              src={aboutHeroImg} 
-              alt="Background" 
+            <img
+              src={aboutHeroImg}
+              alt="Background"
               className="w-full h-full object-cover grayscale opacity-40 scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#06070a] via-transparent to-[#06070a]" />
@@ -206,7 +206,7 @@ const About = () => {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           style={{ opacity: useTransform(smoothProgress, [0, 0.05], [1, 0]) }}
           className="absolute bottom-12 flex flex-col items-center gap-4"
         >
@@ -238,25 +238,25 @@ const About = () => {
       {/* Split-Screen Infrastructure Pillars */}
       <section className="bg-[#0a0c0f]">
         {[
-          { 
+          {
             label: "01",
-            title: "Energy Generation", 
+            title: "Energy Generation",
             subtitle: "The Foundation",
             desc: "Our 60MW North Tonawanda gas-fired plant provides energy at ~$0.04/kWh. This low-cost base is the ultimate competitive moat in the energy-hungry AI era.",
             stat: "60MW",
             statLabel: "Current Capacity"
           },
-          { 
+          {
             label: "02",
-            title: "Data Centers", 
+            title: "Data Centers",
             subtitle: "High-Density Ops",
             desc: "Operating 22MW of purpose-built data centers in Alabama with 55MW expansion approval. Designed for Blackwell-scale density (80kW+ per rack).",
             stat: "Tier III",
             statLabel: "Design Standard"
           },
-          { 
+          {
             label: "03",
-            title: "GPU Compute", 
+            title: "GPU Compute",
             subtitle: "The Product",
             desc: "NeoCloudz provides bare-metal access to H100 and Blackwell clusters. By owning the power and the center, we maximize margin and service velocity.",
             stat: "Blackwell",
@@ -294,7 +294,7 @@ const About = () => {
                 ) : pillar.title === "GPU Compute" ? (
                   <IsometricGPUCompute />
                 ) : (
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="w-full h-full flex items-center justify-center"
                   >
