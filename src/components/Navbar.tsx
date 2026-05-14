@@ -29,11 +29,21 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Services', hasDropdown: false, path: '/services' },
-    { name: 'Infrastructure', hasDropdown: false, path: '/infrastructure' },
+    { name: 'Infrastructure', hasDropdown: true, sublinks: [
+      { name: 'Global Network', path: '/infrastructure' },
+      { name: 'ARMS Modular Systems', path: '/arms' },
+    ]},
+    { name: 'Investors', hasDropdown: true, sublinks: [
+      { name: 'SEC Filings', path: '/sec-filings' },
+      { name: 'Investor Center', path: '/about' },
+    ]},
+    { name: 'Company', hasDropdown: true, sublinks: [
+      { name: 'About Us', path: '/about' },
+      { name: 'Leadership', path: '/leadership' },
+      { name: 'Careers', path: '/careers' },
+    ]},
     { name: 'Data Centers', hasDropdown: false, path: '/data-centers' },
     { name: 'NeoCloudz', hasDropdown: false, path: '/neocloudz' },
-    { name: 'About', hasDropdown: false, path: '/about' },
-    { name: 'Contact', hasDropdown: false, path: '/contact' },
   ];
 
   const menuVariants = {
@@ -72,22 +82,36 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-10 flex-shrink-0">
           {navLinks.map(link => {
-            const isHash = link.path.startsWith('/#');
+            if (link.hasDropdown) {
+              return (
+                <div key={link.name} className="relative group">
+                  <button className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors py-4">
+                    {link.name} <ChevronDown size={12} className="group-hover:rotate-180 transition-transform duration-300" />
+                  </button>
+                  <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-[110]">
+                    <div className="bg-black/95 border border-white/10 backdrop-blur-xl p-4 min-w-[200px] shadow-2xl flex flex-col gap-3">
+                      {link.sublinks?.map(sub => (
+                        <Link 
+                          key={sub.name} 
+                          to={sub.path} 
+                          className="text-[11px] font-black uppercase tracking-widest text-white/50 hover:text-brand-yellow transition-colors"
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
 
             return (
               <Link
                 key={link.name}
-                to={link.path}
+                to={link.path || '#'}
                 className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors"
-                onClick={(e) => {
-                  if (isHash && location.pathname === '/') {
-                    e.preventDefault();
-                    const id = link.path.split('#')[1];
-                    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
               >
-                {link.name} {link.hasDropdown && <ChevronDown size={12} />}
+                {link.name}
               </Link>
             );
           })}
@@ -143,23 +167,36 @@ const Navbar = () => {
                 </div>
                 {navLinks.map((link) => (
                   <motion.div variants={itemVariants} key={link.name}>
-                    <Link
-                      to={link.path}
-                      className="text-4xl sm:text-5xl font-black text-white flex items-center justify-between group"
-                      onClick={(e) => {
-                        setIsMenuOpen(false);
-                        if (link.path.startsWith('/#') && location.pathname === '/') {
-                          e.preventDefault();
-                          const id = link.path.split('#')[1];
-                          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }}
-                    >
-                      <span className="group-hover:text-brand-yellow transition-all group-hover:translate-x-2 duration-300 uppercase tracking-tighter italic">
-                        {link.name}
-                      </span>
-                      <ArrowRight size={32} className="text-brand-yellow opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    </Link>
+                    {link.hasDropdown ? (
+                      <div className="flex flex-col gap-4">
+                        <span className="text-4xl sm:text-5xl font-black text-white/30 uppercase tracking-tighter">
+                          {link.name}
+                        </span>
+                        <div className="flex flex-col gap-2 pl-4 border-l border-brand-yellow/20">
+                          {link.sublinks?.map(sub => (
+                            <Link 
+                              key={sub.name}
+                              to={sub.path}
+                              className="text-2xl sm:text-3xl font-black text-white hover:text-brand-yellow transition-all uppercase tracking-tighter"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        to={link.path || '#'}
+                        className="text-4xl sm:text-5xl font-black text-white flex items-center justify-between group"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <span className="group-hover:text-brand-yellow transition-all group-hover:translate-x-2 duration-300 uppercase tracking-tighter">
+                          {link.name}
+                        </span>
+                        <ArrowRight size={32} className="text-brand-yellow opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
               </div>

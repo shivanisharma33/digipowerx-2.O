@@ -14,9 +14,11 @@ import {
   Activity
 } from 'lucide-react';
 import aboutHeroImg from '../assets/about_us_hero_visual.png';
+import NeuralCube3D from './NeuralCube3D';
 import IsometricDataCenter from './IsometricDataCenter';
 import IsometricGPUCompute from './IsometricGPUCompute';
 import IsometricEnergyGen from './IsometricEnergyGen';
+import { CTASection } from './Footer';
 
 const Magnetic = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -137,282 +139,247 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-[#06070a] text-white min-h-screen selection:bg-brand-yellow selection:text-black overflow-x-hidden">
-      {/* Global Cursor Spotlight */}
-      <div
-        className="fixed inset-0 z-50 pointer-events-none opacity-40 mix-blend-screen"
-        style={{
-          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(245,197,24,0.03), transparent 80%)`,
-        }}
-      />
+    <div ref={containerRef} className="bg-black text-white min-h-screen selection:bg-brand-yellow selection:text-black overflow-x-hidden">
 
-      {/* Dynamic Background Grid */}
-      <motion.div
-        style={{ y: gridY }}
-        className="fixed inset-0 z-0 pointer-events-none opacity-20"
-      >
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-      </motion.div>
-
-      {/* Premium Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            style={{ opacity: useTransform(smoothProgress, [0, 0.2], [0.6, 0]) }}
-            className="absolute inset-0"
-          >
-            <img
-              src={aboutHeroImg}
-              alt="Background"
-              className="w-full h-full object-cover grayscale opacity-40 scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#06070a] via-transparent to-[#06070a]" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#06070a] via-transparent to-[#06070a]" />
-          </motion.div>
+      {/* Premium Hero (Matching Reference Image) */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden bg-black">
+        
+        {/* Background Matrix Grid & 3D Visual */}
+        <div className="absolute inset-0 z-0 opacity-[0.2]">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(245,197,24,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(245,197,24,0.1)_1px,transparent_1px)] bg-[size:30px_30px]" />
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 mb-12 backdrop-blur-xl">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow shadow-[0_0_10px_rgba(245,197,24,0.8)]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">NASDAQ: DGXX</span>
-            </div>
-
-            <h1 className="text-[clamp(3.5rem,10vw,11rem)] font-black leading-[0.85] tracking-tighter uppercase mb-12">
-              <ShimmerText>Powering</ShimmerText> <br />
-              <span className="text-brand-yellow">AI Infra.</span>
-            </h1>
-
-            <p className="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-16 font-medium">
-              DigiPowerX is a vertically integrated powerhouse owning the full infrastructure stack—from energy generation to GPU compute.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-6">
-              <Magnetic>
-                <button className="bg-brand-yellow text-black px-12 py-5 font-black text-sm uppercase tracking-widest hover:shadow-[0_0_40px_rgba(245,197,24,0.2)] transition-all">
-                  Investor Center
-                </button>
-              </Magnetic>
-              <Magnetic>
-                <button className="border border-white/10 px-12 py-5 font-black text-sm uppercase tracking-widest transition-all hover:bg-white/5">
-                  View Pipeline
-                </button>
-              </Magnetic>
-            </div>
-          </motion.div>
+        <div className="absolute inset-0 z-0 opacity-40 pointer-events-none flex items-center justify-center">
+          <div className="w-full h-full max-w-6xl">
+            <NeuralCube3D />
+          </div>
         </div>
 
-        <motion.div
-          style={{ opacity: useTransform(smoothProgress, [0, 0.05], [1, 0]) }}
-          className="absolute bottom-12 flex flex-col items-center gap-4"
-        >
-          <div className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-500">Discover More</div>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-brand-yellow to-transparent" />
-        </motion.div>
-      </section>
 
-      {/* Cinematic Mission Section */}
-      <section className="relative py-40 overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
+        <div className="relative z-10 max-w-[1400px] mx-auto text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col items-center"
           >
-            <div className="text-brand-yellow font-black uppercase tracking-[0.8em] mb-12 text-[11px]">The DigiPowerX Thesis</div>
-            <h2 className="text-4xl md:text-7xl font-black text-white leading-[1.1] uppercase tracking-tighter mb-12">
-              The company that <span className="text-brand-yellow">controls power</span> <br />
-              controls the <span className="text-gray-500">compute.</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed font-medium">
-              We own the full stack—from energy generation through GPU clusters—enabling us to serve AI and HPC customers at a scale and cost-basis impossible for pure-play competitors.
+            {/* Top Company Badge */}
+            <div className="relative mb-16">
+              <div className="w-64 h-[1px] bg-white/10" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 bg-black flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-brand-yellow" />
+                <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/40">Company</span>
+              </div>
+            </div>
+
+            <h1 className="text-[clamp(3rem,10vw,120px)] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+              <span className="block text-white mb-2">About</span>
+              <span className="block text-brand-yellow">DigiPowerX</span>
+            </h1>
+
+            <p className="text-sm md:text-base text-white/50 max-w-3xl mx-auto leading-relaxed mb-16 font-medium max-w-[800px]">
+              DigiPowerX Corporation is a vertically integrated AI infrastructure company — owning and operating power generation assets, data centers, and GPU compute capacity across the United States.
             </p>
+
+            <div className="flex flex-wrap justify-center gap-8">
+              <button className="bg-brand-yellow text-black px-16 py-4 font-black text-[12px] uppercase tracking-[0.2em] rounded shadow-[0_0_30px_rgba(245,197,24,0.2)] hover:bg-white transition-all">
+                Contact Us
+              </button>
+              <button className="border border-white/10 bg-white/[0.03] text-white px-16 py-4 font-black text-[12px] uppercase tracking-[0.2em] rounded hover:bg-white/10 transition-all backdrop-blur-sm">
+                Investor Relation
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom HUD Stats Bar */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-[1200px] px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 py-6 border-t border-white/10 border-b border-white/10 bg-black/40 backdrop-blur-xl"
+          >
+            {[
+              { val: "2017", label: "Company Founded" },
+              { val: "NASDAQ", label: "Public Listing - DGXX" },
+              { val: "04", label: "Operating and Development Sites" },
+              { val: "301MW+", label: "Total Portfolio Capacity" }
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-brand-yellow font-black text-xl mb-1 tracking-tighter">{stat.val}</div>
+                <div className="text-[8px] font-black text-white/30 uppercase tracking-widest">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Split-Screen Infrastructure Pillars */}
-      <section className="bg-[#0a0c0f]">
-        {[
-          {
-            label: "01",
-            title: "Energy Generation",
-            subtitle: "The Foundation",
-            desc: "Our 60MW North Tonawanda gas-fired plant provides energy at ~$0.04/kWh. This low-cost base is the ultimate competitive moat in the energy-hungry AI era.",
-            stat: "60MW",
-            statLabel: "Current Capacity"
-          },
-          {
-            label: "02",
-            title: "Data Centers",
-            subtitle: "High-Density Ops",
-            desc: "Operating 22MW of purpose-built data centers in Alabama with 55MW expansion approval. Designed for Blackwell-scale density (80kW+ per rack).",
-            stat: "Tier III",
-            statLabel: "Design Standard"
-          },
-          {
-            label: "03",
-            title: "GPU Compute",
-            subtitle: "The Product",
-            desc: "NeoCloudz provides bare-metal access to H100 and Blackwell clusters. By owning the power and the center, we maximize margin and service velocity.",
-            stat: "Blackwell",
-            statLabel: "NVIDIA Clusters"
-          }
-        ].map((pillar, i) => (
-          <div key={i} className={`flex flex-col lg:flex-row border-b border-white/5 ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-            <div className="lg:w-1/2 p-12 md:p-24 flex flex-col justify-center">
-              <div className="flex items-center gap-4 mb-12">
-                <span className="text-brand-yellow font-black text-sm">{pillar.label}</span>
-                <div className="h-[1px] w-12 bg-brand-yellow/30" />
-                <span className="text-gray-500 font-black text-[10px] uppercase tracking-widest">{pillar.subtitle}</span>
+      {/* Company Overview Section (Matching Reference Image) */}
+      <section className="relative py-40 bg-black overflow-hidden">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="flex flex-col items-center text-center mb-24">
+            {/* Top Overview Badge */}
+            <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-white/20 mb-16 backdrop-blur-sm">
+              <div className="flex items-center gap-1.5">
+                <div className="h-[2px] w-8 bg-brand-yellow" />
+                <div className="h-[2px] w-2 bg-white/20" />
               </div>
-              <h3 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8">{pillar.title}</h3>
-              <p className="text-lg text-gray-400 mb-12 max-w-lg leading-relaxed font-medium">{pillar.desc}</p>
-              <div className="pt-12 border-t border-white/10 flex gap-12">
-                <div>
-                  <div className="text-4xl font-black text-white tracking-tighter">
-                    <StatCounter value={pillar.title === "Energy Generation" ? 60 : pillar.title === "Data Centers" ? 3 : 200} suffix={pillar.title === "Energy Generation" ? "MW" : pillar.title === "Data Centers" ? " III" : "MW"} />
-                  </div>
-                  <div className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-1">{pillar.statLabel}</div>
-                </div>
-              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80">Company Overview</span>
             </div>
-            <div className="lg:w-1/2 min-h-[400px] bg-white/[0.02] relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-yellow/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(245,197,24,0.05)_0%,transparent_70%)]" />
-              </div>
-              <div className="w-full h-full">
-                {pillar.title === "Energy Generation" ? (
-                  <IsometricEnergyGen />
-                ) : pillar.title === "Data Centers" ? (
-                  <IsometricDataCenter />
-                ) : pillar.title === "GPU Compute" ? (
-                  <IsometricGPUCompute />
-                ) : (
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    <div className="text-[150px] font-black text-white/[0.02] uppercase select-none">
-                      {pillar.title.split(' ')[0]}
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
 
-      {/* HUD-Style Data HUD */}
-      <section className="py-32 px-6">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border border-white/10 p-12 bg-white/[0.01] backdrop-blur-3xl rounded-[2.5rem]">
+            <h2 className="text-[clamp(2.5rem,6vw,80px)] font-black leading-[1.05] tracking-tighter uppercase mb-12 max-w-5xl">
+              Owned at every layer. <br />
+              Built for scale.
+            </h2>
+
+            <p className="text-white/40 text-sm md:text-lg max-w-4xl mx-auto leading-relaxed font-medium tracking-wide">
+              DigiPowerX is built around a simple but powerful thesis: the company that controls power controls the compute. By owning the full infrastructure stack from energy generation through GPU compute, DigiPowerX can serve AI and HPC customers faster, cheaper, and at greater scale than any pure-play competitor.
+            </p>
+          </div>
+
+          {/* Three-Column Features Matrix */}
+          <div className="grid md:grid-cols-3 gap-0 border border-white/10 bg-white/[0.02] rounded-2xl overflow-hidden">
             {[
-              { val: 301, suffix: "MW+", label: "Total Capacity", color: "text-brand-yellow" },
-              { val: 31, suffix: "M+", label: "Operating Revenue", color: "text-white" },
-              { val: 4, suffix: "", label: "Active Sites", color: "text-white" },
-              { val: 2017, suffix: "", label: "Founded", color: "text-gray-500" }
-            ].map((stat, i) => (
-              <div key={i} className="text-center md:text-left">
-                <div className={`text-5xl font-black tracking-tighter mb-2 ${stat.color}`}>
-                  <StatCounter value={stat.val} suffix={stat.suffix} />
-                </div>
-                <div className="text-[10px] font-black text-gray-600 uppercase tracking-widest">{stat.label}</div>
+              {
+                tag: "Power",
+                title: "Energy Infrastructure",
+                desc: "Owned power generation assets and substation access create a structural cost and speed advantage that competitors building on leased utility power cannot replicate. The North Tonawanda plant produces at approximately $0.04/kWh."
+              },
+              {
+                tag: "Data Centers",
+                title: "AI-Ready Facilities",
+                desc: "The company converts owned power assets into high-density, AI-ready data center capacity — targeting Tier III classification, direct liquid cooling, and 80kW+ per-rack GPU density at the Alabama facility."
+              },
+              {
+                tag: "Compute",
+                title: "GPU Compute Platform",
+                desc: "NeoCloudz is the compute layer on top of the DigiPowerX infrastructure stack — providing bare-metal GPU access, 400G InfiniBand fabric, and enterprise-grade telemetry for AI training, inference, and HPC workloads."
+              }
+            ].map((item, i) => (
+              <div 
+                key={i} 
+                className={`p-12 flex flex-col gap-6 ${i !== 2 ? 'md:border-r border-white/10' : ''}`}
+              >
+                <div className="text-brand-yellow text-[10px] font-black uppercase tracking-[0.3em]">{item.tag}</div>
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">{item.title}</h3>
+                <p className="text-white/40 text-[13px] md:text-sm leading-relaxed font-medium">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Clean Financials Section */}
-      <section className="py-32 px-6">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col lg:flex-row gap-24 items-center">
-            <div className="lg:w-1/2">
-              <div className="text-[11px] font-black text-brand-yellow uppercase tracking-[0.5em] mb-8 text-center lg:text-left">Corporate Stability</div>
-              <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none mb-12 text-center lg:text-left">
-                Lean <br /><span className="text-gray-500">Growth.</span>
-              </h2>
-              <div className="space-y-12 max-w-xl mx-auto lg:mx-0">
-                <div className="flex gap-8 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="text-brand-yellow" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-black uppercase tracking-tighter mb-2">Zero Debt</h4>
-                    <p className="text-gray-500 font-medium text-sm">DigiPowerX operates with no long-term debt, providing extreme agility in volatile infrastructure markets.</p>
-                  </div>
-                </div>
-                <div className="flex gap-8 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                    <Target className="text-brand-yellow" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-black uppercase tracking-tighter mb-2">Public Transparency</h4>
-                    <p className="text-gray-500 font-medium text-sm">Listed on NASDAQ (DGXX), we maintain the highest standards of financial reporting and operational governance.</p>
-                  </div>
-                </div>
+      {/* Mission Section (Light Theme Contrast - Matching Reference Image) */}
+      <section className="relative py-40 bg-white text-black overflow-hidden">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="flex flex-col items-center text-center mb-24">
+            {/* Mission Badge */}
+            <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-black/10 mb-16">
+              <div className="flex items-center gap-1.5">
+                <div className="h-[2px] w-8 bg-brand-yellow" />
+                <div className="h-[2px] w-2 bg-black/10" />
               </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/60">Mission</span>
             </div>
-            <div className="lg:w-1/2 w-full">
-              <div className="bg-[#0a0c0f] border border-white/5 rounded-[3rem] p-12 md:p-20 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-8">
-                  <BarChart4 size={40} className="text-brand-yellow/20" />
+
+            <h2 className="text-[clamp(2.5rem,6vw,70px)] font-black leading-[1.05] tracking-tighter uppercase mb-12 max-w-6xl">
+              Vertically Integrated <span className="text-brand-yellow font-black">AI</span> <br />
+              <span className="text-brand-yellow font-black">Infrastructure</span> at Scale.
+            </h2>
+
+            <div className="space-y-6 max-w-5xl mx-auto">
+              <p className="text-black/60 text-sm md:text-lg leading-relaxed font-medium">
+                DigiPowerX is building the infrastructure layer that the next decade of AI development will run on - owned power, owned data centers, and owned compute, fully integrated and deployed across strategic U.S. locations.
+              </p>
+              <p className="text-black/60 text-sm md:text-lg leading-relaxed font-medium">
+                The company serves AI model developers, HPC research organizations, enterprise compute customers, and digital asset operators - all monetizing the same infrastructure base at different layers of the stack.
+              </p>
+            </div>
+          </div>
+
+          {/* Four-Card Mission Matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Power Generation",
+                desc: "60MW North Tonawanda plant at ~$0.04/kWh — the cost-structure foundation for everything above it."
+              },
+              {
+                title: "Data Centers",
+                desc: "22MW Alabama base with 55MW expansion approval — Tier III conversion and GPU-density buildout in progress."
+              },
+              {
+                title: "AI Compute",
+                desc: "NeoCloudz bare-metal GPU platform — the highest-margin product built on owned infrastructure."
+              },
+              {
+                title: "Pipeline",
+                desc: "200MW North Carolina development site adjacent to major utility infrastructure — the next phase of growth."
+              }
+            ].map((card, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="p-10 rounded-2xl bg-gray-50 border border-gray-200 hover:shadow-xl hover:shadow-brand-yellow/10 transition-all duration-500 group"
+              >
+                <h3 className="text-lg font-black uppercase tracking-tight mb-4 group-hover:text-brand-yellow transition-colors text-black">
+                  {card.title}
+                </h3>
+                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium">
+                  {card.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Financial Metrics Matrix (Matching Reference Image) */}
+      <section className="py-24 bg-black border-y border-white/10">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-0">
+            {[
+              {
+                val: "$31M+",
+                desc: "REVENUE FOR NINE MONTHS ENDED SEPTEMBER 30, 2024 — ACTIVE OPERATING REVENUE FROM MULTIPLE SITES."
+              },
+              {
+                val: "$5M+",
+                desc: "EBITDA FOR NINE MONTHS ENDED SEPTEMBER 30, 2024 — PROFITABLE OPERATING PERFORMANCE."
+              },
+              {
+                val: "$0 LT Debt",
+                desc: "NO LONG-TERM DEBT REPORTED IN COMPANY INVESTOR MATERIALS — BALANCE SHEET FLEXIBILITY."
+              },
+              {
+                val: "~$44M",
+                desc: "MARKET CAPITALIZATION AS CITED IN THE JANUARY 2025 CORPORATE OVERVIEW PRESENTATION."
+              }
+            ].map((stat, i) => (
+              <div 
+                key={i} 
+                className={`flex flex-col gap-6 px-8 ${i !== 3 ? 'md:border-r border-white/5' : ''}`}
+              >
+                <div className="text-4xl md:text-5xl font-black text-brand-yellow tracking-tighter">
+                  {stat.val}
                 </div>
-                <div className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-12">Balance Sheet Overview</div>
-                <div className="space-y-12">
-                  <div>
-                    <div className="flex justify-between mb-4">
-                      <span className="text-sm font-black uppercase tracking-widest text-gray-400">Market Cap</span>
-                      <span className="text-white font-black">~$<StatCounter value={44} suffix="M" /></span>
-                    </div>
-                    <div className="h-[2px] w-full bg-white/5">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: "100%" }} transition={{ duration: 1.5 }} className="h-full bg-brand-yellow" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-4">
-                      <span className="text-sm font-black uppercase tracking-widest text-gray-400">Asset Valuation</span>
-                      <span className="text-white font-black">$<StatCounter value={100} suffix="M+" /></span>
-                    </div>
-                    <div className="h-[2px] w-full bg-white/5">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: "80%" }} transition={{ duration: 1.5, delay: 0.2 }} className="h-full bg-white" />
-                    </div>
-                  </div>
-                </div>
+                <p className="text-[9px] md:text-[10px] font-black text-white/40 leading-relaxed uppercase tracking-wider max-w-[280px]">
+                  {stat.desc}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Immersive CTA */}
-      <section className="py-40 px-6 border-t border-white/5 relative overflow-hidden bg-white/[0.01]">
-        <div className="max-w-[1200px] mx-auto text-center relative z-10">
-          <h2 className="text-6xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-16">
-            Future <br />
-            <span className="text-brand-yellow">Now.</span>
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            <Magnetic>
-              <button className="border border-white text-white px-16 py-6 font-black text-sm uppercase tracking-widest transition-all hover:bg-white hover:text-black">
-                Investor Relations
-              </button>
-            </Magnetic>
-            <Magnetic>
-              <button className="bg-brand-yellow text-black px-16 py-6 font-black text-sm uppercase tracking-widest transition-all hover:bg-brand-yellow/80">
-                Contact Team
-              </button>
-            </Magnetic>
-          </div>
-        </div>
-      </section>
+      {/* Final CTA Section */}
+    
+      <CTASection />
     </div>
   );
 };
