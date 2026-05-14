@@ -27,8 +27,7 @@ const HeroBg = () => {
 
     function draw() {
       if (!ctx) return;
-      ctx.fillStyle = '#06070a';
-      ctx.fillRect(0, 0, W, H);
+      ctx.clearRect(0, 0, W, H);
 
       const horizon = H * 0.42;
       const cx = W * 0.62;

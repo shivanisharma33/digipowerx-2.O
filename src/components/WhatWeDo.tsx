@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const WhatWeDo = () => {
   return (
-    <section className="bg-white pt-16 md:pt-20 relative overflow-hidden flex flex-col items-center text-center font-sans min-h-fit">
+    <section className="bg-white pt-10 relative overflow-hidden flex flex-col items-center text-center font-sans min-h-fit">
 
       {/* Premium Background Effects */}
       <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#f5c518] rounded-full blur-[160px] opacity-[0.06] pointer-events-none" />
@@ -25,9 +25,9 @@ const WhatWeDo = () => {
       >
 
         <div className="inline-flex items-center gap-3 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100 rounded-full px-6 py-2.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow duration-500 cursor-default">
-          <span className="text-[9px] font-black tracking-[0.2em] text-black">01 /</span>
+          <span className="text-[9px] font-semibold tracking-[0.2em] text-black">01 /</span>
           <div className="h-[2px] w-12 bg-[#f5c518] rounded-full" />
-          <span className="text-[9px] font-black tracking-[0.2em] text-black uppercase">WHAT WE DO</span>
+          <span className="text-[9px] font-semibold tracking-[0.2em] text-black uppercase">WHAT WE DO</span>
         </div>
       </motion.div>
 
@@ -37,7 +37,7 @@ const WhatWeDo = () => {
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tighter uppercase mb-8 text-black relative z-10"
+        className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-black relative z-10"
       >
         BUILT FROM <br />
         THE GROUND UP.<br />
@@ -79,15 +79,15 @@ const WhatWeDo = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3 + (i * 0.1), duration: 0.6 }}
               key={i}
-              className={`group relative flex justify-center items-center py-8 px-4 border-b md:border-b-0 border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:bg-gray-50/80 ${i !== 2 ? 'md:border-r' : ''
+              className={`group relative flex justify-center items-center py-8 px-4 border-b md:border-b-0 border-gray-200 cursor-pointer overflow-hidden transition-all duration-500 hover:bg-gradient-to-t hover:from-[#f5c518]/10 hover:to-transparent ${i !== 2 ? 'md:border-r' : ''
                 } ${i === 0 ? 'md:border-l' : ''}`}
             >
               {/* Hover animated bottom border */}
               <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#f5c518] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
 
               <div className="flex items-center gap-4 relative z-10">
-                <span className="text-[10px] font-black text-[#f5c518] group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-300">{item.num}</span>
-                <span className="text-[10px] font-bold text-black tracking-[0.2em] uppercase group-hover:text-gray-600 transition-colors duration-300">{item.text}</span>
+                <span className="text-[10px] font-semibold text-[#f5c518] group-hover:scale-125 group-hover:-translate-y-1 transition-all duration-300">{item.num}</span>
+                <span className="text-[10px] font-semibold text-black tracking-[0.2em] uppercase group-hover:text-gray-600 transition-colors duration-300">{item.text}</span>
               </div>
             </motion.div>
           ))}

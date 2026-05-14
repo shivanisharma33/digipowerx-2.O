@@ -1,16 +1,15 @@
 import React from 'react';
-import HeroBg from './HeroBg';
-import HeroVisual3D from './HeroVisual3D';
+import heroImage from '../assets/ChatGPT Image May 14, 2026, 10_20_43 PM.png';
 
 const Hero = () => {
   return (
     <section className="home-hero">
-      <HeroBg />
+      <img src={heroImage} alt="" className="hero-bg-image" />
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <div className="hero-text">
           <div className="hero-tag">NASDAQ : DGXX · AI Infrastructure Platform</div>
-          <h1>The infra<br />layer <span className="accent">AI</span><br />runs on.</h1>
+          <h1>The infralayer <span className="accent">AI</span><br />runs on.</h1>
           <p className="hero-sub">
             DigiPowerX integrates power infrastructure, Tier III-ready data centers, and bare-metal GPU compute platforms — engineered to support the next generation of AI training, inference, and high-performance computing workloads.
           </p>
@@ -19,9 +18,6 @@ const Hero = () => {
             <a className="btn" href="neocloudz.html">Deploy Compute</a>
             <a className="btn" href="investors.html">Investor Relations</a>
           </div>
-        </div>
-        <div className="hero-visual">
-          <HeroVisual3D />
         </div>
       </div>
       <div className="hero-metrics">

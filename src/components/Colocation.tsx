@@ -155,7 +155,7 @@ const ColocationVisual = () => {
 
 const Colocation = () => {
   return (
-    <section className="bg-white py-24 md:py-32 relative overflow-hidden">
+    <section className="bg-white pt-10 pb-24 md:pb-32 relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10 flex flex-col items-center">
 
         {/* Top Label */}
@@ -167,9 +167,9 @@ const Colocation = () => {
           className="mb-8 flex flex-col items-center"
         >
           <div className="inline-flex items-center gap-4 bg-[#e5e5e5] rounded-full px-5 py-1.5 shadow-sm border border-black/5">
-            <span className="text-[9px] font-black tracking-widest text-black/60">02 /</span>
+            <span className="text-[9px] font-semibold tracking-widest text-black/60">02 /</span>
             <div className="h-[1px] w-12 bg-[#f5c518]" />
-            <span className="text-[9px] font-black tracking-[0.2em] text-black/80 uppercase">COLOCATION</span>
+            <span className="text-[9px] font-semibold tracking-[0.2em] text-black/80 uppercase">COLOCATION</span>
           </div>
         </motion.div>
 
@@ -179,7 +179,7 @@ const Colocation = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-[clamp(2.5rem,5.5vw,5rem)] font-black uppercase mb-6 text-black text-center leading-[0.9] tracking-tighter"
+          className="text-[clamp(2.5rem,5.5vw,5rem)] font-semibold uppercase mb-6 text-black text-center leading-[0.9] tracking-tighter"
         >
           YOUR HARDWARE <br />
           OUR <span className="text-[#f5c518]">INFRASTRUCTURE</span>
@@ -223,7 +223,7 @@ const Colocation = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button className="bg-[#f5c518] text-black px-6 py-3.5 rounded font-black text-[12px] uppercase tracking-widest hover:bg-[#ffda47] transition-all w-full sm:w-auto text-center shadow-lg shadow-[#f5c518]/20">
+              <button className="bg-[#f5c518] text-black px-6 py-3.5 rounded font-semibold text-[12px] uppercase tracking-widest hover:bg-[#ffda47] transition-all w-full sm:w-auto text-center shadow-lg shadow-[#f5c518]/20">
                 REQUEST COLOCATION QUOTE
               </button>
               <button className="bg-[#cccccc] text-black px-6 py-3.5 rounded font-bold text-[12px] hover:bg-gray-400 transition-all w-full sm:w-auto text-center">

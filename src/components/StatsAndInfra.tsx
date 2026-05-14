@@ -25,13 +25,13 @@ const StatCounter = ({ target, label, sub, isFloat = false }: { target: number, 
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="p-4 md:p-6 lg:p-8 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0 relative group overflow-hidden">
+    <div ref={ref} className="p-4 md:p-6 lg:p-8 border-b md:border-b-0 md:border-r border-white/10 last:border-b-0 md:last:border-r-0 relative group overflow-hidden bg-gradient-to-br from-transparent via-[#f5c518]/2 to-[#f5c518]/8 transition-all duration-700 hover:via-[#f5c518]/5 hover:to-[#f5c518]/15">
       {/* Ambient hover glow */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#f5c518]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#f5c518]/10 via-[#f5c518]/2 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       {/* Hover animated bottom border */}
       <div className="absolute bottom-0 left-0 h-[3px] w-full bg-[#f5c518] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700 ease-out" />
 
-      <div className="text-[clamp(2.5rem,4vw,4.5rem)] font-black text-white font-mono tracking-tighter mb-3 drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] relative z-10">
+      <div className="text-[clamp(2.5rem,4vw,4.5rem)] font-semibold text-white font-mono tracking-tighter mb-3 drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] relative z-10">
         {isFloat ? count.toFixed(2) : Math.floor(count).toLocaleString()}
         {label === "Megawatts Capacity" && <span className="text-xl md:text-2xl ml-2 text-[#f5c518]">MW</span>}
       </div>
@@ -132,7 +132,7 @@ const InfraFlow = () => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20 mb-8 relative z-10 flex flex-col items-center">
 
         {/* Main Title */}
-        <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-black leading-[0.95] tracking-tighter uppercase text-white text-center max-w-4xl mx-auto">
+        <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white text-center max-w-4xl mx-auto">
           POWER IN. <br />
           <span className="text-[#f5c518] relative inline-block">
             INTELLIGENCE

@@ -45,7 +45,7 @@ const Terminal = () => {
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-black uppercase">GPU_NODE_ENGINE_V4</div>
+        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-semibold uppercase">GPU_NODE_ENGINE_V4</div>
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 bg-[#00e878] rounded-full shadow-[0_0_8px_rgba(0,232,120,0.8)] animate-pulse" />
           <span className="text-[#00e878] text-[9px] tracking-widest uppercase font-bold hidden sm:block">RUNNING</span>
@@ -72,7 +72,7 @@ const Terminal = () => {
 
 const NeoCloudzSection = () => {
   return (
-    <section id="neocloudz" className="bg-[#050505] pt-24 md:pt-32 lg:pt-40 pb-8 md:pb-12 px-6 lg:px-20 relative overflow-hidden">
+    <section id="neocloudz" className="bg-[#050505] pt-10 pb-8 md:pb-12 px-6 lg:px-20 relative overflow-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[#00e878]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
 
@@ -102,7 +102,7 @@ const NeoCloudzSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight uppercase mb-6"
+            className="text-4xl md:text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight uppercase mb-6"
           >
             <span className="text-white">MEET </span>
             <span className="text-[#00e878] drop-shadow-[0_0_15px_rgba(0,232,120,0.3)]">NEO</span>
@@ -148,7 +148,7 @@ const NeoCloudzSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 pt-4">
-              <button className="bg-[#00e878] text-[#050505] px-8 py-3.5 rounded-lg font-black text-[13px] uppercase tracking-widest hover:bg-[#00e878]/90 hover:shadow-[0_0_20px_rgba(0,232,120,0.3)] transition-all w-full sm:w-auto text-center">
+              <button className="bg-[#00e878] text-[#050505] px-8 py-3.5 rounded-lg font-semibold text-[13px] uppercase tracking-widest hover:bg-[#00e878]/90 hover:shadow-[0_0_20px_rgba(0,232,120,0.3)] transition-all w-full sm:w-auto text-center">
                 VISIT NEOCLOUDZ
               </button>
               <button className="bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-lg font-bold text-[14px] hover:bg-white/5 transition-all w-full sm:w-auto text-center">

@@ -9,10 +9,13 @@ const CapabilityCard = ({ icon: Icon, title, description, delay }: { icon: any, 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative bg-white rounded-[28px] p-10 border border-gray-100 shadow-[0_10px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_30px_70px_rgba(245,197,24,0.12)] transition-all duration-700 h-full flex flex-col items-start"
+      className="group relative bg-gradient-to-br from-white via-[#f5c518]/5 to-[#f5c518]/15 rounded-[28px] p-10 border border-[#f5c518]/10 shadow-[0_10px_50px_rgba(0,0,0,0.02)] hover:shadow-[0_30px_70px_rgba(245,197,24,0.15)] hover:border-[#f5c518]/30 transition-all duration-700 h-full flex flex-col items-start overflow-hidden"
     >
+      {/* Subtle Mesh Background for texture */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#f5c518 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+
       {/* Decorative corner element */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#f5c518]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-tr-[28px]" />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#f5c518]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-tr-[28px]" />
 
       {/* Icon Container with animated ring */}
       <div className="relative mb-8">
@@ -22,7 +25,7 @@ const CapabilityCard = ({ icon: Icon, title, description, delay }: { icon: any, 
         </div>
       </div>
 
-      <h3 className="text-2xl font-black uppercase tracking-tight text-black mb-5 group-hover:text-[#f5c518] transition-colors duration-500">{title}</h3>
+      <h3 className="text-2xl font-semibold uppercase tracking-tight text-black mb-5 group-hover:text-[#f5c518] transition-colors duration-500">{title}</h3>
       <p className="text-gray-500 text-[15px] leading-relaxed font-medium group-hover:text-gray-600 transition-colors duration-500">
         {description}
       </p>
@@ -70,7 +73,7 @@ const Capabilities = () => {
   ];
 
   return (
-    <section className="bg-[#fcfcfc] py-32 md:py-48 relative overflow-hidden">
+    <section className="bg-[#fcfcfc] pt-10 pb-32 md:pb-48 relative overflow-hidden">
 
       {/* Enhanced Technical Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] [background-size:48px_48px] opacity-[0.03] pointer-events-none" />
@@ -108,9 +111,9 @@ const Capabilities = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-4 bg-white shadow-sm border border-gray-100 rounded-full px-6 py-2.5 mb-12 hover:shadow-md transition-shadow duration-500"
           >
-            <span className="text-[10px] font-black tracking-widest text-gray-400">04 /</span>
+            <span className="text-[10px] font-semibold tracking-widest text-gray-400">04 /</span>
             <div className="h-[2px] w-12 bg-[#f5c518]" />
-            <span className="text-[10px] font-black tracking-[0.25em] text-black uppercase">CAPABILITIES</span>
+            <span className="text-[10px] font-semibold tracking-[0.25em] text-black uppercase">CAPABILITIES</span>
           </motion.div>
 
           <motion.h2
@@ -118,7 +121,7 @@ const Capabilities = () => {
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(3rem,7vw,6.5rem)] font-black leading-[0.85] tracking-tighter uppercase text-black mb-10"
+            className="text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[0.85] tracking-tighter uppercase text-black mb-10"
           >
             EVERYTHING <br className="hidden md:block" />
             YOU NEED. <br />

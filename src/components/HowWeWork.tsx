@@ -10,8 +10,8 @@ const ProcessStep = ({ number, title, description, delay }: { number: string, ti
       transition={{ duration: 0.6, delay }}
       className="flex-1 min-w-[200px] p-8 border-r border-gray-100 last:border-r-0 relative group"
     >
-      <div className="text-[#f5c518] text-[12px] font-black mb-4 tracking-tighter">{number}</div>
-      <h3 className="text-black font-black text-[14px] uppercase tracking-tight mb-3 group-hover:text-[#f5c518] transition-colors duration-300">{title}</h3>
+      <div className="text-[#f5c518] text-[12px] font-semibold mb-4 tracking-tighter">{number}</div>
+      <h3 className="text-black font-semibold text-[14px] uppercase tracking-tight mb-3 group-hover:text-[#f5c518] transition-colors duration-300">{title}</h3>
       <p className="text-gray-500 text-[11px] leading-relaxed font-medium">
         {description}
       </p>
@@ -52,7 +52,7 @@ const HowWeWork = () => {
   ];
 
   return (
-    <section className="bg-white pt-24 md:pt-32 pb-0 relative border-t border-gray-50">
+    <section className="bg-white pt-10 pb-0 relative border-t border-gray-50">
       <div className="max-w-[1400px] mx-auto relative z-10">
 
         {/* Header section */}
@@ -63,9 +63,9 @@ const HowWeWork = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-4 bg-[#e5e5e5] rounded-full px-5 py-1.5 shadow-sm border border-black/5 mb-10"
           >
-            <span className="text-[9px] font-black tracking-widest text-black/60">05 /</span>
+            <span className="text-[9px] font-semibold tracking-widest text-black/60">05 /</span>
             <div className="h-[1px] w-12 bg-[#f5c518]" />
-            <span className="text-[9px] font-black tracking-[0.2em] text-black/80 uppercase">HOW WE WORK</span>
+            <span className="text-[9px] font-semibold tracking-[0.2em] text-black/80 uppercase">HOW WE WORK</span>
           </motion.div>
 
           <motion.h2
@@ -73,7 +73,7 @@ const HowWeWork = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.9] tracking-tighter uppercase text-black mb-8"
+            className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-black mb-8"
           >
             FROM SITE TO <br />
             <span className="text-[#f5c518]">LIVE</span> INFRA.

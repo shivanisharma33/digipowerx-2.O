@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Services</h4>
+            <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30 mb-6">Services</h4>
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">Power Generation</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Substation Build</a></li>
@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Subsidiaries</h4>
+            <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30 mb-6">Subsidiaries</h4>
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
               <li><a href="#" className="text-[#00e878] hover:text-[#00e878] drop-shadow-[0_0_8px_rgba(0,232,120,0.3)] transition-all">NeoCloudz ↗</a></li>
               <li><a href="#" className="hover:text-white transition-colors">DigiGrid Platform</a></li>
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 mb-6">Contact</h4>
+            <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30 mb-6">Contact</h4>
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
               <li><a href="#" className="hover:text-[#f5c518] transition-colors">Talk to Sales</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Investor Relations</a></li>
@@ -142,7 +142,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 md:py-32 bg-[#050505]">
+    <section id="contact" className="relative overflow-hidden pt-10 pb-24 md:pb-32 bg-[#050505]">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20 relative z-10">
@@ -156,7 +156,7 @@ const CTASection = () => {
             transition={{ duration: 0.8 }}
             className="w-full lg:w-[58%] lg:pr-16 flex items-center"
           >
-            <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-black text-white uppercase tracking-tighter leading-[0.9] mb-0">
+            <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-semibold text-white uppercase tracking-tighter leading-[0.9] mb-0">
               READY TO OWN THE <br />
               <span className="text-[#f5c518]">INFRASTRUCTURE</span> <br />
               LAYER?
@@ -186,10 +186,10 @@ const CTASection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <button className="bg-[#f5c518] text-black px-8 py-4 rounded-lg font-black text-[12px] uppercase tracking-widest hover:bg-[#ffda47] transition-all active:scale-95 text-center min-w-[200px]">
+                <button className="bg-[#f5c518] text-black px-8 py-4 rounded-lg font-semibold text-[12px] uppercase tracking-widest hover:bg-[#ffda47] transition-all active:scale-95 text-center min-w-[200px]">
                   Talk to Our Team
                 </button>
-                <button className="bg-black/40 border border-white/10 text-white px-8 py-4 rounded-lg font-black text-[12px] uppercase tracking-widest hover:bg-white/5 transition-all active:scale-95 text-center backdrop-blur-md min-w-[200px]">
+                <button className="bg-black/40 border border-white/10 text-white px-8 py-4 rounded-lg font-semibold text-[12px] uppercase tracking-widest hover:bg-white/5 transition-all active:scale-95 text-center backdrop-blur-md min-w-[200px]">
                   Capability Deck
                 </button>
               </motion.div>
