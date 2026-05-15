@@ -66,7 +66,7 @@ const CoolingVisual = () => {
             {Array.from({ length: 18 }).map((_, j) => (
               <rect key={j} x="6" y={12 + j * 20} width="48" height="6" fill="#0cff00" className="opacity-10" />
             ))}
-            <text x="30" y="410" textAnchor="middle" fill="#ffffff" fontSize="8" fontWeight="600" className="uppercase tracking-[0.3em] opacity-20">Rack-0{i+1}</text>
+            <text x="30" y="410" textAnchor="middle" fill="#ffffff" fontSize="8" fontWeight="600" className="uppercase tracking-[0.3em] opacity-20">Rack-0{i + 1}</text>
           </g>
         ))}
 
@@ -180,8 +180,8 @@ const DataCenter = () => {
       {/* FACILITY ARCHITECTURE - (CENTERED HEADING) */}
       {/* ========================================================= */}
       <section className="bg-black py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-             style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-[#f5c518]/10 rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
@@ -235,7 +235,7 @@ const DataCenter = () => {
                 ]
               }
             ].map((section, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -296,7 +296,7 @@ const DataCenter = () => {
               { layer: 'Power Base', dir: 'Alabama facility base with load study expansion direction', spec: '22MW → 55MW' },
               { layer: 'Connectivity', dir: 'Diverse carrier access and dark fiber pathway', spec: 'Multi-carrier ready' },
             ].map((row, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ backgroundColor: 'rgba(245,197,24,0.02)', x: 10 }}
                 className="group grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 py-8 px-4 border-b border-black/5 transition-all cursor-pointer relative overflow-hidden"
@@ -353,7 +353,7 @@ const DataCenter = () => {
               { value: '220MW', label: 'Portfolio Target', desc: '2026 Objective' },
               { value: '<$0.05', label: 'Energy Cost', desc: 'Per kWh Average' },
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ y: -5, borderColor: 'rgba(245,197,24,0.3)' }}
                 className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all text-center"
@@ -393,7 +393,7 @@ const DataCenter = () => {
                 color: 'from-purple-500/20 to-transparent'
               }
             ].map((card, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

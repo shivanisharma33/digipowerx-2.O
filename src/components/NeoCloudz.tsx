@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Zap, 
@@ -14,70 +14,155 @@ import {
   Network,
   Database,
   BarChart3,
-  Layers
+  Layers,
+  Maximize2,
+  Lock,
+  Box
 } from 'lucide-react';
 import { CTASection } from './Footer';
 import NeuralCube3D from './NeuralCube3D';
 
-const Terminal = () => {
-  const [lines, setLines] = React.useState<string[]>([]);
-
-  const allLines = [
-    'GPU 0-7: NVIDIA B200 · 192GB HBM3e each',
-    '',
-    'neocloudz:~ $ nvidia-smi --query',
-    '',
-    'All systems nominal · PUE 1.12',
-    '',
-    '[INFO] Cluster: 16x B200 | InfiniBand: 400G',
-    '[INFO] VRAM per node: 192 GB | Total: 3.07 TB',
-    '[INFO] Provisioned in 00:00:47 — SLA: <60s ✔',
-    '',
-    'trainer.train()... [STEP 500] loss=1.0887',
-    '',
-    'neocloudz:~ $ provision b200 --count 8 --fabric ib400g',
-    'Allocating node cluster [██████████] 100%',
-    'InfiniBand fabric: 400Gb/s · ready',
-  ];
+// =========================================================
+// LIVE CLUSTER TELEMETRY VISUAL
+// =========================================================
+const ClusterTelemetry = () => {
+  const [nodes, setNodes] = React.useState(
+    Array.from({ length: 32 }, (_, i) => ({
+      id: i,
+      util: Math.floor(Math.random() * 40) + 55,
+      temp: Math.floor(Math.random() * 20) + 60,
+    }))
+  );
 
   React.useEffect(() => {
-    let currentIdx = 0;
     const interval = setInterval(() => {
-      setLines(prev => {
-        const nextLines = [...prev, allLines[currentIdx]];
-        if (nextLines.length > 15) nextLines.shift();
-        return nextLines;
-      });
-      currentIdx = (currentIdx + 1) % allLines.length;
-    }, 1200);
+      setNodes(prev => prev.map(node => ({
+        ...node,
+        util: Math.max(50, Math.min(99, node.util + (Math.random() * 4 - 2))),
+        temp: Math.max(55, Math.min(85, node.temp + (Math.random() * 2 - 1))),
+      })));
+    }, 1500);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="bg-[#020503] rounded-xl border border-[#00e878]/20 overflow-hidden font-mono text-[11px] md:text-[12px] h-[380px] shadow-[0_0_60px_rgba(0,232,120,0.06)] relative group w-full">
-      <div className="bg-[#040806] border-b border-[#00e878]/20 px-4 py-3 flex items-center justify-between">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-          <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-        </div>
-        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-semibold uppercase">GPU_NODE_ENGINE_V4</div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-[#00e878] rounded-full shadow-[0_0_8px_rgba(0,232,120,0.8)] animate-pulse" />
-          <span className="text-[#00e878] text-[9px] tracking-widest uppercase font-semibold hidden sm:block">RUNNING</span>
+    <div className="w-full space-y-6">
+      {/* 4x8 GRID OF NODES */}
+      <div className="relative p-0 bg-transparent min-h-[320px] flex items-center justify-center overflow-hidden">
+        {/* SVG INTERCONNECT FABRIC */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30" viewBox="0 0 1000 500" preserveAspectRatio="none">
+          <defs>
+            <filter id="glow-green-intense" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Core Spider-Web Paths */}
+          <g className="opacity-20">
+            <path id="path1" d="M 100 100 L 300 200 L 500 150 L 700 250" stroke="#00e878" strokeWidth="1" fill="none" />
+            <path id="path2" d="M 200 300 L 400 250 L 600 350 L 800 300" stroke="#00e878" strokeWidth="1" fill="none" />
+            <path id="path3" d="M 150 50 L 150 450" stroke="#00e878" strokeWidth="1" fill="none" />
+            <path id="path4" d="M 850 50 L 850 450" stroke="#00e878" strokeWidth="1" fill="none" />
+            <path id="path5" d="M 300 200 L 400 400 L 700 350" stroke="#00e878" strokeWidth="1" fill="none" />
+          </g>
+          
+          {/* Animated Particles */}
+          {[...Array(4)].map((_, i) => (
+            <circle key={`p1-${i}`} r="3.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-100">
+              <animateMotion dur="4s" begin={`${i * 1.5}s`} repeatCount="indefinite">
+                <mpath href="#path1" />
+              </animateMotion>
+            </circle>
+          ))}
+          {[...Array(4)].map((_, i) => (
+            <circle key={`p2-${i}`} r="3.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-100">
+              <animateMotion dur="5s" begin={`${i * 2}s`} repeatCount="indefinite">
+                <mpath href="#path2" />
+              </animateMotion>
+            </circle>
+          ))}
+          {[...Array(3)].map((_, i) => (
+            <circle key={`p3-${i}`} r="3.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-100">
+              <animateMotion dur="3s" begin={`${i * 1.5}s`} repeatCount="indefinite">
+                <mpath href="#path3" />
+              </animateMotion>
+            </circle>
+          ))}
+          
+          {/* Static Nodes */}
+          <circle cx="300" cy="200" r="4.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-80" />
+          <circle cx="500" cy="150" r="4.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-80" />
+          <circle cx="400" cy="250" r="4.5" fill="#00e878" filter="url(#glow-green-intense)" className="opacity-80" />
+        </svg>
+
+        <div className="grid grid-cols-4 md:grid-cols-8 gap-2.5 w-full max-w-5xl relative z-10">
+          {nodes.map((node) => (
+            <div 
+              key={node.id}
+              className="bg-black/95 border border-[#00e878]/30 rounded-[4px] p-2.5 flex flex-col justify-between h-[72px] relative"
+            >
+              <div className="flex flex-col gap-0.5">
+                <div className="text-[10px] font-mono font-bold text-[#00e878]">{Math.round(node.util)}%</div>
+                <div className="text-[9px] font-mono text-[#00e878]/70">{Math.round(node.temp)}C</div>
+              </div>
+
+              {/* Status Bar */}
+              <div className="h-[3px] w-full bg-white/5 rounded-full overflow-hidden mt-1.5">
+                <motion.div 
+                  initial={false}
+                  animate={{ width: `${node.util}%` }}
+                  className="h-full bg-[#00e878]" 
+                  style={{ boxShadow: '0 0 10px rgba(0, 232, 120, 0.6)' }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="p-6 md:p-8 space-y-[6px] relative z-10 overflow-y-auto h-full text-left">
-        {lines.map((line, idx) => (
-          <div key={idx} className={`${line.startsWith('[INFO]') ? 'text-[#00e878]/50' :
-              line.includes('neocloudz:~ $') ? 'text-[#00e878] font-semibold drop-shadow-[0_0_5px_rgba(0,232,120,0.5)]' :
-                'text-[#00e878]/70'
-            } whitespace-nowrap overflow-hidden text-ellipsis tracking-wide leading-relaxed`}>
-            {line}
+
+      {/* TERMINAL SUMMARY PANEL */}
+      <div className="bg-[#050806] rounded-md border border-[#00e878]/10 overflow-hidden font-mono text-[11px] md:text-[12px] shadow-2xl">
+        <div className="bg-[#0a0f0c] px-6 py-4 flex items-center border-b border-[#00e878]/10">
+          <span className="text-[#00e878]/60 font-bold tracking-tight">neocloudz-cluster-01 // live telemetry</span>
+        </div>
+        
+        <div className="p-8 space-y-4">
+          <div className="flex flex-wrap items-center gap-x-3">
+            <span className="text-[#00e878]/60">cluster_id:</span> <span className="text-[#00e878] font-bold">ncz-prod-b200-01</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#00e878]/60">nodes:</span> <span className="text-[#00e878] font-bold">16x B200</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#00e878]/60">fabric:</span> <span className="text-[#00e878] font-bold">400G InfiniBand</span>
           </div>
-        ))}
-        <div className="flex items-center gap-2 mt-2">
-          <span className="w-2 h-4 bg-[#00e878] animate-pulse" />
+          
+          <div className="flex flex-wrap items-center gap-x-3">
+            <span className="text-[#f5c518]/60">util_avg:</span> <span className="text-[#f5c518] font-bold">80%</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#f5c518]/60">temp_avg:</span> <span className="text-[#f5c518] font-bold">55°C</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#f5c518]/60">vram:</span> <span className="text-[#f5c518] font-bold">3.07 TB / 3.20 TB</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-3">
+            <span className="text-[#3b82f6]/60">throughput:</span> <span className="text-[#3b82f6] font-bold">150k tok/s</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#3b82f6]/60">job:</span> <span className="text-[#3b82f6] font-bold">llm-finetune-7b</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span className="text-[#3b82f6]/60">checkpoint:</span> <span className="text-[#3b82f6]/60 font-bold">step_827</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-3 text-white/30">
+            <span>interconnect:</span> <span className="text-[#00e878] font-bold">healthy</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span>fabric_util:</span> <span className="text-white/60 font-bold">69%</span>
+            <span className="text-white/10 mx-1">|</span>
+            <span>nccl:</span> <span className="text-[#00e878] font-bold">OK</span>
+          </div>
         </div>
       </div>
     </div>
@@ -162,7 +247,7 @@ const NeoCloudz = () => {
       </section>
 
       {/* ── LIVE TELEMETRY SECTION ── */}
-      <section className="bg-black py-32 px-6 relative overflow-hidden">
+      <section className="bg-black py-32 px-6 relative overflow-hidden border-b border-white/5">
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-32 items-center">
           <div className="lg:w-1/2 space-y-12">
             <div className="space-y-6">
@@ -170,7 +255,7 @@ const NeoCloudz = () => {
                 <div className="w-12 h-px bg-[#00e878]" />
                 <span className="text-[10px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">Live Cluster Telemetry</span>
               </div>
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
+              <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 FULL CLUSTER <br />
                 <span className="text-[#00e878]">VISIBILITY.</span>
               </h2>
@@ -205,54 +290,8 @@ const NeoCloudz = () => {
               <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#00e878]/30 pointer-events-none" />
               <div className="absolute bottom-[-1.5rem] right-[-1.5rem] w-20 h-20 border-b border-r border-[#00e878]/30 pointer-events-none" />
               <div className="absolute -top-12 right-0 text-[9px] font-mono font-medium text-[#00e878] tracking-[0.4em] uppercase">NeoCloudz Cluster — Live Node Telemetry</div>
-              <Terminal />
+              <ClusterTelemetry />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── DEPLOYMENT FLOW ── */}
-      <section className="bg-[#050505] py-32 px-6 relative">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
-            <div className="max-w-4xl">
-              <div className="flex items-center gap-6 mb-10">
-                <div className="w-16 h-[1px] bg-[#00e878]" />
-                <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">01 / Deployment Flow</span>
-              </div>
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
-                FROM REQUEST TO <br />
-                <span className="text-[#00e878]">RUNNING.</span>
-              </h2>
-            </div>
-            <p className="text-[11px] font-medium text-white/40 tracking-widest leading-relaxed border-l-2 border-[#00e878] pl-8 max-w-sm">
-              A streamlined path from capacity request to dedicated bare-metal GPU cluster — without queuing or overhead.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 border border-white/10">
-            {[
-              { step: "01", t: "REQUEST", l: "Workload Profile", d: "Define cluster size, GPU type, interconnect, and storage requirements." },
-              { step: "02", t: "PROVISION", l: "Allocate Hardware", d: "Dedicated bare-metal nodes allocated with InfiniBand fabric configured." },
-              { step: "03", t: "DEPLOY", l: "Environment Live", d: "Direct hardware access with networking and OS image ready to run." },
-              { step: "04", t: "MONITOR", l: "Full Telemetry", d: "GPU utilization, temp, and memory stream in real time to dashboard." },
-              { step: "05", t: "SCALE", l: "Expand On Demand", d: "Additional nodes allocated as training jobs grow or demand increases." }
-            ].map((s, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-12 bg-[#050505] group hover:bg-black transition-all relative overflow-hidden"
-              >
-                <span className="text-[10px] font-mono font-medium text-white/10 group-hover:text-[#00e878] transition-colors mb-12 block">{s.step}</span>
-                <div className="text-[10px] font-semibold text-[#00e878] tracking-[0.5em] mb-4">{s.t}</div>
-                <h3 className="text-xl font-semibold text-white mb-6 uppercase tracking-tight">{s.l}</h3>
-                <p className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{s.d}</p>
-                <div className="absolute bottom-0 left-0 h-1 bg-[#00e878] w-0 group-hover:w-full transition-all duration-700" />
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -347,52 +386,159 @@ const NeoCloudz = () => {
         </div>
       </section>
 
-      {/* ── ARCHITECTURE GRID ── */}
-      <section className="bg-[#050505] pt-32 pb-0 px-6 relative">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
-            <div className="space-y-12">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-px bg-[#00e878]" />
-                  <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">GPU Cluster Architecture</span>
+      {/* ── GPU CLUSTER ARCHITECTURE - (NEW ATTRACTIVE REDESIGN) ── */}
+      <section className="bg-[#050505] py-32 px-6 relative overflow-hidden border-t border-white/5">
+        {/* Advanced Background Grid */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 opacity-[0.03]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }}
+          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00e878]/5 rounded-full blur-[140px]" />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+            
+            {/* Left: Content & Vertical Specs */}
+            <div className="lg:col-span-5 space-y-16">
+              <div className="space-y-8">
+                <div className="inline-flex items-center gap-4">
+                  <span className="w-8 h-px bg-[#00e878]" />
+                  <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">Technical Infrastructure</span>
                 </div>
-                <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
-                  BUILT FOR <br />
-                  <span className="text-[#00e878]">AI WORKLOADS.</span>
+                <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white">
+                  GPU CLUSTER <br />
+                  <span className="text-[#00e878]">ARCHITECTURE.</span>
                 </h2>
                 <p className="text-base font-medium text-white/40 tracking-tight leading-relaxed max-w-xl">
-                  NeoCloudz provides direct access to high-performance GPU clusters with no virtualization layer — dedicated hardware, 400G fabric, and full cluster telemetry designed for AI training, inference, and large-scale compute.
+                  A performance-first architecture designed to eliminate the common bottlenecks found in virtualized cloud environments. Direct bare-metal access meets high-density accelerator fabric.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-12">
+
+              {/* Vertical Spec Sheet */}
+              <div className="space-y-4 border-l border-white/10 pl-10">
                 {[
-                  { t: "Multi-Node Clusters", d: "Dedicated multi-node clusters, not shared instances." },
-                  { t: "400G InfiniBand", d: "Low-latency distributed training communication." },
-                  { t: "Bare Metal Access", d: "Full stack control from OS to GPU driver." },
-                  { t: "Performance Visibility", d: "Real-time telemetry visible to customer." }
-                ].map((f, i) => (
-                  <div key={i} className="space-y-3">
-                    <div className="text-[11px] font-semibold text-white tracking-widest uppercase">{f.t}</div>
-                    <div className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{f.d}</div>
-                  </div>
+                  { label: "VIRTUALIZATION", val: "NONE (BARE METAL DIRECT)" },
+                  { label: "ACCELERATOR TYPE", val: "NVIDIA BLACKWELL B200" },
+                  { label: "INTERCONNECT FABRIC", val: "400G INFINIBAND NDR" },
+                  { label: "STORAGE PROTOCOL", val: "NVME-OVER-FABRIC (NVMEOF)" },
+                ].map((spec, i) => (
+                  <motion.div 
+                    key={i}
+                    whileHover={{ x: 10 }}
+                    className="group flex flex-col gap-1 cursor-default"
+                  >
+                    <span className="text-[10px] font-mono font-medium text-white/20 group-hover:text-[#00e878] transition-colors tracking-widest">{spec.label}</span>
+                    <span className="text-[12px] font-semibold text-white tracking-widest uppercase">{spec.val}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            {/* Right: Command Center Metric Modules */}
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { val: "Bare Metal", label: "Dedicated hardware, no shared pools.", icon: ShieldCheck },
-                { val: "GPU Clusters", label: "Multi-node B200 architecture.", icon: Server },
-                { val: "<$0.05/kWh", label: "Power-cost advantage passed through.", icon: Zap },
-                { val: "Scalable", label: "Design to expand to campus scale.", icon: Layers }
+                { 
+                  icon: ShieldCheck, 
+                  val: "BARE METAL", 
+                  label: "Hardware Integrity", 
+                  desc: "Dedicated hardware units with no hypervisor overhead or noisy neighbor interference.",
+                  meta: "SLA: 99.99%"
+                },
+                { 
+                  icon: Server, 
+                  val: "H100/B200", 
+                  label: "Module Density", 
+                  desc: "High-density multi-node clusters optimized for distributed training workloads.",
+                  meta: "16x NODES/CLUSTER"
+                },
+                { 
+                  icon: Zap, 
+                  val: "<$0.05", 
+                  label: "Energy Efficiency", 
+                  desc: "Strategic Alabama facility location provides a permanent power cost advantage.",
+                  meta: "PER KWH COST"
+                },
+                { 
+                  icon: Maximize2, 
+                  val: "400G NDR", 
+                  label: "Fabric Throughput", 
+                  desc: "Unrestricted node-to-node communication for high-performance NCCL operations.",
+                  meta: "LOW-LATENCY"
+                }
               ].map((m, i) => (
-                <div key={i} className="p-12 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-[#00e878]/30 transition-all">
-                  <m.icon className="text-[#00e878] mb-8 group-hover:scale-110 transition-transform" size={32} />
-                  <div className="text-3xl font-semibold text-white tracking-tighter mb-4 uppercase">{m.val}</div>
-                  <div className="text-[10px] font-medium text-white/30 tracking-widest uppercase">{m.label}</div>
-                </div>
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -5, borderColor: 'rgba(0, 232, 120, 0.4)' }}
+                  className="bg-white/[0.02] border border-white/5 rounded-3xl p-10 backdrop-blur-md group relative overflow-hidden transition-all"
+                >
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#00e878]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#00e878]/10 transition-all" />
+                  
+                  <div className="flex justify-between items-start mb-12">
+                    <div className="w-12 h-12 rounded-2xl bg-[#00e878]/10 flex items-center justify-center text-[#00e878] group-hover:bg-[#00e878] group-hover:text-black transition-all">
+                      <m.icon size={20} />
+                    </div>
+                    <span className="text-[9px] font-mono font-bold text-[#00e878]/40 tracking-widest uppercase border border-[#00e878]/20 px-3 py-1 rounded-full">
+                      {m.meta}
+                    </span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="text-3xl font-semibold text-white tracking-tighter uppercase group-hover:text-[#00e878] transition-colors">{m.val}</div>
+                    <div className="text-[11px] font-semibold text-[#00e878] tracking-[0.4em] uppercase">{m.label}</div>
+                    <p className="text-[11px] font-medium text-white/30 tracking-widest leading-relaxed uppercase pt-4 border-t border-white/5">
+                      {m.desc}
+                    </p>
+                  </div>
+                </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── DEPLOYMENT FLOW ── */}
+      <section className="bg-[#050505] py-32 px-6 relative border-t border-white/5">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
+            <div className="max-w-4xl">
+              <div className="flex items-center gap-6 mb-10">
+                <div className="w-16 h-[1px] bg-[#00e878]" />
+                <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">01 / Deployment Flow</span>
+              </div>
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
+                FROM REQUEST TO <br />
+                <span className="text-[#00e878]">RUNNING.</span>
+              </h2>
+            </div>
+            <p className="text-[11px] font-medium text-white/40 tracking-widest leading-relaxed border-l-2 border-[#00e878] pl-8 max-w-sm">
+              A streamlined path from capacity request to dedicated bare-metal GPU cluster — without queuing or overhead.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 border border-white/10">
+            {[
+              { stepNum: "01", t: "REQUEST", l: "Workload Profile", d: "Define cluster size, GPU type, interconnect, and storage requirements." },
+              { stepNum: "02", t: "PROVISION", l: "Allocate Hardware", d: "Dedicated bare-metal nodes allocated with InfiniBand fabric configured." },
+              { stepNum: "03", t: "DEPLOY", l: "Environment Live", d: "Direct hardware access with networking and OS image ready to run." },
+              { stepNum: "04", t: "MONITOR", l: "Full Telemetry", d: "GPU utilization, temp, and memory stream in real time to dashboard." },
+              { stepNum: "05", t: "SCALE", l: "Expand On Demand", d: "Additional nodes allocated as training jobs grow or demand increases." }
+            ].map((s, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-12 bg-[#050505] group hover:bg-black transition-all relative overflow-hidden"
+              >
+                <span className="text-[10px] font-mono font-medium text-white/10 group-hover:text-[#00e878] transition-colors mb-12 block">{s.stepNum}</span>
+                <div className="text-[10px] font-semibold text-[#00e878] tracking-[0.5em] mb-4">{s.t}</div>
+                <h3 className="text-xl font-semibold text-white mb-6 uppercase tracking-tight">{s.l}</h3>
+                <p className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{s.d}</p>
+                <div className="absolute bottom-0 left-0 h-1 bg-[#00e878] w-0 group-hover:w-full transition-all duration-700" />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
