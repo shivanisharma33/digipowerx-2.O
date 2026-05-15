@@ -13,10 +13,81 @@ import {
   Target,
   ChevronRight,
   Radio,
+  Layers,
+  ArrowRight,
+  Globe,
+  Database,
+  Network,
+  TrendingDown,
+  Rocket,
+  Maximize2,
 } from 'lucide-react';
 
 import { CTASection } from './Footer';
 import NeuralCube3D from './NeuralCube3D';
+
+// =========================================================
+// COOLING VISUAL COMPONENT
+// =========================================================
+const CoolingVisual = () => {
+  return (
+    <div className="relative w-full h-full min-h-[600px] bg-[#050608] flex items-center justify-center p-0 overflow-hidden">
+      <svg viewBox="0 0 800 550" className="w-full h-full max-w-[850px] scale-95">
+        <defs>
+          <filter id="glow-red">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-blue">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <rect x="100" y="50" width="180" height="180" rx="10" fill="#0d0e11" stroke="#f5c518" strokeWidth="1.5" strokeOpacity="0.5" />
+        <text x="190" y="135" textAnchor="middle" fill="#f5c518" fontSize="10" fontWeight="600" className="uppercase tracking-[0.2em] opacity-80">Cooling</text>
+        <text x="190" y="152" textAnchor="middle" fill="#f5c518" fontSize="10" fontWeight="600" className="uppercase tracking-[0.2em] opacity-80">Tower</text>
+
+        <rect x="100" y="320" width="180" height="110" rx="10" fill="#0d0e11" stroke="#3b82f6" strokeWidth="1.5" strokeOpacity="0.5" />
+        <text x="190" y="380" textAnchor="middle" fill="#3b82f6" fontSize="10" fontWeight="600" className="uppercase tracking-[0.2em] opacity-80">Chiller</text>
+
+        <rect x="380" y="100" width="90" height="300" rx="10" fill="#0d0e11" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.15" />
+        <text x="425" y="250" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="600" className="uppercase tracking-[0.2em] opacity-40">CDU</text>
+
+        {[0, 1, 2].map((i) => (
+          <g key={i} transform={`translate(${560 + i * 80}, 50)`}>
+            <rect x="0" y="0" width="60" height="380" rx="4" fill="#050608" stroke="#0cff00" strokeWidth="1.5" strokeOpacity="0.2" />
+            {Array.from({ length: 18 }).map((_, j) => (
+              <rect key={j} x="6" y={12 + j * 20} width="48" height="6" fill="#0cff00" className="opacity-10" />
+            ))}
+            <text x="30" y="410" textAnchor="middle" fill="#ffffff" fontSize="8" fontWeight="600" className="uppercase tracking-[0.3em] opacity-20">Rack-0{i+1}</text>
+          </g>
+        ))}
+
+        <path id="path-red" d="M 560 140 L 490 140 L 490 110 L 380 110 L 280 110" fill="none" stroke="#ef4444" strokeWidth="2.5" opacity="0.6" />
+        <path id="path-blue" d="M 190 230 L 190 320 M 190 430 L 190 480 L 410 480 L 410 400 M 470 300 L 520 280 L 560 280" fill="none" stroke="#3b82f6" strokeWidth="2.5" opacity="0.6" />
+
+        {[0, 1.3, 2.6].map((delay, i) => (
+          <motion.circle key={`red-${i}`} r="4" fill="#ef4444" filter="url(#glow-red)">
+            <animateMotion dur="4s" begin={`${delay}s`} repeatCount="indefinite" path="M 560 140 L 490 140 L 490 110 L 380 110 L 280 110" />
+          </motion.circle>
+        ))}
+
+        {[0, 2, 4].map((delay, i) => (
+          <motion.circle key={`blue-${i}`} r="4" fill="#3b82f6" filter="url(#glow-blue)">
+            <animateMotion dur="6s" begin={`${delay}s`} repeatCount="indefinite" path="M 190 230 L 190 320 M 190 430 L 190 480 L 410 480 L 410 400 M 470 300 L 520 280 L 560 280" />
+          </motion.circle>
+        ))}
+      </svg>
+    </div>
+  );
+};
 
 const DataCenter = () => {
   return (
@@ -24,9 +95,8 @@ const DataCenter = () => {
 
       {/* ========================================================= */}
       {/* HERO SECTION */}
-      {/* ── HERO SECTION ── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-10 px-6 overflow-hidden">
-        {/* Background Atmosphere */}
+      {/* ========================================================= */}
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-0 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 opacity-20">
             <NeuralCube3D />
@@ -66,484 +136,290 @@ const DataCenter = () => {
               </button>
             </div>
           </motion.div>
-
-          {/* Quick Stats Grid */}
-
         </div>
       </section>
-      {/* ========================================================= */}
-
 
       {/* ========================================================= */}
-      {/* COOLING SECTION */}
+      {/* COOLING ARCHITECTURE SECTION */}
       {/* ========================================================= */}
-
-      <section className="bg-[#f7f7f5] py-36 lg:py-44 px-6 border-y border-black/5">
-
-        <div className="max-w-[1500px] mx-auto">
-
-          <div className="grid lg:grid-cols-12 gap-24 items-center">
-
-            {/* LEFT */}
-            <div className="lg:col-span-5">
-
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-[2px] bg-[#f5c518]" />
-                <span className="text-[11px] tracking-[0.4em] uppercase font-semibold text-black">
-                  Cooling Systems
-                </span>
-              </div>
-
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">
-                HEAT OUT. <br />
-                <span className="text-[#f5c518]">
-                  PERFORMANCE
-                </span>{' '}
-                IN.
-              </h2>
-
-              <p className="text-black/60 leading-relaxed max-w-xl mb-12">
-                A closed-loop direct liquid cooling system connects every GPU rack
-                to CDU distribution — eliminating thermal throttle.
-              </p>
-
-              <div className="space-y-5">
-
-                {[
-                  {
-                    icon: Thermometer,
-                    title: 'Hot Coolant Return',
-                    desc: 'From rack to CDU distribution',
-                  },
-                  {
-                    icon: Droplets,
-                    title: 'Cold Supply Loop',
-                    desc: 'Back to compute components',
-                  },
-                  {
-                    icon: Wind,
-                    title: 'Integrated Flow',
-                    desc: 'CDU, Chiller, and Tower',
-                  },
-                  {
-                    icon: Target,
-                    title: '80kW+ Envelopes',
-                    desc: 'High-density GPU planning',
-                  },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -6 }}
-                    className="p-8 rounded-[28px] border border-black/5 bg-white/80 backdrop-blur-xl shadow-[0_10px_50px_rgba(0,0,0,0.04)] transition-all duration-300"
-                  >
-
-                    <div className="flex items-center gap-6">
-
-                      <div className="w-14 h-14 rounded-2xl bg-black text-[#f5c518] flex items-center justify-center">
-                        <item.icon size={22} />
-                      </div>
-
-                      <div>
-                        <div className="text-sm font-semibold text-black mb-1">
-                          {item.title}
-                        </div>
-
-                        <div className="text-[11px] uppercase tracking-[0.25em] text-black/40 font-medium">
-                          {item.desc}
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </motion.div>
-                ))}
-
-              </div>
-
-            </div>
-
-            {/* RIGHT */}
-            <div className="lg:col-span-7">
-
-              <div className="relative rounded-[40px] overflow-hidden bg-[#050505] p-10 lg:p-16 shadow-[0_40px_100px_rgba(0,0,0,0.25)]">
-
-                <div className="absolute inset-0 opacity-[0.05]"
-                  style={{
-                    backgroundImage:
-                      'radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)',
-                    backgroundSize: '40px 40px',
-                  }}
-                />
-
-                <div className="relative z-10">
-
-                  <div className="flex justify-between items-start mb-20">
-
-                    <div>
-                      <div className="text-[10px] tracking-[0.5em] uppercase text-[#f5c518] font-semibold mb-3">
-                        SYSTEM NODE
-                      </div>
-
-                      <div className="text-4xl font-semibold tracking-tight">
-                        DLC MONITORING
-                      </div>
-                    </div>
-
-                    <Activity className="text-[#f5c518]" />
-
-                  </div>
-
-                  <div className="space-y-12">
-
-                    {[
-                      'Primary Rack Loop',
-                      'Secondary CDU Flow',
-                      'External Rejection',
-                    ].map((item, i) => (
-                      <div key={i}>
-
-                        <div className="flex justify-between text-[10px] uppercase tracking-[0.3em] text-white/30 font-semibold mb-4">
-                          <span>{item}</span>
-                          <span>245 GPM</span>
-                        </div>
-
-                        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-
-                          <motion.div
-                            initial={{ x: '-100%' }}
-                            animate={{ x: '100%' }}
-                            transition={{
-                              duration: 6,
-                              repeat: Infinity,
-                              ease: 'linear',
-                            }}
-                            className="h-full w-1/3 bg-[#f5c518]"
-                          />
-
-                        </div>
-
-                      </div>
-                    ))}
-
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-6 mt-20 pt-10 border-t border-white/10">
-
-                    {[
-                      { label: 'PUE', value: '1.18' },
-                      { label: 'Delta T', value: '14.2°C' },
-                      { label: 'Status', value: 'Optimal' },
-                    ].map((item, i) => (
-                      <div key={i}>
-
-                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-semibold mb-3">
-                          {item.label}
-                        </div>
-
-                        <div className="text-3xl font-semibold tracking-tight text-white">
-                          {item.value}
-                        </div>
-
-                      </div>
-                    ))}
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
+      <section className="flex flex-col lg:flex-row items-stretch min-h-[600px] relative overflow-hidden bg-[#f7f7f5]">
+        <div className="w-full lg:w-1/2 px-12 lg:px-24 py-0 flex flex-col justify-center">
+          <div className="py-12 lg:py-0">
+            <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-[#f5c518]">Cooling Architecture</span>
+            <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-black mt-6 mb-8">
+              HEAT OUT. <br />
+              PERFORMANCE IN.
+            </h2>
+            <p className="text-black/60 text-lg leading-relaxed max-w-xl mb-12 font-medium">
+              A closed-loop direct liquid cooling system connects every GPU rack to CDU distribution, chiller plant, and heat rejection — eliminating thermal throttle as a constraint on AI compute density.
+            </p>
+            <ul className="space-y-4">
+              {[
+                { label: 'Red path:', text: 'hot coolant return from rack to CDU', color: '#ef4444' },
+                { label: 'Blue path:', text: 'cold supply loop back to compute', color: '#3b82f6' },
+                { label: '', text: 'CDU, chiller, and cooling tower integrated in one flow', color: '#f5c518' },
+                { label: '', text: 'Supports 80kW+ per-rack GPU power envelopes', color: '#f5c518' },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="text-[#f5c518] mt-1">→</span>
+                  <p className="text-black/70 text-sm font-semibold">
+                    {item.label && <span className="text-black mr-2">{item.label}</span>}
+                    {item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-
         </div>
-
+        <div className="w-full lg:w-1/2 min-h-[500px]">
+          <CoolingVisual />
+        </div>
       </section>
 
       {/* ========================================================= */}
       {/* FACILITY ARCHITECTURE */}
       {/* ========================================================= */}
+      <section className="bg-black py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#f5c518]/10 rounded-full blur-[120px] -translate-y-1/2" />
 
-      <section className="bg-[#050505] py-40 px-6 relative overflow-hidden">
-
-        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#f5c518]/5 blur-[140px] rounded-full" />
-
-        <div className="max-w-[1500px] mx-auto relative z-10">
-
-          <div className="text-center mb-28">
-
-            <div className="inline-flex items-center gap-4 px-6 py-3 rounded-full border border-white/10 bg-white/[0.03] mb-10">
-
-              <div className="w-2 h-2 rounded-full bg-[#f5c518]" />
-
-              <span className="text-[10px] tracking-[0.5em] uppercase font-semibold text-[#f5c518]">
-                SYSTEM ARCHITECTURE
-              </span>
-
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-20">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-4 mb-8">
+                <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">01 / Facility Architecture</span>
+              </div>
+              <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-white mb-8">
+                BUILT FOR AI, <br />
+                <span className="text-[#f5c518]">NOT RETROFITTED</span> <br />
+                ENTERPRISE LOADS.
+              </h2>
             </div>
-
-            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
-              BUILT FOR AI, <br />
-              <span className="text-[#f5c518]">
-                NOT RETROFITTED.
-              </span>
-            </h2>
-
-            <p className="max-w-4xl mx-auto text-white/40 leading-relaxed">
-              The full facility stack — incoming power, rack density,
-              cooling infrastructure, network fabric, and controlled operations.
+            <p className="text-white/40 max-w-sm mb-2 text-sm md:text-base font-medium leading-relaxed">
+              The full facility stack — incoming power, rack density, cooling infrastructure, network fabric, and controlled operations — is engineered around accelerator workloads from the ground up.
             </p>
-
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-
             {[
               {
-                icon: Server,
+                tag: 'RACKS',
                 title: 'GPU-Dense Row Architecture',
-                desc: 'Rack layouts are planned around accelerator power draw.',
+                desc: 'Rack layouts are planned around accelerator power draw, heat removal path, cable routing, and structured service access — not legacy 1U server assumptions.',
+                bullets: [
+                  'High-density GPU rack rows with per-cabinet PDU monitoring',
+                  'Hot-aisle containment and cable tray infrastructure',
+                  'Expansion-ready room layouts with conditioned floor space',
+                  'Rack-level power metering and environmental sensing'
+                ]
               },
               {
-                icon: Droplets,
+                tag: 'COOLING',
                 title: 'Direct Liquid Cooling Loop',
-                desc: 'DLC architecture brings coolant directly to compute.',
+                desc: 'DLC architecture brings coolant directly to compute components, avoiding the inefficiencies of air-only systems at high GPU densities.',
+                bullets: [
+                  'Direct-to-chip coolant distribution units (CDU)',
+                  'Hot-return and cold-supply manifold design',
+                  'Chiller plant and dry-cooler heat rejection',
+                  'Redundant pumping and leak detection systems'
+                ]
               },
               {
-                icon: Zap,
-                title: 'Redundant Infrastructure',
-                desc: 'Reliable AI compute starts with electrical planning.',
-              },
-            ].map((card, i) => (
-              <motion.div
+                tag: 'POWER',
+                title: 'Redundant Electrical Infrastructure',
+                desc: 'Reliable AI compute starts with the electrical path — utility interconnection, switchgear, transformation, and UPS architecture before the first server powers on.',
+                bullets: [
+                  'HV/MV utility feed with backup protection',
+                  'Switchgear, transformers, and distribution panels',
+                  'UPS and generator strategy for critical loads',
+                  'Metered, monitored power delivery to every rack'
+                ]
+              }
+            ].map((section, i) => (
+              <motion.div 
                 key={i}
-                whileHover={{ y: -10 }}
-                className="relative rounded-[32px] overflow-hidden border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group relative bg-[#0a0a0a] border border-white/10 rounded-[32px] p-10 flex flex-col hover:border-[#f5c518]/40 transition-all duration-500 overflow-hidden"
               >
-
-                <div className="w-16 h-16 rounded-2xl bg-[#f5c518]/10 text-[#f5c518] flex items-center justify-center mb-10">
-                  <card.icon size={28} />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#f5c518]/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10">
+                  <div className="text-[10px] font-semibold text-[#f5c518] uppercase tracking-[0.4em] mb-8">{section.tag}</div>
+                  <h3 className="text-2xl font-semibold tracking-tighter uppercase text-white mb-6 group-hover:text-[#f5c518] transition-colors">{section.title}</h3>
+                  <p className="text-white/40 text-[13px] leading-relaxed mb-10 font-medium">{section.desc}</p>
+                  <div className="space-y-4">
+                    {section.bullets.map((bullet, idx) => (
+                      <div key={idx} className="flex items-start gap-3 group/item">
+                        <span className="text-[#f5c518] text-xs mt-1 shrink-0 group-hover/item:translate-x-1 transition-transform">→</span>
+                        <span className="text-white/60 text-[12px] font-bold leading-relaxed">{bullet}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-
-                <h3 className="text-3xl font-semibold tracking-tight mb-6">
-                  {card.title}
-                </h3>
-
-                <p className="text-white/40 leading-relaxed">
-                  {card.desc}
-                </p>
-
+                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#f5c518] group-hover:w-full transition-all duration-700" />
               </motion.div>
             ))}
-
           </div>
-
         </div>
-
       </section>
 
-      {/* ========================================================= */}
-      {/* TECHNICAL MATRIX */}
-      {/* ========================================================= */}
-
-      <section className="bg-[#f7f7f5] py-40 px-6">
-
-        <div className="max-w-[1500px] mx-auto">
-
-          <div className="mb-24">
-
-            <div className="flex items-center gap-5 mb-8">
-              <div className="w-16 h-[1px] bg-black" />
-
-              <span className="text-[11px] uppercase tracking-[0.5em] font-semibold text-black">
-                Technical Parameters
-              </span>
+      {/* FULL-STACK FACILITY SPECIFICATION */}
+      <section className="bg-[#f7f7f5] py-24 px-6 relative overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-20">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-black/40">02 / Technical Specification</span>
             </div>
-
-            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">
-              OPERATIONAL <br />
-              <span className="text-[#f5c518]">
-                MATRIX.
-              </span>
+            <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-black mb-8">
+              FULL-STACK FACILITY <br />
+              <span className="text-[#f5c518]">SPECIFICATION.</span>
             </h2>
-
+            <p className="text-black/60 max-w-2xl text-lg font-medium leading-relaxed">
+              From incoming utility to GPU rack output — each layer of the facility is designed with AI workload performance as the primary constraint.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="relative border-t border-black/10">
+            <div className="hidden lg:grid grid-cols-12 gap-8 py-6 px-4 text-[10px] font-bold uppercase tracking-[0.3em] text-black/30 border-b border-black/5">
+              <div className="col-span-3">Layer</div>
+              <div className="col-span-6">Design Direction</div>
+              <div className="col-span-3 text-right">Specification</div>
+            </div>
 
             {[
-              {
-                icon: Zap,
-                label: 'Power Density',
-                value: '80kW+',
-              },
-              {
-                icon: Thermometer,
-                label: 'Thermal Control',
-                value: '<1.18',
-              },
-              {
-                icon: Cpu,
-                label: 'Network Fabric',
-                value: '400G',
-              },
-              {
-                icon: Activity,
-                label: 'Grid Interface',
-                value: '22MW',
-              },
-              {
-                icon: ShieldCheck,
-                label: 'Security Layer',
-                value: 'S-Tier',
-              },
-              {
-                icon: Radio,
-                label: 'Support Fabric',
-                value: '24/7',
-              },
-            ].map((item, i) => (
-              <motion.div
+              { layer: 'Power Density', dir: 'High-density rack architecture targeting AI/HPC accelerator loads', spec: '80kW+ per cabinet' },
+              { layer: 'Cooling', dir: 'Direct liquid cooling with closed-loop CDU and chiller plant', spec: 'PUE target <1.3' },
+              { layer: 'Network', dir: 'Low-latency fabric with carrier-neutral interconnect access', spec: '400G fabric capable' },
+              { layer: 'Operations', dir: '24/7 NOC monitoring, remote hands, biometric access control', spec: 'Tier III design path' },
+              { layer: 'Power Base', dir: 'Alabama facility base with load study expansion direction', spec: '22MW → 55MW' },
+              { layer: 'Connectivity', dir: 'Diverse carrier access and dark fiber pathway', spec: 'Multi-carrier ready' },
+            ].map((row, i) => (
+              <motion.div 
                 key={i}
-                whileHover={{ y: -6 }}
-                className="bg-white rounded-[30px] p-10 border border-black/5 shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
+                whileHover={{ backgroundColor: 'rgba(245,197,24,0.02)', x: 10 }}
+                className="group grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 py-8 px-4 border-b border-black/5 transition-all cursor-pointer relative overflow-hidden"
               >
-
-                <div className="w-14 h-14 rounded-2xl bg-black text-[#f5c518] flex items-center justify-center mb-10">
-                  <item.icon size={24} />
+                <div className="absolute left-0 top-0 w-[2px] h-0 bg-[#f5c518] group-hover:h-full transition-all duration-300" />
+                <div className="col-span-3">
+                  <div className="text-lg font-bold text-black tracking-tighter uppercase">{row.layer}</div>
                 </div>
-
-                <div className="text-xl font-semibold text-black mb-4">
-                  {item.label}
+                <div className="col-span-6">
+                  <p className="text-black/60 text-sm font-medium leading-relaxed">{row.dir}</p>
                 </div>
-
-                <div className="text-5xl font-semibold tracking-tight text-black">
-                  {item.value}
+                <div className="col-span-3 lg:text-right">
+                  <div className="text-lg font-mono font-bold text-[#f5c518] tracking-tight">{row.spec}</div>
                 </div>
-
               </motion.div>
             ))}
-
           </div>
-
         </div>
-
       </section>
 
       {/* ========================================================= */}
-      {/* PERFORMANCE ADVANTAGE */}
+      {/* INTEGRATED INFRASTRUCTURE ADVANTAGE - ENHANCED BENTO DESIGN */}
       {/* ========================================================= */}
+      <section className="bg-[#050505] py-24 px-6 relative overflow-hidden">
+        {/* Background Atmosphere */}
+        <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-[#f5c518]/5 blur-[160px] rounded-full translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-[#f5c518]/5 blur-[140px] rounded-full -translate-x-1/2 translate-y-1/2" />
 
-      <section className="bg-[#050505] py-40 px-6 relative overflow-hidden">
-
-        <div className="absolute bottom-0 left-0 w-[30rem] h-[30rem] bg-[#f5c518]/5 blur-[120px] rounded-full" />
-
-        <div className="max-w-[1500px] mx-auto relative z-10">
-
-          <div className="grid lg:grid-cols-2 gap-20">
-
-            {/* LEFT */}
-            <div className="lg:pr-10">
-
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-[1px] bg-[#f5c518]" />
-
-                <span className="text-[10px] uppercase tracking-[0.5em] font-semibold text-[#f5c518]">
-                  Architecture Identity
-                </span>
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center mb-24">
+            <div>
+              <div className="inline-flex items-center gap-4 mb-8">
+                <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">Why DigiPowerX</span>
               </div>
-
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
-                PERFORMANCE <br />
-                <span className="text-[#f5c518]">
-                  ADVANTAGE.
-                </span>
+              <h2 className="text-[clamp(2.5rem,5vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-10">
+                THE ADVANTAGE IS <br />
+                <span className="text-[#f5c518]">INTEGRATED</span> <br />
+                INFRASTRUCTURE.
               </h2>
-
-              <p className="text-white/40 leading-relaxed max-w-xl mb-12">
-                We own the full stack — from the primary power feed to the
-                liquid-cooled compute floor.
-              </p>
-
-              <div className="space-y-4">
-
-                {[
-                  'Power Ownership',
-                  'Deployment Speed',
-                  'Economic Scale',
-                  'High-Density Ready',
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="group flex items-center justify-between p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white transition-all duration-300 cursor-pointer"
-                  >
-
-                    <span className="text-[11px] uppercase tracking-[0.3em] font-semibold text-white/60 group-hover:text-black">
-                      {item}
-                    </span>
-
-                    <ChevronRight
-                      size={18}
-                      className="text-[#f5c518] group-hover:text-black"
-                    />
-
-                  </div>
-                ))}
-
+              <div className="space-y-6 max-w-xl">
+                <p className="text-white/60 text-lg font-medium leading-relaxed">
+                  The strongest data center story is not only the room. It is the integration of power generation, site control, direct liquid cooling, network access, and deployment speed — <span className="text-white">owned at every layer.</span>
+                </p>
+                <p className="text-white/40 text-sm font-medium leading-relaxed">
+                  DigiPower X controls the infrastructure stack from energy assets through compute-ready colocation, compressing deployment timelines and improving long-term operating economics for AI and HPC customers.
+                </p>
               </div>
-
             </div>
 
-            {/* RIGHT */}
-            <div className="grid md:grid-cols-2 gap-6">
-
+            {/* Interactive Stats Panel */}
+            <div className="grid grid-cols-2 gap-4">
               {[
-                {
-                  value: '22MW',
-                  label: 'Alabama Facility',
-                },
-                {
-                  value: '120MW',
-                  label: 'Expansion Path',
-                },
-                {
-                  value: '220MW',
-                  label: 'Portfolio Target',
-                },
-                {
-                  value: '<$0.05',
-                  label: 'Energy Economics',
-                },
-              ].map((card, i) => (
-                <motion.div
+                { value: '22MW', label: 'Alabama Baseline', desc: 'Current Capacity' },
+                { value: '120MW', label: 'Expansion Path', desc: 'Authorized Load' },
+                { value: '220MW', label: 'Portfolio Target', desc: '2026 Objective' },
+                { value: '<$0.05', label: 'Energy Cost', desc: 'Per kWh Average' },
+              ].map((stat, i) => (
+                <motion.div 
                   key={i}
-                  whileHover={{ y: -8 }}
-                  className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-12 lg:p-14"
+                  whileHover={{ y: -5, borderColor: 'rgba(245,197,24,0.3)' }}
+                  className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all"
                 >
-
-                  <div className="text-[10px] uppercase tracking-[0.4em] font-semibold text-[#f5c518] mb-8">
-                    {card.label}
-                  </div>
-
-                  <div className="text-6xl font-semibold tracking-tight">
-                    {card.value}
-                  </div>
-
+                  <div className="text-4xl font-semibold text-white tracking-tighter mb-2">{stat.value}</div>
+                  <div className="text-[10px] font-black text-[#f5c518] uppercase tracking-widest mb-1">{stat.label}</div>
+                  <div className="text-[10px] font-medium text-white/20 uppercase tracking-widest">{stat.desc}</div>
                 </motion.div>
               ))}
-
             </div>
-
           </div>
 
+          {/* Bento Cards Grid */}
+          <div className="grid lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Zap,
+                title: 'Power + Data Center',
+                desc: 'Infrastructure strategy starts with energy access and site capacity — not with a leased building.',
+                color: 'from-yellow-500/20 to-transparent'
+              },
+              {
+                icon: Rocket,
+                title: 'Faster Deployment',
+                desc: 'Existing electrical infrastructure and approved load studies compress development timelines.',
+                color: 'from-blue-500/20 to-transparent'
+              },
+              {
+                icon: TrendingDown,
+                title: 'Lower OPEX',
+                desc: 'Sub-$0.05/kWh power-cost visibility supports better long-term AI infrastructure economics.',
+                color: 'from-green-500/20 to-transparent'
+              },
+              {
+                icon: Maximize2,
+                title: 'AI / HPC Ready',
+                desc: 'Designed for 80kW+ rack densities and liquid-cooled accelerator clusters — not legacy workloads.',
+                color: 'from-purple-500/20 to-transparent'
+              }
+            ].map((card, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] border border-white/10 rounded-[32px] p-10 overflow-hidden"
+              >
+                {/* Gradient Accent */}
+                <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${card.color} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-[#f5c518] group-hover:text-black transition-all duration-500">
+                    <card.icon size={24} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white uppercase tracking-tighter mb-4 group-hover:text-[#f5c518] transition-colors">{card.title}</h3>
+                  <p className="text-white/40 text-sm leading-relaxed font-medium group-hover:text-white/60 transition-colors">{card.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-
       </section>
 
-      {/* CTA */}
       <CTASection />
-
     </div>
   );
 };

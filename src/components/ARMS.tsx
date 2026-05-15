@@ -17,32 +17,32 @@ const ARMSSpecs = () => {
   return (
     <section className="py-16 bg-black font-sans relative overflow-hidden">
       {/* Reference Image Background - Image 2 */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-screen grayscale-[0.5]" 
-        style={{ 
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-screen grayscale-[0.5]"
+        style={{
           backgroundImage: 'url("/assets/circuitry_bg.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       />
-      
+
       {/* Extra Grain/Depth Overlay */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          
+
           {/* Left Column: TECHNICAL SPECIFICATIONS */}
           <div className="flex flex-col h-full">
             <h2 className="text-[#f5c518] font-black text-xl md:text-2xl uppercase tracking-wider mb-8">
               TECHNICAL <br /> SPECIFICATIONS
             </h2>
-            
+
             <div className="bg-[#050505]/80 backdrop-blur-md border border-[#f5c518]/20 rounded-[24px] p-8 md:p-10 relative overflow-hidden flex-1 flex flex-col shadow-[0_0_80px_rgba(245,197,24,0.15)]">
-               {/* Reference Match Glows - Specs Card (Ultra Intensity) */}
-               <div className="absolute top-0 left-0 w-96 h-96 bg-[#f5c518]/40 rounded-full blur-[140px] -translate-x-1/3 -translate-y-1/3" />
-               <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f5c518]/40 rounded-full blur-[140px] translate-x-1/3 translate-y-1/3" />
-               
+              {/* Reference Match Glows - Specs Card (Ultra Intensity) */}
+              <div className="absolute top-0 left-0 w-96 h-96 bg-[#f5c518]/40 rounded-full blur-[140px] -translate-x-1/3 -translate-y-1/3" />
+              <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f5c518]/40 rounded-full blur-[140px] translate-x-1/3 translate-y-1/3" />
+
               <div className="flex flex-col justify-between flex-1 relative z-10 py-6 min-h-[500px]">
                 {specs.map((spec, i) => (
                   <React.Fragment key={i}>
@@ -69,17 +69,17 @@ const ARMSSpecs = () => {
 
           {/* Right Column: FUTURE READY PLATFORM & STRATEGIC PARTNERSHIPS */}
           <div className="flex flex-col gap-12 lg:gap-16">
-            
+
             {/* Future Ready Card */}
             <div className="flex flex-col">
               <h2 className="text-[#f5c518] font-black text-xl md:text-2xl uppercase tracking-wider mb-8">
                 FUTURE READY <br /> PLATFORM
               </h2>
-              
+
               <div className="bg-[#050505]/80 backdrop-blur-md border border-[#f5c518]/20 rounded-[24px] p-0 flex flex-col md:flex-row items-stretch justify-between relative overflow-hidden shadow-[0_0_80px_rgba(245,197,24,0.15)] min-h-[280px]">
                 {/* Reference Match Glow - Future Card (Top Right - Ultra) */}
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#f5c518]/30 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
-                
+
                 <div className="flex flex-col gap-4 relative z-10 flex-1 p-8 md:p-10 justify-center">
                   <div className="flex flex-col gap-1">
                     <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">ARMS 300</h3>
@@ -97,10 +97,10 @@ const ARMSSpecs = () => {
                 <div className="relative w-full md:w-[45%] bg-[#080808] flex items-center justify-center p-8">
                   {/* Shadow/Glow on floor */}
                   <div className="absolute bottom-10 w-48 h-12 bg-[#f5c518]/20 rounded-full blur-[30px]" />
-                  
+
                   <div className="relative z-10 w-full h-full flex items-center justify-center">
-                    <motion.img 
-                      src="/assets/arms_cube.png" 
+                    <motion.img
+                      src="/assets/arms_cube.png"
                       alt="ARMS 300 Cube"
                       className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(245,197,24,0.5)] scale-125"
                       animate={{ y: [0, -12, 0] }}
@@ -115,18 +115,18 @@ const ARMSSpecs = () => {
             <div className="bg-[#050505]/80 backdrop-blur-md border border-[#f5c518]/20 rounded-[24px] p-8 md:p-10 flex flex-col gap-6 relative overflow-hidden shadow-[0_0_80px_rgba(245,197,24,0.15)]">
               {/* Reference Match Glow - Partnerships Card (Top Left - Ultra) */}
               <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#f5c518]/30 rounded-full blur-[120px]" />
-              
+
               <div className="flex items-center gap-4 relative z-10">
                 <div className="text-[#f5c518] bg-[#f5c518]/10 p-3 rounded-xl border border-[#f5c518]/20 shadow-[0_0_20px_rgba(245,197,24,0.1)]">
                   <Zap size={24} fill="currentColor" />
                 </div>
                 <h3 className="text-2xl font-black text-white uppercase tracking-tighter">STRATEGIC PARTNERSHIPS</h3>
               </div>
-              
+
               <p className="text-white/40 text-[13px] leading-relaxed font-medium relative z-10">
                 DigiPowerX leverages industry-leading technology through partnerships with:
               </p>
-              
+
               <div className="flex flex-col gap-4 relative z-10">
                 {/* Supermicro Row */}
                 <div className="border border-white/10 rounded-[12px] p-5 bg-[#080808]/50 flex items-center gap-6 group hover:border-[#f5c518]/30 transition-all duration-500 shadow-xl relative overflow-hidden">
