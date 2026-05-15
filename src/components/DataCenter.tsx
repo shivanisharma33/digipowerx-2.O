@@ -94,7 +94,7 @@ const DataCenter = () => {
     <div className="bg-[#050505] text-white overflow-x-hidden font-sans selection:bg-[#f5c518]/20">
 
       {/* ========================================================= */}
-      {/* HERO SECTION */}
+      {/* HERO SECTION - (LEAVE AS IS: CENTERED) */}
       {/* ========================================================= */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-24 pb-0 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -140,7 +140,7 @@ const DataCenter = () => {
       </section>
 
       {/* ========================================================= */}
-      {/* COOLING ARCHITECTURE SECTION */}
+      {/* COOLING ARCHITECTURE SECTION - (LEAVE AS IS: LEFT CONTENT) */}
       {/* ========================================================= */}
       <section className="flex flex-col lg:flex-row items-stretch min-h-[600px] relative overflow-hidden bg-[#f7f7f5]">
         <div className="w-full lg:w-1/2 px-12 lg:px-24 py-0 flex flex-col justify-center">
@@ -177,26 +177,24 @@ const DataCenter = () => {
       </section>
 
       {/* ========================================================= */}
-      {/* FACILITY ARCHITECTURE */}
+      {/* FACILITY ARCHITECTURE - (CENTERED HEADING) */}
       {/* ========================================================= */}
       <section className="bg-black py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#f5c518]/10 rounded-full blur-[120px] -translate-y-1/2" />
+        <div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-[#f5c518]/10 rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-20">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-4 mb-8">
-                <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">01 / Facility Architecture</span>
-              </div>
-              <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-white mb-8">
-                BUILT FOR AI, <br />
-                <span className="text-[#f5c518]">NOT RETROFITTED</span> <br />
-                ENTERPRISE LOADS.
-              </h2>
+          <div className="flex flex-col items-center text-center mb-20">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">01 / Facility Architecture</span>
             </div>
-            <p className="text-white/40 max-w-sm mb-2 text-sm md:text-base font-medium leading-relaxed">
+            <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-tighter uppercase text-white mb-8">
+              BUILT FOR AI, <br />
+              <span className="text-[#f5c518]">NOT RETROFITTED</span> <br />
+              ENTERPRISE LOADS.
+            </h2>
+            <p className="text-white/40 max-w-2xl text-sm md:text-base font-medium leading-relaxed">
               The full facility stack — incoming power, rack density, cooling infrastructure, network fabric, and controlled operations — is engineered around accelerator workloads from the ground up.
             </p>
           </div>
@@ -245,7 +243,7 @@ const DataCenter = () => {
                 className="group relative bg-[#0a0a0a] border border-white/10 rounded-[32px] p-10 flex flex-col hover:border-[#f5c518]/40 transition-all duration-500 overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#f5c518]/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative z-10">
+                <div className="relative z-10 text-left">
                   <div className="text-[10px] font-semibold text-[#f5c518] uppercase tracking-[0.4em] mb-8">{section.tag}</div>
                   <h3 className="text-2xl font-semibold tracking-tighter uppercase text-white mb-6 group-hover:text-[#f5c518] transition-colors">{section.title}</h3>
                   <p className="text-white/40 text-[13px] leading-relaxed mb-10 font-medium">{section.desc}</p>
@@ -265,10 +263,12 @@ const DataCenter = () => {
         </div>
       </section>
 
-      {/* FULL-STACK FACILITY SPECIFICATION */}
+      {/* ========================================================= */}
+      {/* FULL-STACK FACILITY SPECIFICATION - (CENTERED HEADING) */}
+      {/* ========================================================= */}
       <section className="bg-[#f7f7f5] py-24 px-6 relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto">
-          <div className="mb-20">
+          <div className="flex flex-col items-center text-center mb-20">
             <div className="inline-flex items-center gap-4 mb-8">
               <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-black/40">02 / Technical Specification</span>
             </div>
@@ -318,53 +318,51 @@ const DataCenter = () => {
       </section>
 
       {/* ========================================================= */}
-      {/* INTEGRATED INFRASTRUCTURE ADVANTAGE - ENHANCED BENTO DESIGN */}
+      {/* INTEGRATED INFRASTRUCTURE ADVANTAGE - (CENTERED HEADING) */}
       {/* ========================================================= */}
       <section className="bg-[#050505] py-24 px-6 relative overflow-hidden">
-        {/* Background Atmosphere */}
         <div className="absolute top-0 right-0 w-[50rem] h-[50rem] bg-[#f5c518]/5 blur-[160px] rounded-full translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-[#f5c518]/5 blur-[140px] rounded-full -translate-x-1/2 translate-y-1/2" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center mb-24">
-            <div>
-              <div className="inline-flex items-center gap-4 mb-8">
-                <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">Why DigiPowerX</span>
-              </div>
-              <h2 className="text-[clamp(2.5rem,5vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-10">
-                THE ADVANTAGE IS <br />
-                <span className="text-[#f5c518]">INTEGRATED</span> <br />
-                INFRASTRUCTURE.
-              </h2>
-              <div className="space-y-6 max-w-xl">
-                <p className="text-white/60 text-lg font-medium leading-relaxed">
-                  The strongest data center story is not only the room. It is the integration of power generation, site control, direct liquid cooling, network access, and deployment speed — <span className="text-white">owned at every layer.</span>
-                </p>
-                <p className="text-white/40 text-sm font-medium leading-relaxed">
-                  DigiPower X controls the infrastructure stack from energy assets through compute-ready colocation, compressing deployment timelines and improving long-term operating economics for AI and HPC customers.
-                </p>
-              </div>
+          {/* Centered Heading and Intro */}
+          <div className="flex flex-col items-center text-center mb-24">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <span className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">Why DigiPowerX</span>
             </div>
+            <h2 className="text-[clamp(2.5rem,5vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-10">
+              THE ADVANTAGE IS <br />
+              <span className="text-[#f5c518]">INTEGRATED</span> <br />
+              INFRASTRUCTURE.
+            </h2>
+            <div className="space-y-6 max-w-3xl">
+              <p className="text-white/60 text-lg font-medium leading-relaxed">
+                The strongest data center story is not only the room. It is the integration of power generation, site control, direct liquid cooling, network access, and deployment speed — <span className="text-white">owned at every layer.</span>
+              </p>
+              <p className="text-white/40 text-sm font-medium leading-relaxed">
+                DigiPower X controls the infrastructure stack from energy assets through compute-ready colocation, compressing deployment timelines and improving long-term operating economics for AI and HPC customers.
+              </p>
+            </div>
+          </div>
 
-            {/* Interactive Stats Panel */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: '22MW', label: 'Alabama Baseline', desc: 'Current Capacity' },
-                { value: '120MW', label: 'Expansion Path', desc: 'Authorized Load' },
-                { value: '220MW', label: 'Portfolio Target', desc: '2026 Objective' },
-                { value: '<$0.05', label: 'Energy Cost', desc: 'Per kWh Average' },
-              ].map((stat, i) => (
-                <motion.div 
-                  key={i}
-                  whileHover={{ y: -5, borderColor: 'rgba(245,197,24,0.3)' }}
-                  className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all"
-                >
-                  <div className="text-4xl font-semibold text-white tracking-tighter mb-2">{stat.value}</div>
-                  <div className="text-[10px] font-black text-[#f5c518] uppercase tracking-widest mb-1">{stat.label}</div>
-                  <div className="text-[10px] font-medium text-white/20 uppercase tracking-widest">{stat.desc}</div>
-                </motion.div>
-              ))}
-            </div>
+          {/* Interactive Stats Panel - (Now as a high-impact row) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { value: '22MW', label: 'Alabama Baseline', desc: 'Current Capacity' },
+              { value: '120MW', label: 'Expansion Path', desc: 'Authorized Load' },
+              { value: '220MW', label: 'Portfolio Target', desc: '2026 Objective' },
+              { value: '<$0.05', label: 'Energy Cost', desc: 'Per kWh Average' },
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ y: -5, borderColor: 'rgba(245,197,24,0.3)' }}
+                className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm transition-all text-center"
+              >
+                <div className="text-4xl font-semibold text-white tracking-tighter mb-2">{stat.value}</div>
+                <div className="text-[10px] font-black text-[#f5c518] uppercase tracking-widest mb-1">{stat.label}</div>
+                <div className="text-[10px] font-medium text-white/20 uppercase tracking-widest">{stat.desc}</div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Bento Cards Grid */}
@@ -401,11 +399,9 @@ const DataCenter = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] border border-white/10 rounded-[32px] p-10 overflow-hidden"
+                className="group relative bg-gradient-to-br from-white/[0.05] to-white/[0.01] border border-white/10 rounded-[32px] p-10 overflow-hidden text-left"
               >
-                {/* Gradient Accent */}
                 <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${card.color} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                
                 <div className="relative z-10">
                   <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-[#f5c518] group-hover:text-black transition-all duration-500">
                     <card.icon size={24} />
