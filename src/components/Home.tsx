@@ -1,7 +1,8 @@
 import React from 'react';
-import Hero from './Hero';
+import InfraHero from './InfraHero';
 import Marquee from './Marquee';
 import WhatWeDo from './WhatWeDo';
+import FourPillars from './FourPillars';
 import Services from './Services';
 import StatsAndInfra from './StatsAndInfra';
 import NeoCloudzSection from './NeoCloudzSection';
@@ -13,9 +14,10 @@ import { CTASection } from './Footer';
 const Home = () => {
   return (
     <>
-      <Hero />
+      <InfraHero />
       <Marquee />
       <WhatWeDo />
+      <FourPillars />
 
       <Colocation />
       <StatsAndInfra />

@@ -41,11 +41,11 @@ const SECFilings = () => {
               <div className="w-64 h-[1px] bg-white/10" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 bg-black flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-brand-yellow" />
-                <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/40">Investors</span>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.6em] text-white/40">Investors</span>
               </div>
             </div>
 
-            <h1 className="text-[clamp(3rem,10vw,120px)] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+            <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10">
               <span className="block text-white mb-2">SEC</span>
               <span className="block text-brand-yellow">Filings</span>
             </h1>
@@ -63,8 +63,8 @@ const SECFilings = () => {
                 { val: "8-K", label: "CURRENT EVENTS" }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-brand-yellow font-black text-xl mb-1 tracking-tighter">{stat.val}</div>
-                  <div className="text-[8px] font-black text-white/30 uppercase tracking-widest">{stat.label}</div>
+                  <div className="text-brand-yellow font-semibold text-xl mb-1 tracking-tighter">{stat.val}</div>
+                  <div className="text-[8px] font-semibold text-white/30 uppercase tracking-widest">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -72,7 +72,7 @@ const SECFilings = () => {
         </div>
 
         <div className="mt-20 flex flex-col items-center gap-4 relative z-10">
-          <div className="text-[9px] font-black uppercase tracking-[0.4em] text-white/40">View Recent Filings</div>
+          <div className="text-[9px] font-semibold uppercase tracking-[0.4em] text-white/40">View Recent Filings</div>
           <div className="w-[1px] h-12 bg-gradient-to-b from-brand-yellow to-transparent" />
         </div>
       </section>
@@ -85,10 +85,10 @@ const SECFilings = () => {
               <div className="h-[2px] w-8 bg-brand-yellow" />
               <div className="h-[2px] w-2 bg-black/10" />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/60">Market Disclosures</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-black/60">Market Disclosures</span>
           </div>
 
-          <h2 className="text-[clamp(2.5rem,6vw,80px)] font-black leading-none uppercase mb-6">
+          <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">
             RECENT <span className="text-brand-yellow">FILINGS</span>
           </h2>
           <p className="text-black/40 text-lg font-medium">View and download our latest filings.</p>
@@ -123,25 +123,25 @@ const SECFilings = () => {
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-brand-yellow">
                       <FileText size={14} />
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">Filing Date</span>
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em]">Filing Date</span>
                     </div>
-                    <div className="text-3xl font-black uppercase tracking-tighter text-white">May 12, 2026</div>
+                    <div className="text-3xl font-semibold uppercase tracking-tighter text-white">May 12, 2026</div>
                   </div>
 
                   <div className="h-[1px] w-full bg-brand-yellow/30" />
 
                   {/* Form Type */}
                   <div className="space-y-3">
-                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Form Type</div>
-                    <div className="text-5xl font-black text-brand-yellow uppercase tracking-tighter leading-none">Schedule 13G</div>
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Form Type</div>
+                    <div className="text-5xl font-semibold text-brand-yellow uppercase tracking-tighter leading-none">Schedule 13G</div>
                   </div>
 
                   <div className="h-[1px] w-full bg-brand-yellow/30" />
 
                   {/* Description */}
                   <div className="space-y-3">
-                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Description</div>
-                    <div className="text-[11px] font-bold text-white uppercase leading-relaxed max-w-[320px]">
+                    <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Description</div>
+                    <div className="text-[11px] font-semibold text-white uppercase leading-relaxed max-w-[320px]">
                       SECURITIES AND EXCHANGE COMMISSION <br />
                       Washington, D.C. 20549
                     </div>
@@ -149,7 +149,7 @@ const SECFilings = () => {
 
                   {/* Download Button */}
                   <div className="pt-4">
-                    <button className="flex items-center gap-3 bg-brand-yellow text-black px-10 py-4 rounded-lg font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all active:scale-[0.98]">
+                    <button className="flex items-center gap-3 bg-brand-yellow text-black px-10 py-4 rounded-lg font-semibold text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all active:scale-[0.98]">
                       <Download size={14} strokeWidth={3} />
                       Download PDF
                     </button>
@@ -164,7 +164,7 @@ const SECFilings = () => {
             <button className="text-white/40 hover:text-brand-yellow transition-colors cursor-pointer">
               <ChevronRight size={20} className="rotate-180" />
             </button>
-            <div className="flex items-center gap-6 text-sm font-black uppercase tracking-widest">
+            <div className="flex items-center gap-6 text-sm font-semibold uppercase tracking-widest">
               <span className="text-brand-yellow border-b border-brand-yellow">1</span>
               <span className="text-white/40 hover:text-white cursor-pointer transition-colors">2</span>
               <span className="text-white/40 hover:text-white cursor-pointer transition-colors">3</span>

@@ -32,6 +32,7 @@ const Navbar = () => {
     { name: 'Infrastructure', hasDropdown: true, sublinks: [
       { name: 'Global Network', path: '/infrastructure' },
       { name: 'ARMS Modular Systems', path: '/arms' },
+      { name: 'AI Infrastructure Model', path: '/demi' },
     ]},
     { name: 'Investors', hasDropdown: true, sublinks: [
       { name: 'SEC Filings', path: '/sec-filings' },
@@ -85,7 +86,7 @@ const Navbar = () => {
             if (link.hasDropdown) {
               return (
                 <div key={link.name} className="relative group">
-                  <button className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors py-4">
+                  <button className="nav-link flex items-center gap-1 text-[13px] font-semibold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors py-4">
                     {link.name} <ChevronDown size={12} className="group-hover:rotate-180 transition-transform duration-300" />
                   </button>
                   <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-[110]">
@@ -94,7 +95,7 @@ const Navbar = () => {
                         <Link 
                           key={sub.name} 
                           to={sub.path} 
-                          className="text-[11px] font-black uppercase tracking-widest text-white/50 hover:text-brand-yellow transition-colors"
+                          className="text-[11px] font-semibold uppercase tracking-widest text-white/50 hover:text-brand-yellow transition-colors"
                         >
                           {sub.name}
                         </Link>
@@ -109,7 +110,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path || '#'}
-                className="nav-link flex items-center gap-1 text-[13px] font-bold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors"
+                className="nav-link flex items-center gap-1 text-[13px] font-semibold uppercase tracking-widest text-white/70 hover:text-brand-yellow transition-colors"
               >
                 {link.name}
               </Link>
@@ -119,10 +120,10 @@ const Navbar = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-          <button className="hidden xl:block text-[10px] font-black tracking-[0.2em] px-5 py-2.5 text-white/60 hover:text-white transition-all border border-white/10 uppercase">
+          <button className="hidden xl:block text-[10px] font-semibold tracking-[0.2em] px-5 py-2.5 text-white/60 hover:text-white transition-all border border-white/10 uppercase">
             Investor Relations
           </button>
-          <Link to="/contact" className="hidden sm:block bg-brand-yellow text-black px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg shadow-brand-yellow/10 whitespace-nowrap">
+          <Link to="/contact" className="hidden sm:block bg-brand-yellow text-black px-6 py-2.5 font-semibold text-xs uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg shadow-brand-yellow/10 whitespace-nowrap">
             Talk to Us
           </Link>
 
@@ -162,14 +163,14 @@ const Navbar = () => {
               </div>
 
               <div className="flex flex-col gap-6 sm:gap-8 relative z-10">
-                <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-4 flex items-center gap-4">
+                <div className="text-[10px] font-semibold text-white/40 uppercase tracking-[0.4em] mb-4 flex items-center gap-4">
                   <div className="h-[1px] w-8 bg-white/10" /> Navigation
                 </div>
                 {navLinks.map((link) => (
                   <motion.div variants={itemVariants} key={link.name}>
                     {link.hasDropdown ? (
                       <div className="flex flex-col gap-4">
-                        <span className="text-4xl sm:text-5xl font-black text-white/30 uppercase tracking-tighter">
+                        <span className="text-4xl sm:text-5xl font-semibold text-white/30 uppercase tracking-tighter">
                           {link.name}
                         </span>
                         <div className="flex flex-col gap-2 pl-4 border-l border-brand-yellow/20">
@@ -177,7 +178,7 @@ const Navbar = () => {
                             <Link 
                               key={sub.name}
                               to={sub.path}
-                              className="text-2xl sm:text-3xl font-black text-white hover:text-brand-yellow transition-all uppercase tracking-tighter"
+                              className="text-2xl sm:text-3xl font-semibold text-white hover:text-brand-yellow transition-all uppercase tracking-tighter"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {sub.name}
@@ -188,7 +189,7 @@ const Navbar = () => {
                     ) : (
                       <Link
                         to={link.path || '#'}
-                        className="text-4xl sm:text-5xl font-black text-white flex items-center justify-between group"
+                        className="text-4xl sm:text-5xl font-semibold text-white flex items-center justify-between group"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span className="group-hover:text-brand-yellow transition-all group-hover:translate-x-2 duration-300 uppercase tracking-tighter">
@@ -207,19 +208,19 @@ const Navbar = () => {
               >
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/40">Headquarters</span>
-                    <span className="text-[11px] font-bold text-white uppercase">Dallas, Texas</span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/40">Headquarters</span>
+                    <span className="text-[11px] font-semibold text-white uppercase">Dallas, Texas</span>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/40">Status</span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/40">Status</span>
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[11px] font-bold text-white uppercase">Operational</span>
+                      <span className="text-[11px] font-semibold text-white uppercase">Operational</span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full bg-brand-yellow text-black py-5 font-black text-sm uppercase tracking-widest hover:bg-white transition-all active:scale-[0.98]">
+                <button className="w-full bg-brand-yellow text-black py-5 font-semibold text-sm uppercase tracking-widest hover:bg-white transition-all active:scale-[0.98]">
                   Talk to Our Team
                 </button>
               </motion.div>

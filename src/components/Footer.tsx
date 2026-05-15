@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import logoImg from '../assets/Digi new color logo.png';
 
 const Footer = () => {
@@ -40,6 +41,7 @@ const Footer = () => {
           <div>
             <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30 mb-6">Services</h4>
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
+              <li><Link to="/demi" className="text-[#f5c518] hover:text-white transition-colors font-semibold">AI Infrastructure (Live)</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">Power Generation</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Substation Build</a></li>
               <li><a href="#" className="hover:text-white transition-colors">DC Construction</a></li>
@@ -50,9 +52,10 @@ const Footer = () => {
           <div>
             <h4 className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/30 mb-6">Subsidiaries</h4>
             <ul className="space-y-4 text-[13px] font-medium text-gray-400">
+              <li><Link to="/demi" className="hover:text-white transition-colors">AI Infrastructure Model</Link></li>
               <li><a href="#" className="text-[#00e878] hover:text-[#00e878] drop-shadow-[0_0_8px_rgba(0,232,120,0.3)] transition-all">NeoCloudz ↗</a></li>
               <li><a href="#" className="hover:text-white transition-colors">DigiGrid Platform</a></li>
-              <li><a href="/data-centers" className="hover:text-white transition-colors">US Data Centers</a></li>
+              <li><Link to="/data-centers" className="hover:text-white transition-colors">US Data Centers</Link></li>
             </ul>
           </div>
 
@@ -67,10 +70,10 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+          <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest">
             © 2025 DigiPowerX, Inc. · 100% U.S. Owned & Operated
           </div>
-          <div className="flex items-center gap-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+          <div className="flex items-center gap-3 text-[10px] font-semibold text-gray-400 uppercase tracking-widest">
             <span className="w-2 h-2 bg-[#00e878] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,232,120,0.8)]" />
             All Systems Operational
           </div>

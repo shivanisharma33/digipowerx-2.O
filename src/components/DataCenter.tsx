@@ -45,10 +45,10 @@ const DataCenter = () => {
             className="flex flex-col items-center"
           >
             <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-[#f5c518]/20 bg-[#f5c518]/5 backdrop-blur-xl mb-8 shadow-[0_0_30px_rgba(245,197,24,0.05)]">
-              <span className="text-[10px] font-black tracking-[0.6em] text-[#f5c518] uppercase">AI-Ready Facilities</span>
+              <span className="text-[10px] font-semibold tracking-[0.6em] text-[#f5c518] uppercase">AI-Ready Facilities</span>
             </div>
 
-            <h1 className="text-[clamp(3.5rem,12vw,160px)] font-black leading-[0.9] uppercase tracking-tighter mb-6 relative">
+            <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10">
               DATA <br />
               <span className="text-[#f5c518]">CENTERS</span>
             </h1>
@@ -58,10 +58,10 @@ const DataCenter = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-8 mb-10">
-              <Link to="/contact" className="px-14 py-6 bg-[#f5c518] text-black font-black text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white transition-all shadow-[0_10px_50px_rgba(245,197,24,0.3)]">
+              <Link to="/contact" className="px-14 py-6 bg-[#f5c518] text-black font-semibold text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white transition-all shadow-[0_10px_50px_rgba(245,197,24,0.3)]">
                 Talk to Team
               </Link>
-              <button className="px-14 py-6 border border-white/10 bg-white/5 backdrop-blur-md font-black text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white/10 transition-all">
+              <button className="px-14 py-6 border border-white/10 bg-white/5 backdrop-blur-md font-semibold text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white/10 transition-all">
                 Investor Info
               </button>
             </div>
@@ -89,12 +89,12 @@ const DataCenter = () => {
 
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-[2px] bg-[#f5c518]" />
-                <span className="text-[11px] tracking-[0.4em] uppercase font-black text-black">
+                <span className="text-[11px] tracking-[0.4em] uppercase font-semibold text-black">
                   Cooling Systems
                 </span>
               </div>
 
-              <h2 className="text-5xl md:text-7xl leading-[0.85] tracking-[-0.05em] font-black text-black uppercase mb-8">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">
                 HEAT OUT. <br />
                 <span className="text-[#f5c518]">
                   PERFORMANCE
@@ -144,11 +144,11 @@ const DataCenter = () => {
                       </div>
 
                       <div>
-                        <div className="text-sm font-black text-black mb-1">
+                        <div className="text-sm font-semibold text-black mb-1">
                           {item.title}
                         </div>
 
-                        <div className="text-[11px] uppercase tracking-[0.25em] text-black/40 font-bold">
+                        <div className="text-[11px] uppercase tracking-[0.25em] text-black/40 font-medium">
                           {item.desc}
                         </div>
                       </div>
@@ -180,11 +180,11 @@ const DataCenter = () => {
                   <div className="flex justify-between items-start mb-20">
 
                     <div>
-                      <div className="text-[10px] tracking-[0.5em] uppercase text-[#f5c518] font-black mb-3">
+                      <div className="text-[10px] tracking-[0.5em] uppercase text-[#f5c518] font-semibold mb-3">
                         SYSTEM NODE
                       </div>
 
-                      <div className="text-4xl font-black tracking-tight">
+                      <div className="text-4xl font-semibold tracking-tight">
                         DLC MONITORING
                       </div>
                     </div>
@@ -202,7 +202,7 @@ const DataCenter = () => {
                     ].map((item, i) => (
                       <div key={i}>
 
-                        <div className="flex justify-between text-[10px] uppercase tracking-[0.3em] text-white/30 font-black mb-4">
+                        <div className="flex justify-between text-[10px] uppercase tracking-[0.3em] text-white/30 font-semibold mb-4">
                           <span>{item}</span>
                           <span>245 GPM</span>
                         </div>
@@ -236,11 +236,11 @@ const DataCenter = () => {
                     ].map((item, i) => (
                       <div key={i}>
 
-                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-black mb-3">
+                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-semibold mb-3">
                           {item.label}
                         </div>
 
-                        <div className="text-3xl font-black tracking-tight text-white">
+                        <div className="text-3xl font-semibold tracking-tight text-white">
                           {item.value}
                         </div>
 
@@ -277,13 +277,13 @@ const DataCenter = () => {
 
               <div className="w-2 h-2 rounded-full bg-[#f5c518]" />
 
-              <span className="text-[10px] tracking-[0.5em] uppercase font-black text-[#f5c518]">
+              <span className="text-[10px] tracking-[0.5em] uppercase font-semibold text-[#f5c518]">
                 SYSTEM ARCHITECTURE
               </span>
 
             </div>
 
-            <h2 className="text-6xl md:text-[110px] leading-[0.82] tracking-[-0.06em] font-black uppercase mb-10">
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
               BUILT FOR AI, <br />
               <span className="text-[#f5c518]">
                 NOT RETROFITTED.
@@ -326,7 +326,7 @@ const DataCenter = () => {
                   <card.icon size={28} />
                 </div>
 
-                <h3 className="text-3xl font-black tracking-tight mb-6">
+                <h3 className="text-3xl font-semibold tracking-tight mb-6">
                   {card.title}
                 </h3>
 
@@ -356,12 +356,12 @@ const DataCenter = () => {
             <div className="flex items-center gap-5 mb-8">
               <div className="w-16 h-[1px] bg-black" />
 
-              <span className="text-[11px] uppercase tracking-[0.5em] font-black text-black">
+              <span className="text-[11px] uppercase tracking-[0.5em] font-semibold text-black">
                 Technical Parameters
               </span>
             </div>
 
-            <h2 className="text-6xl md:text-[100px] leading-[0.82] tracking-[-0.06em] font-black text-black uppercase">
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">
               OPERATIONAL <br />
               <span className="text-[#f5c518]">
                 MATRIX.
@@ -414,11 +414,11 @@ const DataCenter = () => {
                   <item.icon size={24} />
                 </div>
 
-                <div className="text-xl font-black text-black mb-4">
+                <div className="text-xl font-semibold text-black mb-4">
                   {item.label}
                 </div>
 
-                <div className="text-5xl font-black tracking-tight text-black">
+                <div className="text-5xl font-semibold tracking-tight text-black">
                   {item.value}
                 </div>
 
@@ -449,12 +449,12 @@ const DataCenter = () => {
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-[#f5c518]" />
 
-                <span className="text-[10px] uppercase tracking-[0.5em] font-black text-[#f5c518]">
+                <span className="text-[10px] uppercase tracking-[0.5em] font-semibold text-[#f5c518]">
                   Architecture Identity
                 </span>
               </div>
 
-              <h2 className="text-6xl md:text-7xl leading-[0.85] tracking-[-0.06em] font-black uppercase mb-8">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 PERFORMANCE <br />
                 <span className="text-[#f5c518]">
                   ADVANTAGE.
@@ -479,7 +479,7 @@ const DataCenter = () => {
                     className="group flex items-center justify-between p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white transition-all duration-300 cursor-pointer"
                   >
 
-                    <span className="text-[11px] uppercase tracking-[0.3em] font-black text-white/60 group-hover:text-black">
+                    <span className="text-[11px] uppercase tracking-[0.3em] font-semibold text-white/60 group-hover:text-black">
                       {item}
                     </span>
 
@@ -522,11 +522,11 @@ const DataCenter = () => {
                   className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-12 lg:p-14"
                 >
 
-                  <div className="text-[10px] uppercase tracking-[0.4em] font-black text-[#f5c518] mb-8">
+                  <div className="text-[10px] uppercase tracking-[0.4em] font-semibold text-[#f5c518] mb-8">
                     {card.label}
                   </div>
 
-                  <div className="text-6xl font-black tracking-tight">
+                  <div className="text-6xl font-semibold tracking-tight">
                     {card.value}
                   </div>
 

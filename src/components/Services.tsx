@@ -22,9 +22,9 @@ const SectionLabel = ({ num, text, dark = false }: { num: string, text: string, 
     className="mb-12 relative z-10 flex justify-center"
   >
     <div className={`inline-flex items-center gap-3 ${dark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100 shadow-sm'} border rounded-full px-6 py-2.5`}>
-      <span className={`text-[10px] font-black tracking-widest ${dark ? 'text-white/40' : 'text-gray-400'}`}>{num} /</span>
+      <span className={`text-[10px] font-semibold tracking-widest ${dark ? 'text-white/40' : 'text-gray-400'}`}>{num} /</span>
       <div className="h-[2px] w-12 bg-[#f5c518]" />
-      <span className={`text-[10px] font-black tracking-[0.25em] ${dark ? 'text-white' : 'text-black'} uppercase`}>{text}</span>
+      <span className={`text-[10px] font-semibold tracking-[0.25em] ${dark ? 'text-white' : 'text-black'} uppercase`}>{text}</span>
     </div>
   </motion.div>
 );
@@ -126,7 +126,7 @@ export default function Services() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(3.5rem,10vw,8.5rem)] font-black text-white leading-[0.85] tracking-tighter uppercase mb-12"
+              className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold text-white leading-[0.95] tracking-tighter uppercase mb-12 relative z-10"
             >
               Services & <br />
               <span className="text-[#f5c518] relative inline-block">
@@ -149,10 +149,10 @@ export default function Services() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center justify-center gap-10 pb-24"
             >
-              <button className="px-12 py-6 bg-[#f5c518] text-black font-black uppercase tracking-[0.2em] text-[12px] rounded-md hover:bg-white transition-all shadow-[0_15px_50px_rgba(245,197,24,0.3)] flex items-center gap-4 group">
+              <button className="px-12 py-6 bg-[#f5c518] text-black font-semibold uppercase tracking-[0.2em] text-[12px] rounded-md hover:bg-white transition-all shadow-[0_15px_50px_rgba(245,197,24,0.3)] flex items-center gap-4 group">
                 Talk to Team <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="flex items-center gap-3 text-white/60 font-bold text-[12px] uppercase tracking-[0.2em] hover:text-white transition-colors group rounded-md">
+              <button className="flex items-center gap-3 text-white/60 font-semibold text-[12px] uppercase tracking-[0.2em] hover:text-white transition-colors group rounded-md">
                 Investor Info <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </motion.div>
@@ -184,8 +184,8 @@ export default function Services() {
                 { label: "Modular Deploy", val: "ARMS" }
               ].map((item, i) => (
                 <div key={i} className={`text-center px-8 ${i !== 3 ? 'md:border-r border-white/5' : ''}`}>
-                  <p className="text-[#f5c518] font-black text-4xl md:text-5xl tracking-tighter mb-2 hover:scale-105 transition-transform duration-500">{item.val}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">{item.label}</p>
+                  <p className="text-[#f5c518] font-semibold text-4xl md:text-5xl tracking-tighter mb-2 hover:scale-105 transition-transform duration-500">{item.val}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -202,7 +202,7 @@ export default function Services() {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-32">
             <div className="max-w-2xl">
               {/* <SectionLabel num="01" text="Infrastructure Layer" /> */}
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.9] tracking-tighter uppercase text-black mt-8">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10 mt-8">
                 POWER & <br /><span className="text-[#f5c518]">COLOCATION.</span>
               </h2>
             </div>
@@ -233,10 +233,10 @@ export default function Services() {
                   <div className="w-16 h-16 bg-black text-[#f5c518] flex items-center justify-center">
                     <Zap size={32} />
                   </div>
-                  <span className="text-[10px] font-bold text-gray-300 uppercase tracking-[0.3em] vertical-rl rotate-180">GEN_CAPACITY</span>
+                  <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-[0.3em] vertical-rl rotate-180">GEN_CAPACITY</span>
                 </div>
 
-                <h3 className="text-3xl font-black uppercase tracking-tighter text-black mb-4">Power Infrastructure</h3>
+                <h3 className="text-3xl font-semibold uppercase tracking-tighter text-black mb-4">Power Infrastructure</h3>
                 <p className="text-gray-400 font-medium mb-12 text-sm uppercase tracking-widest">Generation & BTMG Access</p>
 
                 <p className="text-gray-500 font-medium mb-12 text-[15px] leading-relaxed">
@@ -252,13 +252,13 @@ export default function Services() {
                   ].map((feat, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-1 h-1 bg-[#f5c518]" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-black/70">{feat}</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-black/70">{feat}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-auto pt-8 border-t border-gray-50 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#f5c518]">Scale to 500MW+</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#f5c518]">Scale to 500MW+</span>
                   <ArrowRight size={16} className="text-gray-300 group-hover:text-[#f5c518] group-hover:translate-x-2 transition-all" />
                 </div>
               </div>
@@ -284,10 +284,10 @@ export default function Services() {
                   <div className="w-16 h-16 bg-black text-[#f5c518] flex items-center justify-center">
                     <Server size={32} />
                   </div>
-                  <span className="text-[10px] font-bold text-gray-300 uppercase tracking-[0.3em] vertical-rl rotate-180">SPACE_ALLOCATION</span>
+                  <span className="text-[10px] font-semibold text-gray-300 uppercase tracking-[0.3em] vertical-rl rotate-180">SPACE_ALLOCATION</span>
                 </div>
 
-                <h3 className="text-3xl font-black uppercase tracking-tighter text-black mb-4">Data Center Colocation</h3>
+                <h3 className="text-3xl font-semibold uppercase tracking-tighter text-black mb-4">Data Center Colocation</h3>
                 <p className="text-gray-400 font-medium mb-12 text-sm uppercase tracking-widest">AI-Ready High-Density Space</p>
 
                 <p className="text-gray-500 font-medium mb-12 text-[15px] leading-relaxed">
@@ -303,13 +303,13 @@ export default function Services() {
                   ].map((feat, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-1 h-1 bg-[#f5c518]" />
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-black/70">{feat}</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-black/70">{feat}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-auto pt-8 border-t border-gray-50 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#f5c518]">Tier III Pathway</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#f5c518]">Tier III Pathway</span>
                   <ArrowRight size={16} className="text-gray-300 group-hover:text-[#f5c518] group-hover:translate-x-2 transition-all" />
                 </div>
               </div>
@@ -333,7 +333,7 @@ export default function Services() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
+              <h3 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 NEOCLOUDZ <br /><span className="text-[#f5c518]">GPU CLUSTERS</span>
               </h3>
               <p className="text-gray-400 text-lg mb-12 leading-relaxed font-medium">
@@ -345,7 +345,7 @@ export default function Services() {
                 <FeatureItem text="No virtualization — dedicated hardware access" dark />
                 <FeatureItem text="Real-time GPU utilization & VRAM telemetry" dark />
               </ul>
-              <button className="px-10 py-5 bg-[#f5c518] text-black font-black uppercase tracking-widest text-[11px] hover:bg-white transition-all">
+              <button className="px-10 py-5 bg-[#f5c518] text-black font-semibold uppercase tracking-widest text-[11px] hover:bg-white transition-all">
                 NeoCloudz Platform
               </button>
             </motion.div>
@@ -363,7 +363,7 @@ export default function Services() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
+              <h3 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 ARMS <br /><span className="text-[#f5c518]">MODULAR SYSTEM</span>
               </h3>
               <p className="text-gray-400 text-lg mb-12 leading-relaxed font-medium">
@@ -375,7 +375,7 @@ export default function Services() {
                 <FeatureItem text="Site install connects to prepared power" dark />
                 <FeatureItem text="Scalable across all DigiPowerX sites" dark />
               </ul>
-              <button className="px-10 py-5 bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-[11px] hover:bg-white/10 transition-all">
+              <button className="px-10 py-5 bg-white/5 border border-white/10 text-white font-semibold uppercase tracking-widest text-[11px] hover:bg-white/10 transition-all">
                 ARMS Platform
               </button>
             </motion.div>
@@ -392,7 +392,7 @@ export default function Services() {
           <div className="flex flex-col lg:flex-row justify-between items-start gap-20 mb-32">
             <div className="max-w-2xl">
               <SectionLabel num="03" text="Synergy Layer" />
-              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.9] tracking-tighter uppercase text-black mt-8">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10 mt-8">
                 INTEGRATED <br /><span className="text-[#f5c518]">ADVANTAGE.</span>
               </h2>
             </div>
@@ -416,8 +416,8 @@ export default function Services() {
               ].map((step, i) => (
                 <React.Fragment key={i}>
                   <div className="text-center md:text-left group/step">
-                    <span className="text-[10px] font-black text-[#f5c518] tracking-[0.4em] mb-4 block group-hover/step:translate-x-2 transition-transform duration-500">{step.label}</span>
-                    <p className="text-2xl md:text-3xl font-black uppercase tracking-tighter">{step.desc}</p>
+                    <span className="text-[10px] font-semibold text-[#f5c518] tracking-[0.4em] mb-4 block group-hover/step:translate-x-2 transition-transform duration-500">{step.label}</span>
+                    <p className="text-2xl md:text-3xl font-semibold uppercase tracking-tighter">{step.desc}</p>
                   </div>
                   {i < 2 && (
                     <div className="hidden md:block h-px flex-1 bg-white/10 mx-12 relative">
@@ -450,8 +450,8 @@ export default function Services() {
                 transition={{ delay: i * 0.1 }}
                 className="p-12 bg-white group hover:bg-black transition-all duration-500"
               >
-                <span className="text-[10px] font-black text-[#f5c518] mb-8 block">0{i + 1}</span>
-                <h4 className="text-2xl font-black uppercase tracking-tight text-black group-hover:text-white mb-6 transition-colors">{item.title}</h4>
+                <span className="text-[10px] font-semibold text-[#f5c518] mb-8 block">0{i + 1}</span>
+                <h4 className="text-2xl font-semibold uppercase tracking-tight text-black group-hover:text-white mb-6 transition-colors">{item.title}</h4>
                 <p className="text-gray-500 text-sm leading-relaxed font-medium group-hover:text-gray-400 transition-colors">{item.desc}</p>
                 <div className="mt-12 h-1 w-8 bg-[#f5c518] group-hover:w-full transition-all duration-700 origin-left" />
               </motion.div>

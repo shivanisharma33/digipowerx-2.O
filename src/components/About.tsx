@@ -168,11 +168,11 @@ const About = () => {
               <div className="w-64 h-[1px] bg-white/10" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 bg-black flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-brand-yellow" />
-                <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/40">Company</span>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.6em] text-white/40">Company</span>
               </div>
             </div>
 
-            <h1 className="text-[clamp(3rem,10vw,120px)] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+            <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10">
               <span className="block text-white mb-2">About</span>
               <span className="block text-brand-yellow">DigiPowerX</span>
             </h1>
@@ -182,10 +182,10 @@ const About = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-8">
-              <button className="bg-brand-yellow text-black px-16 py-4 font-black text-[12px] uppercase tracking-[0.2em] rounded shadow-[0_0_30px_rgba(245,197,24,0.2)] hover:bg-white transition-all">
+              <button className="bg-brand-yellow text-black px-16 py-4 font-semibold text-[12px] uppercase tracking-[0.2em] rounded shadow-[0_0_30px_rgba(245,197,24,0.2)] hover:bg-white transition-all">
                 Contact Us
               </button>
-              <button className="border border-white/10 bg-white/[0.03] text-white px-16 py-4 font-black text-[12px] uppercase tracking-[0.2em] rounded hover:bg-white/10 transition-all backdrop-blur-sm">
+              <button className="border border-white/10 bg-white/[0.03] text-white px-16 py-4 font-semibold text-[12px] uppercase tracking-[0.2em] rounded hover:bg-white/10 transition-all backdrop-blur-sm">
                 Investor Relation
               </button>
             </div>
@@ -207,8 +207,8 @@ const About = () => {
               { val: "301MW+", label: "Total Portfolio Capacity" }
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-brand-yellow font-black text-xl mb-1 tracking-tighter">{stat.val}</div>
-                <div className="text-[8px] font-black text-white/30 uppercase tracking-widest">{stat.label}</div>
+                <div className="text-brand-yellow font-semibold text-xl mb-1 tracking-tighter">{stat.val}</div>
+                <div className="text-[8px] font-semibold text-white/30 uppercase tracking-widest">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -225,10 +225,10 @@ const About = () => {
                 <div className="h-[2px] w-8 bg-brand-yellow" />
                 <div className="h-[2px] w-2 bg-white/20" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80">Company Overview</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/80">Company Overview</span>
             </div>
 
-            <h2 className="text-[clamp(2.5rem,6vw,80px)] font-black leading-[1.05] tracking-tighter uppercase mb-12 max-w-5xl">
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10 max-w-5xl">
               Owned at every layer. <br />
               Built for scale.
             </h2>
@@ -261,8 +261,8 @@ const About = () => {
                 key={i} 
                 className={`p-12 flex flex-col gap-6 ${i !== 2 ? 'md:border-r border-white/10' : ''}`}
               >
-                <div className="text-brand-yellow text-[10px] font-black uppercase tracking-[0.3em]">{item.tag}</div>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">{item.title}</h3>
+                <div className="text-brand-yellow text-[10px] font-semibold uppercase tracking-[0.3em]">{item.tag}</div>
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight text-white">{item.title}</h3>
                 <p className="text-white/40 text-[13px] md:text-sm leading-relaxed font-medium">
                   {item.desc}
                 </p>
@@ -282,12 +282,12 @@ const About = () => {
                 <div className="h-[2px] w-8 bg-brand-yellow" />
                 <div className="h-[2px] w-2 bg-black/10" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/60">Mission</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-black/60">Mission</span>
             </div>
 
-            <h2 className="text-[clamp(2.5rem,6vw,70px)] font-black leading-[1.05] tracking-tighter uppercase mb-12 max-w-6xl">
-              Vertically Integrated <span className="text-brand-yellow font-black">AI</span> <br />
-              <span className="text-brand-yellow font-black">Infrastructure</span> at Scale.
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-black relative z-10 max-w-6xl">
+              Vertically Integrated <span className="text-brand-yellow font-semibold">AI</span> <br />
+              <span className="text-brand-yellow font-semibold">Infrastructure</span> at Scale.
             </h2>
 
             <div className="space-y-6 max-w-5xl mx-auto">
@@ -328,7 +328,7 @@ const About = () => {
                 viewport={{ once: true }}
                 className="p-10 rounded-2xl bg-gray-50 border border-gray-200 hover:shadow-xl hover:shadow-brand-yellow/10 transition-all duration-500 group"
               >
-                <h3 className="text-lg font-black uppercase tracking-tight mb-4 group-hover:text-brand-yellow transition-colors text-black">
+                <h3 className="text-lg font-semibold uppercase tracking-tight mb-4 group-hover:text-brand-yellow transition-colors text-black">
                   {card.title}
                 </h3>
                 <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium">
@@ -365,10 +365,10 @@ const About = () => {
                 key={i} 
                 className={`flex flex-col gap-6 px-8 ${i !== 3 ? 'md:border-r border-white/5' : ''}`}
               >
-                <div className="text-4xl md:text-5xl font-black text-brand-yellow tracking-tighter">
+                <div className="text-4xl md:text-5xl font-semibold text-brand-yellow tracking-tighter">
                   {stat.val}
                 </div>
-                <p className="text-[9px] md:text-[10px] font-black text-white/40 leading-relaxed uppercase tracking-wider max-w-[280px]">
+                <p className="text-[9px] md:text-[10px] font-semibold text-white/40 leading-relaxed uppercase tracking-wider max-w-[280px]">
                   {stat.desc}
                 </p>
               </div>

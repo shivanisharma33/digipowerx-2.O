@@ -67,10 +67,10 @@ const Leadership = () => {
           >
             <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-12">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-yellow" />
-              <span className="text-[10px] uppercase tracking-[0.5em] font-black text-white/60">Governance</span>
+              <span className="text-[10px] uppercase tracking-[0.5em] font-semibold text-white/60">Governance</span>
             </div>
 
-            <h1 className="text-[clamp(3.5rem,10vw,120px)] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+            <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10">
               LEADERSHIP <br /> <span className="text-brand-yellow">& COMMITTEES</span>
             </h1>
 
@@ -85,8 +85,8 @@ const Leadership = () => {
       <section className="py-32 bg-black relative border-t border-white/5">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="mb-24">
-            <div className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-yellow mb-6">Executive Council</div>
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">THE <span className="text-white/40">TEAM</span></h2>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.5em] text-brand-yellow mb-6">Executive Council</div>
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">THE <span className="text-white/40">TEAM</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -110,8 +110,8 @@ const Leadership = () => {
                   
                   <div className="absolute bottom-8 left-8">
                     <div className="h-0.5 w-12 bg-brand-yellow mb-4 group-hover:w-20 transition-all duration-500" />
-                    <h3 className="text-3xl font-black uppercase tracking-tighter mb-1">{exec.name}</h3>
-                    <div className="text-[10px] font-black text-brand-yellow uppercase tracking-widest">{exec.role}</div>
+                    <h3 className="text-3xl font-semibold uppercase tracking-tighter mb-1">{exec.name}</h3>
+                    <div className="text-[10px] font-semibold text-brand-yellow uppercase tracking-widest">{exec.role}</div>
                   </div>
 
                   <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -135,8 +135,8 @@ const Leadership = () => {
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-yellow mb-8">Governance Body</div>
-              <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12">BOARD OF <br /> DIRECTORS</h2>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.5em] text-brand-yellow mb-8">Governance Body</div>
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-black mb-8 relative z-10">BOARD OF <br /> DIRECTORS</h2>
               <p className="text-black/60 text-lg font-medium leading-relaxed max-w-md">
                 A distinguished board providing strategic guidance, corporate governance, and long-term stewardship for DigiPowerX's global expansion.
               </p>
@@ -147,8 +147,8 @@ const Leadership = () => {
                 <div key={i} className="group border-b border-black/10 py-8 hover:bg-black/[0.02] transition-colors px-6 rounded-lg cursor-pointer">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-2xl font-black uppercase tracking-tighter group-hover:text-brand-yellow transition-colors">{member.name}</h4>
-                      <div className="text-[10px] font-black text-black/30 uppercase tracking-widest mt-1">{member.role}</div>
+                      <h4 className="text-2xl font-semibold uppercase tracking-tighter group-hover:text-brand-yellow transition-colors">{member.name}</h4>
+                      <div className="text-[10px] font-semibold text-black/30 uppercase tracking-widest mt-1">{member.role}</div>
                     </div>
                     <ChevronRight size={20} className="text-black/20 group-hover:translate-x-2 transition-transform" />
                   </div>
@@ -164,10 +164,10 @@ const Leadership = () => {
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
             <div className="max-w-2xl">
-              <div className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-yellow mb-6">Structural Governance</div>
-              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">COMMITTEES</h2>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.5em] text-brand-yellow mb-6">Structural Governance</div>
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">COMMITTEES</h2>
             </div>
-            <div className="text-[11px] font-black text-white/30 uppercase tracking-[0.3em] border-l border-white/20 pl-8">
+            <div className="text-[11px] font-semibold text-white/30 uppercase tracking-[0.3em] border-l border-white/20 pl-8">
               Regulatory compliance & <br /> strategic oversight
             </div>
           </div>
@@ -175,11 +175,11 @@ const Leadership = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {committees.map((committee, i) => (
               <div key={i} className="p-12 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-brand-yellow/30 transition-all group">
-                <h4 className="text-3xl font-black uppercase tracking-tighter mb-4 text-brand-yellow">{committee.name}</h4>
+                <h4 className="text-3xl font-semibold uppercase tracking-tighter mb-4 text-brand-yellow">{committee.name}</h4>
                 <p className="text-white/40 text-sm font-medium leading-relaxed mb-8">{committee.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {committee.members.map((member, m) => (
-                    <span key={m} className="px-3 py-1 rounded-md bg-white/5 text-[9px] font-black uppercase tracking-widest text-white/60">
+                    <span key={m} className="px-3 py-1 rounded-md bg-white/5 text-[9px] font-semibold uppercase tracking-widest text-white/60">
                       {member}
                     </span>
                   ))}
@@ -213,20 +213,20 @@ const Leadership = () => {
               <div className="space-y-8">
                 <div>
                   <div className="h-1 w-24 bg-brand-yellow mb-8" />
-                  <h3 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">{selectedLeader.name}</h3>
-                  <div className="text-xl font-bold text-brand-yellow uppercase tracking-[0.2em]">{selectedLeader.role}</div>
+                  <h3 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10 leading-none mb-4">{selectedLeader.name}</h3>
+                  <div className="text-xl font-semibold text-brand-yellow uppercase tracking-[0.2em]">{selectedLeader.role}</div>
                 </div>
                 <p className="text-lg md:text-xl text-white/60 font-medium leading-relaxed italic">
                   "{selectedLeader.bio}"
                 </p>
                 <div className="flex gap-6 pt-8">
-                  <button className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-brand-yellow transition-all">
+                  <button className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-xl font-semibold text-xs uppercase tracking-widest hover:bg-brand-yellow transition-all">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                     LinkedIn
                   </button>
-                  <button className="flex items-center gap-3 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                  <button className="flex items-center gap-3 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
                     <Mail size={18} />
                     Contact
                   </button>

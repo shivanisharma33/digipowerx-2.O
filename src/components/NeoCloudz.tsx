@@ -61,16 +61,16 @@ const Terminal = () => {
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-black uppercase">GPU_NODE_ENGINE_V4</div>
+        <div className="text-[#00e878]/80 text-[10px] md:text-[11px] tracking-[0.25em] font-semibold uppercase">GPU_NODE_ENGINE_V4</div>
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 bg-[#00e878] rounded-full shadow-[0_0_8px_rgba(0,232,120,0.8)] animate-pulse" />
-          <span className="text-[#00e878] text-[9px] tracking-widest uppercase font-bold hidden sm:block">RUNNING</span>
+          <span className="text-[#00e878] text-[9px] tracking-widest uppercase font-semibold hidden sm:block">RUNNING</span>
         </div>
       </div>
       <div className="p-6 md:p-8 space-y-[6px] relative z-10 overflow-y-auto h-full text-left">
         {lines.map((line, idx) => (
           <div key={idx} className={`${line.startsWith('[INFO]') ? 'text-[#00e878]/50' :
-              line.includes('neocloudz:~ $') ? 'text-[#00e878] font-bold drop-shadow-[0_0_5px_rgba(0,232,120,0.5)]' :
+              line.includes('neocloudz:~ $') ? 'text-[#00e878] font-semibold drop-shadow-[0_0_5px_rgba(0,232,120,0.5)]' :
                 'text-[#00e878]/70'
             } whitespace-nowrap overflow-hidden text-ellipsis tracking-wide leading-relaxed`}>
             {line}
@@ -108,11 +108,11 @@ const NeoCloudz = () => {
             className="flex flex-col items-center"
           >
             <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-[#00e878]/20 bg-[#00e878]/5 backdrop-blur-xl mb-8 shadow-[0_0_30px_rgba(0,232,120,0.05)]">
-              <span className="text-[10px] font-black tracking-[0.6em] text-[#00e878] uppercase underline underline-offset-4">NEO CLOUDZ</span>
-              <span className="text-[10px] font-black tracking-[0.6em] text-white/40 uppercase">Bare-Metal GPU Compute</span>
+              <span className="text-[10px] font-semibold tracking-[0.6em] text-[#00e878] uppercase underline underline-offset-4">NEO CLOUDZ</span>
+              <span className="text-[10px] font-semibold tracking-[0.6em] text-white/40 uppercase">Bare-Metal GPU Compute</span>
             </div>
 
-            <h1 className="text-[clamp(3.5rem,12vw,140px)] font-black leading-[0.9] uppercase tracking-tighter mb-6 relative">
+            <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase mb-8 text-white relative z-10">
               NEO <br />
               <span className="text-[#00e878] drop-shadow-[0_0_20px_rgba(0,232,120,0.3)]">CLOUDZ.</span>
             </h1>
@@ -122,10 +122,10 @@ const NeoCloudz = () => {
             </p>
 
             <div className="flex flex-wrap justify-center gap-8">
-              <Link to="/contact" className="px-14 py-6 bg-[#00e878] text-black font-black text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white transition-all shadow-[0_10px_50px_rgba(0,232,120,0.3)]">
+              <Link to="/contact" className="px-14 py-6 bg-[#00e878] text-black font-semibold text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white transition-all shadow-[0_10px_50px_rgba(0,232,120,0.3)]">
                 Request Capacity
               </Link>
-              <button className="px-14 py-6 border border-white/10 bg-white/5 backdrop-blur-md font-black text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white/10 transition-all">
+              <button className="px-14 py-6 border border-white/10 bg-white/5 backdrop-blur-md font-semibold text-[11px] uppercase tracking-[0.3em] rounded-sm hover:bg-white/10 transition-all">
                 Investor Info
               </button>
             </div>
@@ -151,11 +151,11 @@ const NeoCloudz = () => {
               className="p-12 bg-[#080808] group hover:bg-black transition-all duration-500 relative"
             >
               <div className="flex justify-between items-start mb-10">
-                <span className="text-[10px] font-black text-[#00e878] tracking-[0.4em] uppercase">{card.label}</span>
-                <div className="px-3 py-1 bg-white/5 border border-white/10 text-[7px] font-black tracking-widest group-hover:bg-[#00e878] group-hover:text-black transition-colors">{card.status}</div>
+                <span className="text-[10px] font-semibold text-[#00e878] tracking-[0.4em] uppercase">{card.label}</span>
+                <div className="px-3 py-1 bg-white/5 border border-white/10 text-[7px] font-semibold tracking-widest group-hover:bg-[#00e878] group-hover:text-black transition-colors">{card.status}</div>
               </div>
-              <div className="text-5xl font-black text-white tracking-tighter mb-4">{card.val}</div>
-              <p className="text-[10px] font-bold text-white/30 tracking-widest leading-relaxed uppercase">{card.sub}</p>
+              <div className="text-5xl font-semibold text-white tracking-tighter mb-4">{card.val}</div>
+              <p className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{card.sub}</p>
             </motion.div>
           ))}
         </div>
@@ -168,9 +168,9 @@ const NeoCloudz = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-px bg-[#00e878]" />
-                <span className="text-[10px] font-black tracking-[0.6em] text-[#00e878] uppercase">Live Cluster Telemetry</span>
+                <span className="text-[10px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">Live Cluster Telemetry</span>
               </div>
-              <h2 className="text-6xl md:text-7xl font-black text-white leading-[0.85] uppercase tracking-tighter">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 FULL CLUSTER <br />
                 <span className="text-[#00e878]">VISIBILITY.</span>
               </h2>
@@ -191,8 +191,8 @@ const NeoCloudz = () => {
                     <item.icon size={18} />
                   </div>
                   <div className="space-y-1">
-                    <div className="text-[11px] font-black tracking-widest uppercase">{item.t}</div>
-                    <div className="text-[10px] font-bold text-white/30 leading-relaxed uppercase">{item.d}</div>
+                    <div className="text-[11px] font-semibold tracking-widest uppercase">{item.t}</div>
+                    <div className="text-[10px] font-medium text-white/30 leading-relaxed uppercase">{item.d}</div>
                   </div>
                 </div>
               ))}
@@ -204,7 +204,7 @@ const NeoCloudz = () => {
             <div className="relative pl-6 pt-6">
               <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#00e878]/30 pointer-events-none" />
               <div className="absolute bottom-[-1.5rem] right-[-1.5rem] w-20 h-20 border-b border-r border-[#00e878]/30 pointer-events-none" />
-              <div className="absolute -top-12 right-0 text-[9px] font-mono font-bold text-[#00e878] tracking-[0.4em] uppercase">NeoCloudz Cluster — Live Node Telemetry</div>
+              <div className="absolute -top-12 right-0 text-[9px] font-mono font-medium text-[#00e878] tracking-[0.4em] uppercase">NeoCloudz Cluster — Live Node Telemetry</div>
               <Terminal />
             </div>
           </div>
@@ -218,14 +218,14 @@ const NeoCloudz = () => {
             <div className="max-w-4xl">
               <div className="flex items-center gap-6 mb-10">
                 <div className="w-16 h-[1px] bg-[#00e878]" />
-                <span className="text-[11px] font-black tracking-[0.6em] text-[#00e878] uppercase">01 / Deployment Flow</span>
+                <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">01 / Deployment Flow</span>
               </div>
-              <h2 className="text-6xl md:text-[100px] font-black text-white leading-[0.8] uppercase tracking-tighter">
+              <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                 FROM REQUEST TO <br />
                 <span className="text-[#00e878]">RUNNING.</span>
               </h2>
             </div>
-            <p className="text-[11px] font-bold text-white/40 tracking-widest leading-relaxed border-l-2 border-[#00e878] pl-8 max-w-sm">
+            <p className="text-[11px] font-medium text-white/40 tracking-widest leading-relaxed border-l-2 border-[#00e878] pl-8 max-w-sm">
               A streamlined path from capacity request to dedicated bare-metal GPU cluster — without queuing or overhead.
             </p>
           </div>
@@ -246,10 +246,10 @@ const NeoCloudz = () => {
                 transition={{ delay: i * 0.1 }}
                 className="p-12 bg-[#050505] group hover:bg-black transition-all relative overflow-hidden"
               >
-                <span className="text-[10px] font-mono font-bold text-white/10 group-hover:text-[#00e878] transition-colors mb-12 block">{s.step}</span>
-                <div className="text-[10px] font-black text-[#00e878] tracking-[0.5em] mb-4">{s.t}</div>
-                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-tight">{s.l}</h3>
-                <p className="text-[10px] font-bold text-white/30 tracking-widest leading-relaxed uppercase">{s.d}</p>
+                <span className="text-[10px] font-mono font-medium text-white/10 group-hover:text-[#00e878] transition-colors mb-12 block">{s.step}</span>
+                <div className="text-[10px] font-semibold text-[#00e878] tracking-[0.5em] mb-4">{s.t}</div>
+                <h3 className="text-xl font-semibold text-white mb-6 uppercase tracking-tight">{s.l}</h3>
+                <p className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{s.d}</p>
                 <div className="absolute bottom-0 left-0 h-1 bg-[#00e878] w-0 group-hover:w-full transition-all duration-700" />
               </motion.div>
             ))}
@@ -263,10 +263,10 @@ const NeoCloudz = () => {
           <div className="text-center mb-24">
             <div className="flex items-center justify-center gap-6 mb-10">
               <div className="w-16 h-[1px] bg-[#00e878]" />
-              <span className="text-[11px] font-black tracking-[0.6em] text-[#00e878] uppercase">02 / Supported Workloads</span>
+              <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">02 / Supported Workloads</span>
               <div className="w-16 h-[1px] bg-[#00e878]" />
             </div>
-            <h2 className="text-6xl md:text-9xl font-black text-white leading-[0.8] uppercase tracking-tighter mb-12">
+            <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
               WHAT THIS <br />
               <span className="text-[#00e878]">RUNS.</span>
             </h2>
@@ -328,16 +328,16 @@ const NeoCloudz = () => {
                     <w.icon size={24} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-black text-[#00e878] tracking-[0.5em] block mb-1 uppercase">{w.title}</span>
-                    <span className="text-xl font-black text-white tracking-tight uppercase">{w.subtitle}</span>
+                    <span className="text-[10px] font-semibold text-[#00e878] tracking-[0.5em] block mb-1 uppercase">{w.title}</span>
+                    <span className="text-xl font-semibold text-white tracking-tight uppercase">{w.subtitle}</span>
                   </div>
                 </div>
-                <p className="text-white/40 text-[13px] font-bold tracking-tight leading-relaxed mb-12 group-hover:text-white/60 transition-colors uppercase">{w.desc}</p>
+                <p className="text-white/40 text-[13px] font-semibold tracking-tight leading-relaxed mb-12 group-hover:text-white/60 transition-colors uppercase">{w.desc}</p>
                 <div className="space-y-4">
                   {w.items.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-4 py-3 border-t border-white/5">
                       <div className="w-1 h-1 rounded-full bg-[#00e878]" />
-                      <span className="text-[10px] font-black text-white/60 tracking-widest uppercase">{item}</span>
+                      <span className="text-[10px] font-semibold text-white/60 tracking-widest uppercase">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -355,9 +355,9 @@ const NeoCloudz = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-px bg-[#00e878]" />
-                  <span className="text-[11px] font-black tracking-[0.6em] text-[#00e878] uppercase">GPU Cluster Architecture</span>
+                  <span className="text-[11px] font-semibold tracking-[0.6em] text-[#00e878] uppercase">GPU Cluster Architecture</span>
                 </div>
-                <h2 className="text-6xl md:text-7xl font-black text-white leading-[0.85] uppercase tracking-tighter">
+                <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter uppercase text-white mb-8 relative z-10">
                   BUILT FOR <br />
                   <span className="text-[#00e878]">AI WORKLOADS.</span>
                 </h2>
@@ -373,8 +373,8 @@ const NeoCloudz = () => {
                   { t: "Performance Visibility", d: "Real-time telemetry visible to customer." }
                 ].map((f, i) => (
                   <div key={i} className="space-y-3">
-                    <div className="text-[11px] font-black text-white tracking-widest uppercase">{f.t}</div>
-                    <div className="text-[10px] font-bold text-white/30 tracking-widest leading-relaxed uppercase">{f.d}</div>
+                    <div className="text-[11px] font-semibold text-white tracking-widest uppercase">{f.t}</div>
+                    <div className="text-[10px] font-medium text-white/30 tracking-widest leading-relaxed uppercase">{f.d}</div>
                   </div>
                 ))}
               </div>
@@ -388,8 +388,8 @@ const NeoCloudz = () => {
               ].map((m, i) => (
                 <div key={i} className="p-12 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-[#00e878]/30 transition-all">
                   <m.icon className="text-[#00e878] mb-8 group-hover:scale-110 transition-transform" size={32} />
-                  <div className="text-3xl font-black text-white tracking-tighter mb-4 uppercase">{m.val}</div>
-                  <div className="text-[10px] font-bold text-white/30 tracking-widest uppercase">{m.label}</div>
+                  <div className="text-3xl font-semibold text-white tracking-tighter mb-4 uppercase">{m.val}</div>
+                  <div className="text-[10px] font-medium text-white/30 tracking-widest uppercase">{m.label}</div>
                 </div>
               ))}
             </div>
