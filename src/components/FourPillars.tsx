@@ -125,7 +125,7 @@ const FourPillars = () => {
                 </li>
               ))}
             </ul>
-            <div className="aspect-[16/10] bg-[#f8f9fb] rounded-lg overflow-hidden border border-black/5 shadow-2xl relative flex items-center justify-center p-8">
+            <div className="aspect-[16/10]  flex items-center justify-center p-8">
               {/* Animated Cooling Schematic */}
               <div className="w-full h-full relative flex items-center justify-between gap-4">
 
