@@ -1,5 +1,6 @@
 import React from 'react';
 import InfraHero from './InfraHero';
+import Hero from './Hero';
 import Marquee from './Marquee';
 import WhatWeDo from './WhatWeDo';
 import FourPillars from './FourPillars';
@@ -14,7 +15,7 @@ import { CTASection } from './Footer';
 const Home = () => {
   return (
     <>
-      <InfraHero />
+      <Hero />
       <Marquee />
       <WhatWeDo />
       <FourPillars />

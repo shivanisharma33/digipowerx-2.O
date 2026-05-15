@@ -12,6 +12,8 @@ import Careers from './components/Careers';
 import SECFilings from './components/SECFilings';
 import ARMS from './components/ARMS';
 import Leadership from './components/Leadership';
+import PressRelease from './components/PressRelease';
+import InvestorRelations from './components/InvestorRelations';
 import DemiPage from './components/DemiPage';
 import { Footer } from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -34,6 +36,8 @@ function App() {
           <Route path="/sec-filings" element={<SECFilings />} />
           <Route path="/arms" element={<ARMS />} />
           <Route path="/leadership" element={<Leadership />} />
+          <Route path="/press-release" element={<PressRelease />} />
+          <Route path="/investors" element={<InvestorRelations />} />
           <Route path="/demi" element={<DemiPage />} />
         </Routes>
         <Footer />

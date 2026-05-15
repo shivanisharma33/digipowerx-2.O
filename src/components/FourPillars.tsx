@@ -1,6 +1,107 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const WorldMapVisual = () => {
+  return (
+    <div className="relative w-full h-full bg-black rounded-lg overflow-hidden border border-white/5 shadow-2xl flex items-center justify-center p-0">
+      {/* High-Fidelity World Map Background */}
+      <div className="absolute inset-0 opacity-40 mix-blend-screen">
+        <img 
+          src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2066&auto=format&fit=crop" 
+          alt="World Map Texture"
+          className="w-full h-full object-cover grayscale brightness-50"
+        />
+      </div>
+
+      <svg viewBox="0 0 1000 500" className="relative w-full h-full z-10 select-none">
+        {/* Abstract World Path */}
+        <path
+          fill="#111"
+          d="M150,120 L220,100 L300,120 L350,200 L320,280 L250,350 L180,300 L150,200 Z M450,100 L550,80 L650,120 L700,200 L650,300 L550,350 L450,300 Z"
+          className="opacity-50"
+        />
+
+        {/* Highlighted USA Silhouette */}
+        <g transform="translate(60, 130) scale(1.2)">
+          <path
+            d="M0,20 L10,15 L25,20 L40,10 L60,15 L80,10 L100,20 L115,40 L125,70 L110,100 L90,110 L70,105 L50,110 L30,105 L15,115 L0,100 L-10,60 Z"
+            fill="none"
+            stroke="#f5c518"
+            strokeWidth="1.5"
+            strokeOpacity="0.8"
+          />
+          <path d="M20,20 L20,110 M40,15 L40,110 M60,15 L60,105 M80,10 L80,105 M100,20 L100,110" stroke="#f5c518" strokeWidth="0.5" strokeOpacity="0.1" fill="none" />
+        </g>
+        
+        {/* Connection Arcs */}
+        <g fill="none" stroke="#f5c518" strokeWidth="1.5" strokeLinecap="round">
+          <motion.path
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.8 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            d="M210,175 Q380,50 500,320"
+          />
+          <motion.path
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.6 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            d="M210,175 Q500,150 780,350"
+            strokeDasharray="6 4"
+          />
+        </g>
+
+        {/* Animated Particles */}
+        <circle r="3" fill="#f5c518" filter="blur(2px)">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M210,175 Q380,50 500,320" />
+        </circle>
+        <circle r="2" fill="#f5c518">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M210,175 Q500,150 780,350" />
+        </circle>
+
+        {/* Focal Nodes */}
+        {[
+          { x: 210, y: 175 }, { x: 210, y: 210 }, { x: 500, y: 320 }, { x: 780, y: 350 }
+        ].map((node, i) => (
+          <g key={i}>
+            <circle cx={node.x} cy={node.y} r="4" fill="#f5c518">
+              <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx={node.x} cy={node.y} r="12" fill="#f5c518" opacity="0.15" />
+          </g>
+        ))}
+      </svg>
+
+      {/* HTML Labels */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[22%] left-[16%] flex flex-col items-center">
+          <div className="bg-black border border-[#f5c518] px-3 py-1.5 rounded shadow-xl">
+            <span className="text-[10px] font-black text-white uppercase tracking-widest">Buffalo, NY</span>
+          </div>
+          <div className="w-px h-12 bg-gradient-to-b from-[#f5c518] to-transparent" />
+        </div>
+        <div className="absolute top-[42%] left-[23%] flex items-center">
+          <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#f5c518]" />
+          <div className="bg-black border border-[#f5c518] px-3 py-1.5 rounded shadow-xl ml-2 whitespace-nowrap">
+            <span className="text-[10px] font-black text-white uppercase tracking-widest">North Tonawanda, NY</span>
+          </div>
+        </div>
+        <div className="absolute top-[70%] left-[45%] flex flex-col items-center">
+          <div className="w-px h-10 bg-gradient-to-t from-[#f5c518] to-transparent" />
+          <div className="bg-black border border-[#f5c518] px-3 py-1.5 rounded shadow-xl">
+            <span className="text-[10px] font-black text-white uppercase tracking-widest">Columbiana, AL</span>
+          </div>
+        </div>
+        <div className="absolute top-[76%] left-[68%] flex flex-col items-center">
+          <div className="w-px h-12 bg-gradient-to-t from-[#f5c518] to-transparent" />
+          <div className="bg-black border border-[#f5c518] px-4 py-2 rounded shadow-xl text-center">
+            <span className="text-[10px] font-black text-white uppercase tracking-widest block leading-tight">North Carolina<br/>Development Site</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const FourPillars = () => {
   return (
     <section className="bg-[#f2f4f7] py-32 px-6">
@@ -42,70 +143,12 @@ const FourPillars = () => {
                 </li>
               ))}
             </ul>
-            <div className="aspect-[16/10] bg-[#0d0d0d] rounded-lg overflow-hidden border border-white/5 shadow-2xl relative group/map">
-              {/* Realistic Map Background */}
-              <div className="absolute inset-0">
-                <img
-                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2066&auto=format&fit=crop"
-                  alt="Satellite Data Map"
-                  className="w-full h-full object-cover grayscale opacity-40 brightness-50"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0d0d0d_100%)] opacity-60" />
-              </div>
-
-              {/* Grid Overlay */}
-              <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-                <svg className="w-full h-full">
-                  {[...Array(20)].map((_, i) => (
-                    <line key={`v-${i}`} x1={i * 40} y1="0" x2={i * 40} y2="500" stroke="white" strokeWidth="0.5" />
-                  ))}
-                  {[...Array(12)].map((_, i) => (
-                    <line key={`h-${i}`} x1="0" y1={i * 40} x2="800" y2={i * 40} stroke="white" strokeWidth="0.5" />
-                  ))}
-                </svg>
-              </div>
-
-              {/* City Labels */}
-              <div className="absolute top-[12%] right-[22%] text-[8px] font-mono text-white/20 uppercase tracking-widest">Buffalo</div>
-              <div className="absolute top-[62%] right-[32%] text-[8px] font-mono text-white/20 uppercase tracking-widest">Raleigh</div>
-              <div className="absolute top-[75%] right-[52%] text-[8px] font-mono text-white/20 uppercase tracking-widest">Atlanta</div>
-
-              {/* Location Nodes */}
-              {[
-                { top: '15%', left: '75%', label: 'Buffalo, NY', capacity: '50MW' },
-                { top: '65%', left: '65%', label: 'Raleigh, NC', capacity: '150MW' },
-                { top: '78%', left: '45%', label: 'Atlanta, GA', capacity: '250MW' },
-              ].map((node, i) => (
-                <div key={i} className="absolute" style={{ top: node.top, left: node.left }}>
-                  <motion.div
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                    className="absolute -inset-4 bg-[#f5c518] rounded-full blur-xl"
-                  />
-                  <div className="relative w-3 h-3 bg-[#f5c518] rounded-full shadow-[0_0_15px_#f5c518] cursor-pointer peer" />
-
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none z-20">
-                    <div className="bg-black/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-lg whitespace-nowrap">
-                      <div className="text-[9px] font-black text-[#f5c518] uppercase tracking-widest mb-1">{node.label}</div>
-                      <div className="text-[10px] font-semibold text-white/60 uppercase tracking-tighter">Status: Active | {node.capacity}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              {/* Learn More Overlay */}
-              <div className="absolute bottom-6 left-6">
-                <button className="flex items-center gap-3 text-[10px] font-semibold text-white/40 uppercase tracking-[0.3em] hover:text-[#f5c518] transition-colors group/btn">
-                  Learn More
-                  <div className="w-8 h-[1px] bg-white/20 group-hover/btn:w-12 group-hover/btn:bg-[#f5c518] transition-all" />
-                </button>
-              </div>
+            <div className="aspect-[16/10] relative">
+              <WorldMapVisual />
             </div>
           </div>
 
-          {/* Pillar 2: DIRECT-TO-CHIP LIQUID COOLING */}
+          {/* Pillar 2: DIRECT-TO-CHIP LIQUID COOLING (REVERTED TO ORIGINAL) */}
           <div className="flex flex-col">
             <div className="text-[10px] font-semibold tracking-[0.3em] text-black/30 uppercase mb-8">DATA CENTER ARCHITECTURE</div>
             <h3 className="text-3xl font-semibold uppercase tracking-tighter text-black mb-6">DIRECT-TO-CHIP LIQUID COOLING</h3>
@@ -125,11 +168,8 @@ const FourPillars = () => {
                 </li>
               ))}
             </ul>
-            <div className="aspect-[16/10]  flex items-center justify-center p-8">
-              {/* Animated Cooling Schematic */}
+            <div className="aspect-[16/10] relative flex items-center justify-center p-8">
               <div className="w-full h-full relative flex items-center justify-between gap-4">
-
-                {/* Left: Cooling Tower */}
                 <div className="w-[30%] h-full flex flex-col justify-end items-center pb-4 relative">
                   <div className="absolute top-[10%] w-[80%] aspect-[4/3] bg-[#2d3a33] rounded-t-xl flex flex-col items-center justify-center border-x-4 border-t-4 border-[#3a4a42] relative overflow-hidden">
                     <div className="flex gap-4 mb-2">
@@ -143,14 +183,12 @@ const FourPillars = () => {
                     </div>
                   </div>
                   <div className="w-[90%] h-[50%] bg-[#42524a] rounded-b-lg border-x-4 border-b-4 border-[#3a4a42]" />
-                  {/* Tanks */}
                   <div className="absolute bottom-4 left-0 w-full flex flex-col gap-2 px-2">
                     <div className="h-6 bg-[#4a6d8c] rounded-full border border-white/10" />
                     <div className="h-6 bg-[#4a6d8c] rounded-full border border-white/10" />
                   </div>
                 </div>
 
-                {/* Middle: CDU */}
                 <div className="w-[15%] h-[80%] bg-[#1a1f1d] rounded-lg border-2 border-[#2d3a33] flex flex-col items-center py-4 gap-4 relative">
                   <div className="w-10 h-10 rounded-full border-2 border-[#f5c518]/40 flex items-center justify-center">
                     <motion.div animate={{ rotate: -360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-6 h-6 border-2 border-t-[#f5c518] border-transparent rounded-full" />
@@ -163,7 +201,6 @@ const FourPillars = () => {
                   <div className="absolute -top-6 text-[8px] font-mono text-[#4a6d8c] font-black tracking-widest">CDU</div>
                 </div>
 
-                {/* Right: GPU Racks */}
                 <div className="w-[45%] h-full flex gap-2">
                   {[...Array(3)].map((_, i) => (
                     <div key={i} className="flex-1 bg-[#0d0f0e] rounded border border-white/5 p-2 flex flex-col gap-1">
@@ -185,15 +222,10 @@ const FourPillars = () => {
                   <div className="absolute -bottom-6 right-0 text-[8px] font-mono text-green-500 font-black tracking-widest">GPU SERVER RACKS</div>
                 </div>
 
-                {/* Flow Lines (SVG) */}
                 <div className="absolute inset-0 pointer-events-none">
                   <svg className="w-full h-full" viewBox="0 0 400 250">
-                    {/* Red Lines (Hot) */}
                     <path id="hot-return" d="M300,50 L200,50 L200,100 L50,100 L50,150" stroke="#ff4d4d" strokeWidth="1.5" fill="none" strokeOpacity="0.4" />
-                    {/* Blue Lines (Cold) */}
                     <path id="cold-supply" d="M50,180 L200,180 L200,150 L300,150" stroke="#4a6d8c" strokeWidth="1.5" fill="none" strokeOpacity="0.4" />
-
-                    {/* Animated Dots */}
                     {[...Array(3)].map((_, i) => (
                       <circle key={`hot-${i}`} r="2" fill="#ff4d4d">
                         <animateMotion dur="3s" repeatCount="indefinite" begin={`${i * 1}s`}>
@@ -214,7 +246,7 @@ const FourPillars = () => {
             </div>
           </div>
 
-          {/* Pillar 3: MEET NEOCLOUDZ */}
+          {/* Pillar 3: MEET NEOCLOUDZ (REVERTED TO ORIGINAL) */}
           <div className="flex flex-col">
             <div className="text-[10px] font-semibold tracking-[0.3em] text-black/30 uppercase mb-8">FULLY OWNED SUBSIDIARY</div>
             <h3 className="text-3xl font-semibold uppercase tracking-tighter text-black mb-6">MEET NEOCLOUDZ</h3>
@@ -257,7 +289,7 @@ const FourPillars = () => {
             </div>
           </div>
 
-          {/* Pillar 4: US DATA CENTERS INC. */}
+          {/* Pillar 4: US DATA CENTERS INC. (REVERTED TO ORIGINAL) */}
           <div className="flex flex-col">
             <div className="text-[10px] font-semibold tracking-[0.3em] text-black/30 uppercase mb-8">STRATEGIC PARTNER</div>
             <h3 className="text-3xl font-semibold uppercase tracking-tighter text-black mb-6">US DATA CENTERS INC.</h3>
@@ -278,11 +310,9 @@ const FourPillars = () => {
               ))}
             </ul>
             <div className="aspect-[16/10] bg-[#050505] rounded-lg overflow-hidden border border-white/5 shadow-2xl relative flex items-center justify-center">
-              {/* Advanced Energy Core Visual */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,197,24,0.15)_0%,transparent_70%)]" />
 
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* Rotating Orbital Rings */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -299,7 +329,6 @@ const FourPillars = () => {
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#f5c518]/60 rounded-full" />
                 </motion.div>
 
-                {/* Central Power Core */}
                 <div className="relative">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -309,7 +338,6 @@ const FourPillars = () => {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-10 h-10 bg-[#f5c518] rounded-full shadow-[0_0_30px_#f5c518] border-2 border-white/20" />
                   </div>
-                  {/* Core Internal HUD */}
                   <svg className="absolute -inset-10 w-40 h-40" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="48" stroke="#f5c518" strokeWidth="0.5" strokeDasharray="4 8" strokeOpacity="0.3" />
                     <motion.circle
@@ -322,7 +350,6 @@ const FourPillars = () => {
                   </svg>
                 </div>
 
-                {/* Data Particles */}
                 {[...Array(8)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -344,7 +371,6 @@ const FourPillars = () => {
                   />
                 ))}
 
-                {/* Sidebar HUD Stats */}
                 <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4">
                   {[
                     { label: 'OUTPUT', val: '1.25MW' },
@@ -358,7 +384,6 @@ const FourPillars = () => {
                   ))}
                 </div>
 
-                {/* Deployment Tag */}
                 <div className="absolute bottom-8 left-8 border-l-2 border-[#f5c518] pl-4">
                   <div className="text-[8px] font-mono text-white/40 uppercase tracking-widest mb-1">UNIT_DEPLOYMENT</div>
                   <div className="text-[12px] font-black text-white uppercase tracking-tighter">USDC_MODULAR_01</div>

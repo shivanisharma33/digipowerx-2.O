@@ -36,11 +36,12 @@ const Navbar = () => {
     ]},
     { name: 'Investors', hasDropdown: true, sublinks: [
       { name: 'SEC Filings', path: '/sec-filings' },
-      { name: 'Investor Center', path: '/about' },
+      { name: 'Investor Center', path: '/investors' },
     ]},
     { name: 'Company', hasDropdown: true, sublinks: [
       { name: 'About Us', path: '/about' },
       { name: 'Leadership', path: '/leadership' },
+      { name: 'Press Release', path: '/press-release' },
       { name: 'Careers', path: '/careers' },
     ]},
     { name: 'Data Centers', hasDropdown: false, path: '/data-centers' },
